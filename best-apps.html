@@ -21,9 +21,9 @@
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         :root {
             --primary: #F7C600; --primary-light: #FFD93D;
-            --bg-dark: #292929; --bg-card: #333333; --bg-card-hover: #3d3d3d;
-            --text-primary: #f0f0f0; --text-secondary: #999999; --text-muted: #666666;
-            --border: #444444; --success: #10B981; --danger: #EF4444;
+            --bg-dark: #1f2227; --bg-card: #282d35; --bg-card-hover: #2f3540;
+            --text-primary: #dde1ea; --text-secondary: #7a8394; --text-muted: #4a5263;
+            --border: #3c4350; --success: #10B981; --danger: #EF4444;
         }
         html { scroll-behavior: smooth; }
         body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background-color: var(--bg-dark); color: var(--text-primary); line-height: 1.6; }
@@ -31,7 +31,7 @@
         .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
         .article-container { max-width: 780px; margin: 0 auto; padding: 0 24px; }
 
-        .header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(41,41,41,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+        .header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(31,34,39,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
         .header .container { display: flex; justify-content: space-between; align-items: center; height: 72px; }
         .logo h1 { font-size: 1.5rem; font-weight: 800; color: var(--primary); letter-spacing: -0.5px; }
         .nav { display: flex; gap: 32px; align-items: center; }
@@ -40,7 +40,7 @@
         .nav .btn-nav { background: var(--primary); color: #000; padding: 8px 20px; border-radius: 6px; font-weight: 700; font-size: 0.9rem; }
         .nav .btn-nav:hover { background: var(--primary-light); }
 
-        .article-hero { padding: 140px 0 56px; background: linear-gradient(180deg, #1e1e1e 0%, var(--bg-dark) 100%); border-bottom: 1px solid var(--border); }
+        .article-hero { padding: 140px 0 56px; background: linear-gradient(180deg, #1a1e23 0%, var(--bg-dark) 100%); border-bottom: 1px solid var(--border); }
         .article-label { display: inline-block; background: rgba(247,198,0,0.1); color: var(--primary); font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 5px 12px; border-radius: 4px; margin-bottom: 20px; border: 1px solid rgba(247,198,0,0.2); }
         .article-hero h1 { font-size: 2.8rem; font-weight: 800; line-height: 1.12; letter-spacing: -1px; margin-bottom: 20px; }
         .article-hero h1 span { color: var(--primary); }
@@ -97,7 +97,7 @@
 
         .comparison-table-wrap { overflow-x: auto; margin: 40px 0; border: 1px solid var(--border); border-radius: 12px; }
         .comparison-table { width: 100%; border-collapse: collapse; min-width: 560px; }
-        .comparison-table th { background: #1e1e1e; padding: 13px 16px; text-align: left; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); border-bottom: 1px solid var(--border); }
+        .comparison-table th { background: #1a1e23; padding: 13px 16px; text-align: left; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); border-bottom: 1px solid var(--border); }
         .comparison-table th.epx-col { color: var(--primary); }
         .comparison-table td { padding: 13px 16px; border-bottom: 1px solid rgba(68,68,68,0.4); font-size: 0.9rem; color: var(--text-secondary); vertical-align: middle; }
         .comparison-table tr:last-child td { border-bottom: none; }
@@ -542,12 +542,10 @@
                     <a href="/">Home</a>
                     <a href="privacy.html">Privacy</a>
                     <a href="terms.html">Terms</a>
-                    <a href="mailto:support@proxtrades.com">Contact</a>
+                    <a href="/cdn-cgi/l/email-protection#9deee8ededf2efe9ddedeff2e5e9effcf9f8eeb3fef2f0">Contact</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b07e790600644db88ee301e107723bc3"}'></script><!-- End Cloudflare Web Analytics -->
-</body>
-</html>
+    <!-- Cloudflare Web Analytics --><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script defer src='https://static.cloudflare
