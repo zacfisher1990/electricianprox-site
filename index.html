@@ -590,10 +590,57 @@
             .footer-grid { grid-template-columns: 1fr 1fr; }
         }
 
+        /* ── HERO SIGNUP ROW ── */
+        .hero-signup {
+            display: flex; gap: 10px; margin-bottom: 16px;
+            max-width: 460px;
+        }
+        .hero-signup-input {
+            flex: 1; min-width: 0;
+            background: var(--bg-card);
+            border: 1.5px solid var(--border-bright);
+            border-radius: 8px;
+            padding: 13px 16px;
+            font-size: 0.95rem; font-family: 'DM Sans', sans-serif;
+            color: var(--text);
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .hero-signup-input::placeholder { color: var(--text-muted); }
+        .hero-signup-input:focus { border-color: var(--yellow); }
+        .hero-signup-btn {
+            white-space: nowrap;
+            background: var(--yellow); color: #000;
+            border: none; border-radius: 8px;
+            padding: 13px 22px;
+            font-size: 0.95rem; font-weight: 700;
+            font-family: 'DM Sans', sans-serif;
+            cursor: pointer;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+        .hero-signup-btn:hover {
+            background: #ffd93d;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(247,198,0,0.3);
+        }
+        .hero-signup-note {
+            font-size: 0.78rem; color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+        .hero-divider {
+            display: flex; align-items: center; gap: 12px;
+            margin-bottom: 14px; max-width: 460px;
+        }
+        .hero-divider-line { flex: 1; height: 1px; background: var(--border); }
+        .hero-divider-text { font-size: 0.75rem; color: var(--text-muted); white-space: nowrap; }
+
         @media (max-width: 640px) {
             .nav { display: none; }
             .hero { padding: 110px 0 60px; }
             .hero-content h1 { font-size: 2.6rem; }
+            .hero-signup { max-width: 100%; }
+            .hero-signup-input { font-size: 1rem; }
             .features-grid { grid-template-columns: 1fr; }
             .section-title { font-size: 2.2rem; }
             .trust-strip .container { gap: 20px; }
@@ -634,6 +681,26 @@
                     Clients, jobs, estimates, invoices, and payments — plus 20+ NEC calculators for when you're on the job.
                 </p>
                 <div class="hero-cta animate-up-4">
+                    <!-- Email signup row -->
+                    <div class="hero-signup">
+                        <input
+                            type="email"
+                            id="hero-email"
+                            class="hero-signup-input"
+                            placeholder="Enter your email address"
+                            autocomplete="email"
+                        >
+                        <button class="hero-signup-btn" onclick="handleHeroSignup()">Get Started Free</button>
+                    </div>
+                    <p class="hero-signup-note">Free plan available · No credit card required</p>
+
+                    <!-- Divider -->
+                    <div class="hero-divider">
+                        <div class="hero-divider-line"></div>
+                        <span class="hero-divider-text">or download the app</span>
+                        <div class="hero-divider-line"></div>
+                    </div>
+
                     <div class="cta-row">
                         <a href="https://apps.apple.com/app/id6755925920" class="btn btn-primary" target="_blank" rel="noopener">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
@@ -644,7 +711,6 @@
                             Download for Android
                         </a>
                     </div>
-                    <a href="https://electrician.proxtrades.com" class="btn btn-ghost" target="_blank" rel="noopener">Launch Web App instead</a>
                 </div>
                 <div class="hero-ratings animate-up-4">
                     <div class="rating-badge">
@@ -986,9 +1052,9 @@
             <h2 class="section-title reveal">Questions? We're Here.</h2>
             <div class="contact-inner reveal">
                 <p>Have a question about the app, need support, or want to share feedback? Send us an email and we'll get back to you quickly.</p>
-                <a href="/cdn-cgi/l/email-protection#4d3e383d3d223f390d3d3f2235393f2c29283e632e2220" class="contact-email">
+                <a href="mailto:support@proxtrades.com" class="contact-email">
                     <span>✉</span>
-                    <span><span class="__cf_email__" data-cfemail="b8cbcdc8c8d7caccf8c8cad7c0cccad9dcddcb96dbd7d5">[email&#160;protected]</span></span>
+                    <span>support@proxtrades.com</span>
                 </a>
             </div>
         </div>
@@ -1030,6 +1096,21 @@
     <!-- Cloudflare Web Analytics placeholder -->
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Hero email signup
+        function handleHeroSignup() {
+            const email = document.getElementById('hero-email').value.trim();
+            const base = 'https://electrician.proxtrades.com/account?mode=signup';
+            if (email) {
+                window.location.href = base + '&email=' + encodeURIComponent(email);
+            } else {
+                window.location.href = base;
+            }
+        }
+        // Allow Enter key in the email field
+        document.getElementById('hero-email').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') handleHeroSignup();
+        });
+
         // Scroll reveal
         const reveals = document.querySelectorAll('.reveal');
         const observer = new IntersectionObserver((entries) => {
