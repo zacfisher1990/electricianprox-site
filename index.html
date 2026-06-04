@@ -137,24 +137,32 @@
             transition: transform 0.2s;
             margin-top: 1px;
         }
-        .nav-item:hover > a { color: var(--yellow); }
-        .nav-item:hover > a::after { transform: rotate(180deg); }
+        .nav-item.menu-open > a { color: var(--yellow); }
+        .nav-item.menu-open > a::after { transform: rotate(180deg); }
 
         .mega-menu {
             display: none;
-            position: absolute; top: calc(100% + 16px); left: 50%;
+            position: absolute; top: calc(100% + 4px); left: 50%;
             transform: translateX(-50%);
             width: 860px;
             background: #1c2028;
             border: 1px solid var(--border);
             border-radius: 14px;
             padding: 32px;
+            padding-top: 36px;
             box-shadow: 0 24px 60px rgba(0,0,0,0.5);
             z-index: 999;
             grid-template-columns: repeat(4, 1fr);
             gap: 0;
         }
-        .nav-item:hover .mega-menu { display: grid; }
+        /* invisible bridge fills the gap so hover isn't lost moving from link to menu */
+        .mega-menu::after {
+            content: '';
+            position: absolute;
+            top: -20px; left: 0; right: 0;
+            height: 20px;
+        }
+        .nav-item.menu-open .mega-menu { display: grid; }
 
         /* Arrow notch */
         .mega-menu::before {
@@ -757,7 +765,7 @@
             </a>
             <nav class="nav">
                 <div class="nav-item">
-                    <a href="#features">Features</a>
+                    <a href="#" onclick="return false;">Features</a>
                     <div class="mega-menu">
 
                         <!-- COL 1: Field Tools -->
@@ -898,10 +906,7 @@
                                 <div class="mega-item-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
                                 <div class="mega-item-text"><div class="mega-item-name">Offline Access</div><div class="mega-item-desc">Calculators work without signal</div></div>
                             </div>
-                            <div style="margin-top:16px; padding:14px; background:rgba(247,198,0,0.07); border-radius:8px; border:1px solid rgba(247,198,0,0.2);">
-                                <div style="font-size:0.72rem;font-weight:700;color:var(--yellow);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;">Built by a journeyman</div>
-                                <div style="font-size:0.75rem;color:var(--text-sub);line-height:1.5;">Every feature designed around how electricians actually work — not generic contractor software.</div>
-                            </div>
+
                         </div>
 
                     </div>
@@ -1347,6 +1352,14 @@
     <!-- Cloudflare Web Analytics placeholder -->
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Mega menu — stay open while moving cursor from link to menu
+        const navItem = document.querySelector('.nav-item');
+        let closeTimer;
+        function openMenu() { clearTimeout(closeTimer); navItem.classList.add('menu-open'); }
+        function closeMenu() { closeTimer = setTimeout(() => navItem.classList.remove('menu-open'), 120); }
+        navItem.addEventListener('mouseenter', openMenu);
+        navItem.addEventListener('mouseleave', closeMenu);
+
         // Hero email signup
         function handleHeroSignup() {
             const email = document.getElementById('hero-email').value.trim();
