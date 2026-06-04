@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How It Works — Electrician Pro X</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #1B3A5C;
+    --navy-dark: #122843;
+    --navy-light: #2a5080;
+    --amber: #F5A623;
+    --amber-light: #FFF4D9;
+    --amber-dark: #C47E0A;
+    --white: #ffffff;
+    --off-white: #F7F8FA;
+    --surface: #EEF1F5;
+    --text: #1B3A5C;
+    --text-muted: #5A7799;
+    --border: rgba(27,58,92,0.12);
+    --border-strong: rgba(27,58,92,0.22);
+    --radius: 12px;
+    --radius-sm: 8px;
+    --font: 'DM Sans', sans-serif;
+    --mono: 'DM Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font);
+    background: var(--off-white);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--navy);
+    color: var(--white);
+    padding: 0 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--white);
+  }
+
+  .logo-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .logo-icon img { width: 100%; height: 100%; object-fit: cover; }
+
+  .logo-text {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+  }
+
+  .logo-text span { color: var(--amber); }
+
+  .header-badge {
+    font-size: 12px;
+    font-weight: 500;
+    background: rgba(245,166,35,0.18);
+    color: var(--amber);
+    border: 1px solid rgba(245,166,35,0.3);
+    border-radius: 20px;
+    padding: 4px 12px;
+    letter-spacing: 0.3px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--navy);
+    color: var(--white);
+    text-align: center;
+    padding: 64px 24px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 110%, rgba(245,166,35,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 16px;
+  }
+
+  .hero h1 {
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 600;
+    letter-spacing: -0.8px;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+
+  .hero p {
+    font-size: 17px;
+    color: rgba(255,255,255,0.65);
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  /* ── NAV TABS ── */
+  .nav-tabs {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    position: sticky;
+    top: 60px;
+    z-index: 90;
+  }
+
+  .nav-tabs::-webkit-scrollbar { display: none; }
+
+  .nav-tab {
+    padding: 14px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: color 0.15s, border-color 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .nav-tab:hover { color: var(--navy); }
+  .nav-tab.active { color: var(--navy); border-bottom-color: var(--amber); }
+
+  .nav-tab svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+  /* ── CONTENT ── */
+  .content { max-width: 800px; margin: 0 auto; padding: 48px 24px 80px; }
+
+  /* ── SECTION TITLE ── */
+  .section {
+    margin-bottom: 56px;
+    scroll-margin-top: 120px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--amber-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .section-icon svg {
+    width: 20px;
+    height: 20px;
+    color: var(--amber-dark);
+  }
+
+  .section-header h2 {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+    color: var(--navy);
+  }
+
+  .section-header p {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  /* ── STEPS ── */
+  .steps { display: flex; flex-direction: column; gap: 16px; }
+
+  .step {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 20px 20px 24px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    transition: box-shadow 0.15s;
+  }
+
+  .step:hover { box-shadow: 0 2px 12px rgba(27,58,92,0.08); }
+
+  .step-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: var(--white);
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .step-body { flex: 1; }
+
+  .step-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+
+  .step-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .step-tip {
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--amber-dark);
+    background: var(--amber-light);
+    border-radius: var(--radius-sm);
+    padding: 8px 12px;
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .step-tip::before {
+    content: '💡';
+    flex-shrink: 0;
+    line-height: 1.4;
+  }
+
+  /* ── FEATURE CARDS ── */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+  }
+
+  .feature-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px;
+    transition: box-shadow 0.15s;
+  }
+
+  .feature-card:hover { box-shadow: 0 2px 12px rgba(27,58,92,0.08); }
+
+  .feature-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+  }
+
+  .feature-icon svg {
+    width: 18px;
+    height: 18px;
+    color: var(--white);
+  }
+
+  .feature-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+
+  .feature-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.55;
+  }
+
+  /* ── CALLOUT ── */
+  .callout {
+    background: var(--navy);
+    color: var(--white);
+    border-radius: var(--radius);
+    padding: 24px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .callout svg {
+    width: 22px;
+    height: 22px;
+    color: var(--amber);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .callout-body h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .callout-body p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.6;
+  }
+
+  /* ── TABLE ── */
+  .info-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    background: var(--white);
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .info-table th {
+    text-align: left;
+    padding: 12px 16px;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .info-table td {
+    padding: 12px 16px;
+    color: var(--text);
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  .info-table tr:last-child td { border-bottom: none; }
+
+  .info-table td:first-child { font-weight: 500; white-space: nowrap; }
+
+  .badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 20px;
+    letter-spacing: 0.3px;
+  }
+
+  .badge-free {
+    background: #E6F4EA;
+    color: #1E6D3A;
+  }
+
+  .badge-pro {
+    background: var(--amber-light);
+    color: var(--amber-dark);
+  }
+
+  /* ── FAQ ── */
+  .faq-list { display: flex; flex-direction: column; gap: 12px; }
+
+  .faq-item {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .faq-q {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 18px 20px;
+    font-family: var(--font);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--navy);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .faq-q:hover { background: var(--off-white); }
+
+  .faq-chevron {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    transition: transform 0.2s;
+    color: var(--text-muted);
+  }
+
+  .faq-item.open .faq-chevron { transform: rotate(180deg); }
+
+  .faq-a {
+    display: none;
+    padding: 0 20px 18px;
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.65;
+    border-top: 1px solid var(--border);
+    padding-top: 14px;
+  }
+
+  .faq-item.open .faq-a { display: block; }
+
+  /* ── SUPPORT FOOTER ── */
+  .support-bar {
+    background: var(--navy);
+    color: var(--white);
+    text-align: center;
+    padding: 40px 24px;
+  }
+
+  .support-bar p {
+    font-size: 15px;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 16px;
+  }
+
+  .support-link {
+    display: inline-block;
+    background: var(--amber);
+    color: var(--navy);
+    font-weight: 600;
+    font-size: 14px;
+    padding: 11px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    letter-spacing: -0.1px;
+    transition: background 0.15s;
+  }
+
+  .support-link:hover { background: #e89c18; }
+
+  /* ── UTIL ── */
+  .mt-16 { margin-top: 16px; }
+  .mt-8 { margin-top: 8px; }
+
+  @media (max-width: 560px) {
+    .feature-grid { grid-template-columns: 1fr 1fr; }
+    .hero { padding: 44px 20px 56px; }
+    .content { padding: 32px 16px 64px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a href="https://electricianprox.com" class="logo">
+    <div class="logo-icon">
+      <img src="https://electricianprox.com/icon.png" alt="Electrician Pro X icon" onerror="this.style.display='none'">
+    </div>
+    <span class="logo-text">Electrician <span>Pro X</span></span>
+  </a>
+  <span class="header-badge">User Guide</span>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">How it works</div>
+  <h1>Everything you need to run<br>your electrical business</h1>
+  <p>A step-by-step guide to every feature in Electrician Pro X — built by a journeyman, for the field.</p>
+</div>
+
+<!-- NAV TABS -->
+<nav class="nav-tabs" aria-label="Guide sections">
+  <a href="#getting-started" class="nav-tab active">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+    Getting started
+  </a>
+  <a href="#clients" class="nav-tab">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+    Clients
+  </a>
+  <a href="#jobs" class="nav-tab">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+    Jobs
+  </a>
+  <a href="#estimates" class="nav-tab">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+    Estimates
+  </a>
+  <a href="#invoices" class="nav-tab">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+    Invoices & payments
+  </a>
+  <a href="#calculators" class="nav-tab">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="12" y2="10"/><line x1="8" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="12" y2="18"/></svg>
+    NEC calculators
+  </a>
+  <a href="#faq" class="nav-tab">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    FAQ
+  </a>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main class="content">
+
+  <!-- ── GETTING STARTED ── -->
+  <section class="section" id="getting-started">
+    <div class="section-header">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <div>
+        <h2>Getting started</h2>
+        <p>Set up your account and run your first job in minutes</p>
+      </div>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">Create your account</div>
+          <div class="step-desc">Download Electrician Pro X from the App Store or Google Play, or open the web app at electricianprox.com. Tap <strong>Sign Up</strong>, enter your email and a password, then verify your email address.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">Set up your business profile</div>
+          <div class="step-desc">Go to <strong>Settings → Business Profile</strong> and fill in your company name, logo, license number, address, and phone number. This info appears automatically on all estimates and invoices you send to clients.</div>
+          <div class="step-tip">Add your contractor's license number here — it prints on every document and builds client trust.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">Connect Stripe to accept payments</div>
+          <div class="step-desc">Go to <strong>Settings → Payment Setup</strong> and tap <strong>Connect Stripe</strong>. Follow the short onboarding to link your bank account. Once connected, clients can pay invoices online with a card — funds deposit directly to you with zero platform fees.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-title">Add your first client and job</div>
+          <div class="step-desc">Tap the <strong>+</strong> button on the Clients screen to add a client, then create a Job under that client. From the job you can build an estimate, track time, attach photos, and send an invoice — all in one place.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CLIENTS ── -->
+  <section class="section" id="clients">
+    <div class="section-header">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </div>
+      <div>
+        <h2>Clients</h2>
+        <p>Keep all your customer info organized and searchable</p>
+      </div>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">Add a client</div>
+          <div class="step-desc">From the <strong>Clients</strong> tab, tap the <strong>+</strong> button. Enter their name, phone number, email, and service address. Clients can be residential homeowners, property managers, or commercial accounts — the record type is the same.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">View client history</div>
+          <div class="step-desc">Tap any client to see all their jobs, estimates, invoices, and notes in one place. Every document you've ever sent them is a tap away — useful when clients call with questions about past work.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">Search and filter</div>
+          <div class="step-desc">Use the search bar at the top of the Clients screen to find anyone by name, address, or phone number. Your whole customer list is always one tap away, even offline.</div>
+          <div class="step-tip">Add a short note to a client record to remember important job site details — gate codes, dog in yard, billing contact name, etc.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── JOBS ── -->
+  <section class="section" id="jobs">
+    <div class="section-header">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+      </div>
+      <div>
+        <h2>Jobs</h2>
+        <p>Track every job from first visit to final payment</p>
+      </div>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">Create a job</div>
+          <div class="step-desc">Open a client record and tap <strong>New Job</strong>. Give the job a name (e.g. "Panel Upgrade — 200A"), set the job address if it differs from the client's main address, and add any notes about the scope of work.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">Track job status</div>
+          <div class="step-desc">Move a job through status stages — <strong>Pending, Scheduled, In Progress, Completed</strong> — to keep your pipeline organized. Your jobs dashboard shows everything at a glance so nothing falls through the cracks.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">Log time on the job</div>
+          <div class="step-desc">Inside a job, tap <strong>Time Tracking</strong> to start a timer or manually enter hours. Time entries are saved to the job record and can be used to calculate labor costs when building an estimate or invoice.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-title">Attach photos</div>
+          <div class="step-desc">Tap <strong>Photos</strong> within a job to capture or upload images — before and after shots, panel labeling, inspection photos, or anything else you want documented. Photos are stored securely and tied to the job record.</div>
+          <div class="step-tip">Before-and-after photos are powerful proof of your work. They protect you if a client disputes quality and make your estimates more credible on future jobs.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ESTIMATES ── -->
+  <section class="section" id="estimates">
+    <div class="section-header">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      </div>
+      <div>
+        <h2>Estimates</h2>
+        <p>Build, send, and get sign-off on professional estimates</p>
+      </div>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">Start an estimate from a job</div>
+          <div class="step-desc">Open a job and tap <strong>New Estimate</strong>. Add line items for materials and labor — each line includes a description, quantity, unit price, and automatically calculated total.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">Use AI Estimate Assist</div>
+          <div class="step-desc">Tap the <strong>AI Assist</strong> button and describe the job in plain English — for example, "200 amp panel upgrade with new meter base, 10 circuits." The AI will generate a starting set of line items you can review and adjust. It saves significant time on pricing common electrical work.</div>
+          <div class="step-tip">AI Assist gives you a solid starting point — always review the generated items and adjust quantities and pricing to match your local market and actual materials.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">Send the estimate</div>
+          <div class="step-desc">Tap <strong>Send Estimate</strong> to email a professional PDF directly to your client. The estimate includes your business name, logo, license number, line items, and total — everything a client needs to approve the work.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-title">Convert to invoice</div>
+          <div class="step-desc">Once the client approves the estimate, tap <strong>Convert to Invoice</strong>. All line items carry over automatically — no re-entry needed. Then send the invoice and collect payment.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout mt-16">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      <div class="callout-body">
+        <h3>Built by an electrician</h3>
+        <p>The estimate line items and AI Assist suggestions are based on real field experience. Descriptions, units, and default categories reflect how electricians actually write up work — not generic contractor templates.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── INVOICES ── -->
+  <section class="section" id="invoices">
+    <div class="section-header">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+      </div>
+      <div>
+        <h2>Invoices &amp; payments</h2>
+        <p>Send professional invoices and get paid online</p>
+      </div>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">Create or convert an invoice</div>
+          <div class="step-desc">Create an invoice directly from a job, or convert an approved estimate. Add line items for labor and materials, apply any discounts, and set a due date.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">Send the invoice</div>
+          <div class="step-desc">Tap <strong>Send Invoice</strong> to email your client a professional PDF with a secure payment link included. The email comes from your business email so it looks professional, not like generic software.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">Client pays online</div>
+          <div class="step-desc">Your client taps the payment link and pays by card through Stripe. Funds are deposited directly into your linked bank account — EPX charges zero platform fees on top of standard Stripe processing rates.</div>
+          <div class="step-tip">Stripe's standard processing rate is 2.9% + 30¢ per card transaction. There are no additional fees from Electrician Pro X — what Stripe charges is all you pay.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-title">Mark invoices paid</div>
+          <div class="step-desc">When a client pays by check or cash, open the invoice and tap <strong>Mark as Paid</strong> to keep your records accurate. Paid invoices are separated from outstanding ones on your dashboard so you always know what's owed.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CALCULATORS ── -->
+  <section class="section" id="calculators">
+    <div class="section-header">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="12" y2="10"/><line x1="8" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="12" y2="18"/></svg>
+      </div>
+      <div>
+        <h2>NEC calculators</h2>
+        <p>20+ code-based calculators — free for all users</p>
+      </div>
+    </div>
+
+    <p style="font-size:14px; color:var(--text-muted); margin-bottom:20px;">All calculators are available to every user on every plan, including free accounts. No paywall, no limits — these tools belong on the job site.</p>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div class="feature-title">Wire sizing</div>
+        <div class="feature-desc">NEC Table 310 ampacity calculations for copper and aluminum conductors in any conduit fill and temperature rating.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+        </div>
+        <div class="feature-title">Load calculations</div>
+        <div class="feature-desc">Residential and commercial load calcs including optional and standard methods for service sizing.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <div class="feature-title">Conduit fill</div>
+        <div class="feature-desc">Calculate maximum wire fill for any conduit type and size per NEC Chapter 9 tables.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <div class="feature-title">Voltage drop</div>
+        <div class="feature-desc">Single-phase and three-phase voltage drop with automatic wire size recommendation to stay within 3% / 5%.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <div class="feature-title">Ohm's Law</div>
+        <div class="feature-desc">Solve for voltage, current, resistance, or power — enter any two values and get the rest instantly.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+        </div>
+        <div class="feature-title">Box fill</div>
+        <div class="feature-desc">Calculate minimum box size required for a given combination of conductors, devices, clamps, and fittings.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        </div>
+        <div class="feature-title">Motor calculations</div>
+        <div class="feature-desc">FLA, breaker sizing, and wire sizing for single-phase and three-phase motors per NEC Article 430.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.5"/></svg>
+        </div>
+        <div class="feature-title">+ more calculators</div>
+        <div class="feature-desc">Panel schedule helper, transformer sizing, grounding electrode conductor, fault current, and more — open the Calculators tab to see all 20+.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ── -->
+  <section class="section" id="faq">
+    <div class="section-header">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      </div>
+      <div>
+        <h2>Frequently asked questions</h2>
+        <p>Quick answers to common questions</p>
+      </div>
+    </div>
+
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Do I need a subscription to use the NEC calculators?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">No. All 20+ NEC calculators are free for every user with a registered account — no subscription required. We believe field tools should be accessible to every electrician.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Does EPX charge a fee on top of Stripe payments?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">No. Electrician Pro X charges zero platform fees on payments. Your client pays, Stripe takes their standard processing rate (2.9% + 30¢ per transaction), and the rest goes directly to your linked bank account. We don't take a cut.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Can I use the app offline?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">Viewing your clients, jobs, and estimates works offline once they've been loaded. Creating new records or sending invoices requires an internet connection. The NEC calculators work fully offline — no connection needed on the job site.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          How does AI Estimate Assist work?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">You describe the job in plain English and the AI generates a starting list of line items — materials, labor, and quantities. It uses Google Gemini under the hood and is tuned with electrical contractor context so it understands trade terminology. Always review and adjust the output for your local pricing and specific job conditions.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Is my data secure and backed up?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">Yes. All data is stored in Firebase (Google's cloud platform) with encryption at rest and in transit. Your data is backed up automatically. We don't sell or share your client or business data.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          What platforms does EPX support?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">Electrician Pro X is available on iOS (iPhone and iPad), Android, and as a full web app at electricianprox.com. Your data syncs across all devices automatically — start an estimate on your phone, finish it on your laptop.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Can I cancel my subscription anytime?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">Yes. You can cancel anytime through the App Store (iOS), Google Play (Android), or your account settings on the web. Your subscription stays active through the end of the billing period.</div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- SUPPORT FOOTER -->
+<footer class="support-bar">
+  <p>Still have questions? We're here to help.</p>
+  <a href="mailto:support@proxtrades.com" class="support-link">Contact support</a>
+</footer>
+
+<script>
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(el => {
+        el.classList.remove('open');
+        el.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  // Active nav tab on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const tabs = document.querySelectorAll('.nav-tab');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        tabs.forEach(t => t.classList.remove('active'));
+        const active = document.querySelector(`.nav-tab[href="#${entry.target.id}"]`);
+        if (active) {
+          active.classList.add('active');
+          active.scrollIntoView({ inline: 'nearest', block: 'nearest' });
+        }
+      }
+    });
+  }, { rootMargin: '-60px 0px -60% 0px', threshold: 0 });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
