@@ -533,6 +533,32 @@
         .feature-screenshot { margin-top: 22px; display: flex; justify-content: center; }
         .feature-screenshot img { width: 100%; max-width: 240px; height: auto; display: block; border-radius: 8px; }
 
+        /* Estimate + Invoice side-by-side doc previews */
+        .feature-screenshot--docs {
+            position: relative; height: 220px; align-items: flex-start;
+        }
+        .doc-preview {
+            position: absolute;
+            width: 160px; max-width: none;
+            height: auto;
+            border-radius: 6px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.45);
+        }
+        .doc-preview--back {
+            left: 10px; top: 10px;
+            transform: rotate(-3deg);
+            opacity: 0.85;
+            z-index: 1;
+        }
+        .doc-preview--front {
+            right: 10px; top: 0;
+            transform: rotate(2deg);
+            z-index: 2;
+        }
+        @media (max-width: 1024px) {
+            .feature-screenshot--docs { display: none; }
+        }
+
         /* ── STATS BAR ── */
         .stats-bar {
             background: var(--yellow);
@@ -1082,8 +1108,9 @@
                     </div>
                     <h3>Estimates &amp; Invoices</h3>
                     <p>Build professional estimates with AI Assist trained on electrical scopes of work. Convert to invoices in one tap and collect payment online.</p>
-                    <div class="feature-screenshot">
-                        <img src="images/estimate-invoice.png" alt="Estimates and Invoices screen">
+                    <div class="feature-screenshot feature-screenshot--docs">
+                        <img src="images/Estimate.png" alt="Estimate PDF example" class="doc-preview doc-preview--back">
+                        <img src="images/Invoice.png" alt="Invoice PDF example" class="doc-preview doc-preview--front">
                     </div>
                 </div>
 
