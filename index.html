@@ -674,6 +674,23 @@
         .pricing-btn.pro { background: var(--yellow); color: #000; border: none; }
         .pricing-btn.pro:hover { background: #ffd93d; transform: translateY(-1px); }
         .pricing-guarantee { text-align: center; font-size: 13px; color: var(--text-muted); max-width: 420px; margin: 0 auto; line-height: 1.6; }
+        .pricing-toggle { display: flex; align-items: center; justify-content: center; gap: 14px; margin-bottom: 40px; }
+        .toggle-label { font-size: 14px; font-weight: 600; color: var(--text-muted); transition: color 0.2s; }
+        .toggle-label.active { color: var(--text); }
+        .toggle-save { font-size: 11px; font-weight: 700; background: rgba(247,198,0,0.15); color: var(--yellow); padding: 2px 7px; border-radius: 20px; margin-left: 4px; }
+        .toggle-switch {
+            width: 44px; height: 24px; border-radius: 12px;
+            background: var(--border); border: none; cursor: pointer;
+            position: relative; transition: background 0.2s; padding: 0;
+        }
+        .toggle-switch.on { background: var(--yellow); }
+        .toggle-knob {
+            position: absolute; top: 3px; left: 3px;
+            width: 18px; height: 18px; border-radius: 50%;
+            background: #fff; transition: transform 0.2s;
+            display: block;
+        }
+        .toggle-switch.on .toggle-knob { transform: translateX(20px); }
 
         /* ── CONTACT ── */
         .contact { padding: 90px 0; background: var(--bg-mid); border-top: 1px solid var(--border); }
@@ -1572,6 +1589,14 @@
             <h2 class="section-title reveal">Start Free.<br>Upgrade When Ready.</h2>
             <p class="section-sub reveal">Full field service management features on every plan. NEC calculators and field tools are free forever — no upgrade required.</p>
 
+            <div class="pricing-toggle reveal">
+                <span class="toggle-label active" id="lbl-monthly">Monthly</span>
+                <button class="toggle-switch" id="billing-toggle" onclick="toggleBilling()" aria-label="Toggle billing period">
+                    <span class="toggle-knob"></span>
+                </button>
+                <span class="toggle-label" id="lbl-annual">Annual <span class="toggle-save">2 months free</span></span>
+            </div>
+
             <div class="pricing-cards reveal">
 
                 <!-- Free -->
@@ -1600,7 +1625,7 @@
                         </li>
                         <li>
                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8.25" stroke="#555" stroke-width="1.5"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="#555" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                            iOS &amp; Android apps
+                            iOS, Android &amp; Web apps
                         </li>
                         <li class="off">
                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8.25" stroke="#333" stroke-width="1.5"/><path d="M6 12l6-6M6 6l6 6" stroke="#333" stroke-width="1.5" stroke-linecap="round"/></svg>
@@ -1618,51 +1643,48 @@
                     <a href="/download.html" class="pricing-btn free">Download Free</a>
                 </div>
 
-                <!-- Monthly -->
+                <!-- Solo -->
                 <div class="pricing-card">
-                    <p class="pricing-plan">Pro Monthly</p>
+                    <p class="pricing-plan">Solo</p>
                     <div class="pricing-amount-row">
                         <span class="pricing-dollar">$</span>
-                        <span class="pricing-number">12.99</span>
-                        <span class="pricing-per">/mo</span>
+                        <span class="pricing-number" id="solo-price">9.99</span>
+                        <span class="pricing-per" id="solo-period">/mo</span>
                     </div>
-                    <p class="pricing-note">Billed monthly, cancel anytime</p>
+                    <p class="pricing-note" id="solo-note">Billed monthly, cancel anytime</p>
                     <hr class="pricing-divider">
-                    <p class="pricing-desc">Full access to every Pro feature with the flexibility of month-to-month billing.</p>
+                    <p class="pricing-desc">Everything you need to run your business solo — unlimited jobs, estimates, and invoices.</p>
                     <ul class="pricing-features">
                         <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8.25" stroke="#777" stroke-width="1.5"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="#777" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Unlimited jobs, estimates &amp; invoices</li>
                         <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8.25" stroke="#777" stroke-width="1.5"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="#777" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>AI-powered estimate generation</li>
                         <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8.25" stroke="#777" stroke-width="1.5"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="#777" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Online invoice payments via Stripe</li>
                         <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8.25" stroke="#777" stroke-width="1.5"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="#777" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Time tracking &amp; labor analytics</li>
-                        <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8.25" stroke="#777" stroke-width="1.5"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="#777" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Team collaboration &amp; job assignments</li>
                         <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8.25" stroke="#777" stroke-width="1.5"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="#777" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Photo documentation per job</li>
                         <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8.25" stroke="#777" stroke-width="1.5"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="#777" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Business analytics dashboard</li>
                     </ul>
-                    <a href="/download.html" class="pricing-btn free">Get Pro Monthly</a>
+                    <a href="/download.html" class="pricing-btn free" id="solo-btn">Get Solo</a>
                 </div>
 
-                <!-- Annual -->
+                <!-- Crew -->
                 <div class="pricing-card featured">
-                    <div class="pricing-badge">Best Value</div>
-                    <p class="pricing-plan">Pro Annual</p>
+                    <div class="pricing-badge">Most Popular</div>
+                    <p class="pricing-plan">Crew</p>
                     <div class="pricing-amount-row">
                         <span class="pricing-dollar">$</span>
-                        <span class="pricing-number">99.99</span>
-                        <span class="pricing-per">/yr</span>
+                        <span class="pricing-number" id="crew-price">12.99</span>
+                        <span class="pricing-per" id="crew-period">/mo</span>
                     </div>
-                    <p class="pricing-note"><span>Only $8.33/mo</span> — save 36%</p>
+                    <p class="pricing-note" id="crew-note">Billed monthly, cancel anytime</p>
                     <hr class="pricing-divider">
-                    <p class="pricing-desc">Everything in Pro at the best price. Two months free compared to monthly billing.</p>
+                    <p class="pricing-desc">Everything in Solo plus team collaboration — assign jobs, track your crew, and scale your operation.</p>
                     <ul class="pricing-features">
-                        <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8.25" stroke="#F7C600" stroke-width="1.5"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="#F7C600" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Unlimited jobs, estimates &amp; invoices</li>
-                        <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8.25" stroke="#F7C600" stroke-width="1.5"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="#F7C600" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>AI-powered estimate generation</li>
-                        <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8.25" stroke="#F7C600" stroke-width="1.5"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="#F7C600" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Online invoice payments via Stripe</li>
-                        <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8.25" stroke="#F7C600" stroke-width="1.5"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="#F7C600" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Time tracking &amp; labor analytics</li>
+                        <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8.25" stroke="#F7C600" stroke-width="1.5"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="#F7C600" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Everything in Solo</li>
                         <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8.25" stroke="#F7C600" stroke-width="1.5"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="#F7C600" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Team collaboration &amp; job assignments</li>
-                        <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8.25" stroke="#F7C600" stroke-width="1.5"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="#F7C600" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Photo documentation per job</li>
-                        <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8.25" stroke="#F7C600" stroke-width="1.5"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="#F7C600" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Business analytics dashboard</li>
+                        <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8.25" stroke="#F7C600" stroke-width="1.5"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="#F7C600" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Multi-user access &amp; permissions</li>
+                        <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8.25" stroke="#F7C600" stroke-width="1.5"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="#F7C600" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Crew time tracking &amp; scheduling</li>
+                        <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8.25" stroke="#F7C600" stroke-width="1.5"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="#F7C600" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Priority support</li>
                     </ul>
-                    <a href="/download.html" class="pricing-btn pro">Get Pro Annual — $99.99/yr</a>
+                    <a href="/download.html" class="pricing-btn pro" id="crew-btn">Get Crew</a>
                 </div>
 
             </div>
@@ -1743,6 +1765,26 @@
         document.getElementById('hero-email').addEventListener('keydown', function(e) {
             if (e.key === 'Enter') handleHeroSignup();
         });
+
+        // Billing toggle
+        var isAnnual = false;
+        function toggleBilling() {
+            isAnnual = !isAnnual;
+            var btn = document.getElementById('billing-toggle');
+            btn.classList.toggle('on', isAnnual);
+            document.getElementById('lbl-monthly').classList.toggle('active', !isAnnual);
+            document.getElementById('lbl-annual').classList.toggle('active', isAnnual);
+
+            document.getElementById('solo-price').textContent  = isAnnual ? '99.99' : '9.99';
+            document.getElementById('solo-period').textContent = isAnnual ? '/yr' : '/mo';
+            document.getElementById('solo-note').textContent   = isAnnual ? 'Billed annually — save $19.89/yr' : 'Billed monthly, cancel anytime';
+            document.getElementById('solo-btn').textContent    = isAnnual ? 'Get Solo Annual' : 'Get Solo';
+
+            document.getElementById('crew-price').textContent  = isAnnual ? '129.99' : '12.99';
+            document.getElementById('crew-period').textContent = isAnnual ? '/yr' : '/mo';
+            document.getElementById('crew-note').textContent   = isAnnual ? 'Billed annually — save $25.89/yr' : 'Billed monthly, cancel anytime';
+            document.getElementById('crew-btn').textContent    = isAnnual ? 'Get Crew Annual' : 'Get Crew';
+        }
 
         // Scroll reveal
         const reveals = document.querySelectorAll('.reveal');
