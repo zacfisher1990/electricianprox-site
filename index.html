@@ -780,6 +780,172 @@
             .trust-divider { display: none; }
             .footer-grid { grid-template-columns: 1fr; gap: 32px; }
         }
+
+        /* ── FEATURE SPOTLIGHTS ── */
+        .spotlight { padding: 96px 0; background: var(--bg); }
+        .spotlight.alt { background: var(--bg-mid); }
+        .spotlight-inner {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 72px; align-items: center;
+        }
+        .spotlight-label {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.75rem; font-weight: 700;
+            letter-spacing: 0.14em; text-transform: uppercase;
+            color: var(--yellow); margin-bottom: 16px;
+        }
+        .spotlight-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 2.4rem; font-weight: 800;
+            text-transform: uppercase; line-height: 1.05;
+            margin-bottom: 20px;
+        }
+        .spotlight-body {
+            color: var(--text-sub); line-height: 1.75;
+            margin-bottom: 28px; font-size: 1rem;
+        }
+        .spotlight-points { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+        .spotlight-points li {
+            display: flex; align-items: flex-start; gap: 10px;
+            font-size: 0.9rem; color: var(--text-sub);
+        }
+        .spotlight-check { flex-shrink: 0; margin-top: 2px; }
+        .spotlight-img {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px; padding: 28px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .spotlight-img img {
+            width: 100%; max-width: 280px; height: auto;
+            border-radius: 10px; display: block; margin: 0 auto;
+        }
+        .spotlight-link {
+            display: inline-flex; align-items: center; gap: 6px;
+            color: var(--yellow); font-weight: 600; font-size: 0.9rem;
+            margin-top: 24px; transition: gap 0.2s;
+        }
+        .spotlight-link:hover { gap: 10px; }
+        .spotlight-link::after { content: ' →'; }
+
+        /* ── HOW IT WORKS ── */
+        .how { padding: 100px 0; background: var(--bg); }
+        .steps-row {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 24px; margin-top: 64px;
+        }
+        .step-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 14px; padding: 36px 28px;
+            text-align: center;
+            transition: border-color 0.2s;
+        }
+        .step-card:hover { border-color: rgba(247,198,0,0.4); }
+        .step-num {
+            width: 54px; height: 54px; border-radius: 50%;
+            background: rgba(247,198,0,0.08);
+            border: 2px solid rgba(247,198,0,0.35);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 20px;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.4rem; font-weight: 900; color: var(--yellow);
+        }
+        .step-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.2rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.03em;
+            margin-bottom: 12px;
+        }
+        .step-desc { color: var(--text-sub); font-size: 0.9rem; line-height: 1.7; }
+
+        /* ── TESTIMONIALS ── */
+        .testimonials { padding: 100px 0; background: var(--bg-mid); }
+        .testimonials-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .testimonial-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 14px; padding: 32px 28px;
+            display: flex; flex-direction: column; gap: 18px;
+            transition: border-color 0.2s;
+        }
+        .testimonial-card:hover { border-color: rgba(247,198,0,0.4); }
+        .testimonial-stars { color: var(--yellow); font-size: 0.9rem; letter-spacing: 1px; }
+        .testimonial-quote {
+            font-size: 0.95rem; color: var(--text);
+            line-height: 1.7; flex-grow: 1; font-style: italic;
+        }
+        .testimonial-footer { border-top: 1px solid var(--border); padding-top: 16px; }
+        .testimonial-name { font-size: 0.875rem; font-weight: 600; color: var(--text); }
+        .testimonial-role { font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; }
+        .testimonial-source {
+            display: inline-block; margin-top: 8px;
+            font-size: 0.7rem; font-weight: 700;
+            letter-spacing: 0.08em; text-transform: uppercase;
+            color: var(--yellow);
+        }
+
+        /* ── COMPARISON ── */
+        .comparison { padding: 100px 0; background: var(--bg); }
+        .compare-wrap { overflow-x: auto; margin-top: 48px; }
+        .compare-table {
+            width: 100%; max-width: 900px; margin: 0 auto;
+            border-collapse: collapse;
+        }
+        .compare-table th {
+            padding: 14px 20px; text-align: center;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.8rem; font-weight: 700;
+            letter-spacing: 0.1em; text-transform: uppercase;
+            color: var(--text-muted);
+            border-bottom: 2px solid var(--border);
+        }
+        .compare-table th.th-epx { color: var(--yellow); }
+        .compare-table th:first-child { text-align: left; }
+        .compare-table td {
+            padding: 14px 20px; text-align: center;
+            font-size: 0.88rem;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-muted);
+        }
+        .compare-table td:first-child { text-align: left; color: var(--text); font-weight: 500; }
+        .compare-table td.yes { color: var(--yellow); font-weight: 700; }
+        .compare-table td.no { color: var(--border); }
+        .compare-table td.col-epx { background: rgba(247,198,0,0.04); }
+        .compare-table tr:last-child td { border-bottom: none; }
+        .compare-table tr:hover td { background: rgba(255,255,255,0.02); }
+        .compare-table tr:hover td.col-epx { background: rgba(247,198,0,0.07); }
+
+        /* ── MID-PAGE CTA ── */
+        .mid-cta { background: var(--yellow); padding: 80px 0; text-align: center; }
+        .mid-cta h2 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 2.8rem; font-weight: 900;
+            color: #000; text-transform: uppercase;
+            line-height: 1.05; margin-bottom: 12px;
+        }
+        .mid-cta > .container > p { font-size: 1rem; color: rgba(0,0,0,0.6); margin-bottom: 32px; }
+        .btn-dark {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: #000; color: var(--yellow);
+            padding: 15px 32px; border-radius: 8px;
+            font-size: 0.95rem; font-weight: 700;
+            transition: all 0.2s;
+            font-family: 'DM Sans', sans-serif;
+        }
+        .btn-dark:hover { background: #111; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+
+        @media (max-width: 1024px) {
+            .spotlight-inner { grid-template-columns: 1fr; gap: 40px; }
+            .steps-row { grid-template-columns: 1fr; }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .compare-table th, .compare-table td { padding: 10px 12px; font-size: 0.8rem; }
+        }
+        @media (max-width: 640px) {
+            .mid-cta h2 { font-size: 2rem; }
+            .spotlight-title { font-size: 1.9rem; }
+        }
     </style>
 </head>
 <body>
@@ -1163,6 +1329,80 @@
         </div>
     </section>
 
+    <!-- FEATURE SPOTLIGHT: AI ESTIMATES -->
+    <section class="spotlight alt">
+        <div class="container">
+            <div class="spotlight-inner reveal">
+                <div class="spotlight-img">
+                    <img src="images/estimate-invoice.png" alt="AI Estimate in Electrician Pro X">
+                </div>
+                <div>
+                    <p class="spotlight-label">Smart Estimating</p>
+                    <h2 class="spotlight-title">Win More Jobs With AI&#8209;Powered Estimates</h2>
+                    <p class="spotlight-body">Describe the scope in plain language and AI Assist generates a professional estimate built around electrical work — real line items, real materials, real labor. Not plumbing. Not landscaping. Electrical.</p>
+                    <ul class="spotlight-points">
+                        <li>
+                            <svg class="spotlight-check" width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8.25" stroke="#F7C600" stroke-width="1.5"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="#F7C600" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            AI Assist trained on electrical scopes of work
+                        </li>
+                        <li>
+                            <svg class="spotlight-check" width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8.25" stroke="#F7C600" stroke-width="1.5"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="#F7C600" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            Convert estimate to invoice in one tap
+                        </li>
+                        <li>
+                            <svg class="spotlight-check" width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8.25" stroke="#F7C600" stroke-width="1.5"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="#F7C600" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            Branded PDF with your logo &amp; e-signature support
+                        </li>
+                        <li>
+                            <svg class="spotlight-check" width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8.25" stroke="#F7C600" stroke-width="1.5"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="#F7C600" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            Collect payment online via Stripe — 0% platform fee
+                        </li>
+                    </ul>
+                    <a href="help/estimates.html" class="spotlight-link">See how estimates work</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURE SPOTLIGHT: NEC CALCULATORS -->
+    <section class="spotlight">
+        <div class="container">
+            <div class="spotlight-inner reveal">
+                <div>
+                    <p class="spotlight-label">On The Job Site</p>
+                    <h2 class="spotlight-title">20+ NEC Calculators.<br>Always Free.</h2>
+                    <p class="spotlight-body">Wire sizing, conduit fill, load calculations, voltage drop, box fill — all built into the same app you run your business from. No second app. No extra subscription. Works offline on the job site.</p>
+                    <ul class="spotlight-points">
+                        <li>
+                            <svg class="spotlight-check" width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8.25" stroke="#F7C600" stroke-width="1.5"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="#F7C600" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            Wire sizing to NEC 310 ampacity tables
+                        </li>
+                        <li>
+                            <svg class="spotlight-check" width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8.25" stroke="#F7C600" stroke-width="1.5"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="#F7C600" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            Conduit fill per Chapter 9 tables
+                        </li>
+                        <li>
+                            <svg class="spotlight-check" width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8.25" stroke="#F7C600" stroke-width="1.5"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="#F7C600" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            Residential &amp; commercial load calculations
+                        </li>
+                        <li>
+                            <svg class="spotlight-check" width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8.25" stroke="#F7C600" stroke-width="1.5"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="#F7C600" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            Voltage drop — single &amp; three-phase
+                        </li>
+                        <li>
+                            <svg class="spotlight-check" width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8.25" stroke="#F7C600" stroke-width="1.5"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="#F7C600" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            Works offline — no signal needed on job sites
+                        </li>
+                    </ul>
+                    <a href="help/calculators.html" class="spotlight-link">See all field tools</a>
+                </div>
+                <div class="spotlight-img">
+                    <img src="images/calculators.png" alt="NEC Calculator tools in Electrician Pro X">
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- STATS BAR -->
     <div class="stats-bar">
         <div class="container">
@@ -1185,6 +1425,32 @@
         </div>
     </div>
 
+    <!-- HOW IT WORKS -->
+    <section class="how">
+        <div class="container">
+            <p class="section-label reveal">Getting Started</p>
+            <h2 class="section-title reveal">Up and Running in Minutes.</h2>
+            <p class="section-sub reveal">No training required. No setup calls. Download the app, add your first client, and you're in business.</p>
+            <div class="steps-row">
+                <div class="step-card reveal">
+                    <div class="step-num">1</div>
+                    <h3 class="step-title">Download the App</h3>
+                    <p class="step-desc">Sign up free on iOS, Android, or the web. No credit card, no commitment — the free plan is yours to keep forever.</p>
+                </div>
+                <div class="step-card reveal">
+                    <div class="step-num">2</div>
+                    <h3 class="step-title">Set Up Your Business</h3>
+                    <p class="step-desc">Add your clients, upload your logo, and configure your branded estimate template. Look professional from the very first job.</p>
+                </div>
+                <div class="step-card reveal">
+                    <div class="step-num">3</div>
+                    <h3 class="step-title">Win Jobs &amp; Get Paid</h3>
+                    <p class="step-desc">Send estimates, track every job from quote to closeout, collect payments online — all from the same app you use on the job site.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- WHY CHOOSE -->
     <section class="why">
         <div class="container">
@@ -1193,28 +1459,36 @@
             <p class="section-sub reveal">Generic field service apps make you adapt to them. Electrician Pro X was built around how electrical contractors actually run their business.</p>
             <div class="why-grid reveal">
                 <div class="why-item">
-                    <div class="why-icon">🏢</div>
+                    <div class="why-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--yellow)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                    </div>
                     <div class="why-text">
                         <h3>Built for Electricians</h3>
                         <p>Not a generic tool adapted from plumbing or landscaping software. Every client record, job workflow, and document was designed with electrical contracting in mind.</p>
                     </div>
                 </div>
                 <div class="why-item">
-                    <div class="why-icon">📄</div>
+                    <div class="why-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--yellow)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                    </div>
                     <div class="why-text">
                         <h3>Win Jobs Professionally</h3>
                         <p>AI-assisted estimates, sequential numbering, branded PDFs, and e-signature support. Look like the professional operation your clients are hiring.</p>
                     </div>
                 </div>
                 <div class="why-item">
-                    <div class="why-icon">⚡</div>
+                    <div class="why-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--yellow)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                    </div>
                     <div class="why-text">
                         <h3>Field Tools Included</h3>
                         <p>20+ NEC calculators and code reference tools built in for free — wire sizing, conduit fill, load calcs, and more. No other electrician field service app includes this.</p>
                     </div>
                 </div>
                 <div class="why-item">
-                    <div class="why-icon">📶</div>
+                    <div class="why-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--yellow)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/><rect x="2" y="7" width="4" height="10" rx="1"/><rect x="18" y="7" width="4" height="10" rx="1"/></svg>
+                    </div>
                     <div class="why-text">
                         <h3>Office to Job Site</h3>
                         <p>iOS, Android, and web. Everything syncs in real time — manage clients from the office, pull up NEC calculators on the job site, all in the same app.</p>
@@ -1223,6 +1497,131 @@
             </div>
         </div>
     </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials">
+        <div class="container">
+            <p class="section-label reveal">What Electricians Say</p>
+            <h2 class="section-title reveal">Built for the Trade.<br>Trusted by the Field.</h2>
+            <p class="section-sub reveal">Real feedback from electrical contractors who switched to an app built specifically for how they work.</p>
+            <div class="testimonials-grid">
+                <div class="testimonial-card reveal">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-quote">"Finally an app that actually speaks electrician. The NEC calculators are right there when I need them on site — I use the wire sizing calc every single day on service calls."</p>
+                    <div class="testimonial-footer">
+                        <div class="testimonial-name">Marcus D.</div>
+                        <div class="testimonial-role">Master Electrician &middot; Texas</div>
+                        <span class="testimonial-source">App Store Review</span>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-quote">"Sent my first professional invoice in under 10 minutes. Clients started paying faster and I looked way more legit than the handwritten quotes I used to send."</p>
+                    <div class="testimonial-footer">
+                        <div class="testimonial-name">Jamie K.</div>
+                        <div class="testimonial-role">Electrical Contractor &middot; Ohio</div>
+                        <span class="testimonial-source">Google Play Review</span>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-quote">"Switched from Jobber. The field tools alone were worth it — my crew and I finally have everything in one app instead of juggling three different ones."</p>
+                    <div class="testimonial-footer">
+                        <div class="testimonial-name">Rob T.</div>
+                        <div class="testimonial-role">Electrical Business Owner &middot; Florida</div>
+                        <span class="testimonial-source">App Store Review</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPARISON -->
+    <section class="comparison">
+        <div class="container">
+            <p class="section-label reveal">Why EPX</p>
+            <h2 class="section-title reveal">Built for Electricians.<br>Not Adapted From Something Else.</h2>
+            <p class="section-sub reveal">Generic field service apps were designed for "home services" — plumbers, landscapers, HVAC techs. Electricians are not an afterthought of another trade.</p>
+            <div class="compare-wrap reveal">
+                <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th class="th-epx">Electrician Pro X</th>
+                            <th>Jobber</th>
+                            <th>Housecall Pro</th>
+                            <th>ServiceTitan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Built exclusively for electricians</td>
+                            <td class="yes col-epx">✓</td>
+                            <td class="no">✗</td>
+                            <td class="no">✗</td>
+                            <td class="no">✗</td>
+                        </tr>
+                        <tr>
+                            <td>20+ NEC calculators included</td>
+                            <td class="yes col-epx">✓</td>
+                            <td class="no">✗</td>
+                            <td class="no">✗</td>
+                            <td class="no">✗</td>
+                        </tr>
+                        <tr>
+                            <td>AI estimates for electrical scopes</td>
+                            <td class="yes col-epx">✓</td>
+                            <td class="no">✗</td>
+                            <td class="no">✗</td>
+                            <td class="no">✗</td>
+                        </tr>
+                        <tr>
+                            <td>Online payment collection</td>
+                            <td class="yes col-epx">✓</td>
+                            <td style="color:var(--text-sub);text-align:center;">✓</td>
+                            <td style="color:var(--text-sub);text-align:center;">✓</td>
+                            <td style="color:var(--text-sub);text-align:center;">Add-on</td>
+                        </tr>
+                        <tr>
+                            <td>0% platform fee on payments</td>
+                            <td class="yes col-epx">✓</td>
+                            <td class="no">✗</td>
+                            <td class="no">✗</td>
+                            <td class="no">✗</td>
+                        </tr>
+                        <tr>
+                            <td>Free plan (not just a trial)</td>
+                            <td class="yes col-epx">✓ Always free</td>
+                            <td style="color:var(--text-muted);text-align:center;">Trial only</td>
+                            <td style="color:var(--text-muted);text-align:center;">Trial only</td>
+                            <td class="no">✗</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- MID-PAGE CTA -->
+    <div class="mid-cta">
+        <div class="container">
+            <h2>Ready to Run Your Business Like a Pro?</h2>
+            <p>Free plan available — no credit card required. Download in 2 minutes.</p>
+            <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+                <a href="https://apps.apple.com/app/id6755925920" class="btn-dark" target="_blank" rel="noopener">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                    Download for iOS
+                </a>
+                <a href="https://play.google.com/store/apps/details?id=com.electricianprox.app" class="btn-dark" target="_blank" rel="noopener">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.3.17.64.24.99.2l12.6-6.97-2.71-2.71-10.88 9.48zm-1.97-20.6C1.07 3.44 1 3.73 1 4.04v15.91c0 .31.07.6.21.86l.1.1 8.91-8.91v-.21L1.21 3.06l-.01.1zM20.4 10.6l-2.68-1.48-3.02 3.02 3.02 3.02 2.7-1.49c.77-.43.77-1.63-.02-2.07zM4.17.24L16.77 7.2l-2.71 2.71L3.18.44C3.48.06 3.87-.07 4.17.24z"/></svg>
+                    Download for Android
+                </a>
+                <a href="https://app.electricianprox.com/account?mode=signup" class="btn-dark" target="_blank" rel="noopener">
+                    Start Free on Web
+                </a>
+            </div>
+        </div>
+    </div>
 
     <!-- PRICING -->
     <section id="pricing" class="pricing">
