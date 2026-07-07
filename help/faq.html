@@ -734,6 +734,23 @@
     });
   });
 </script>
+<script>
+(function () {
+  var nav = document.querySelector('.nav-tabs');
+  if (!nav) return;
+  function update() {
+    nav.classList.toggle('fade-left', nav.scrollLeft > 4);
+    nav.classList.toggle('fade-right', nav.scrollLeft + nav.clientWidth < nav.scrollWidth - 4);
+  }
+  nav.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  var active = nav.querySelector('.nav-tab.active');
+  if (active) {
+    nav.scrollLeft = Math.max(0, active.offsetLeft - (nav.clientWidth - active.offsetWidth) / 2);
+  }
+  update();
+})();
+</script>
 
 </body>
 </html>
