@@ -173,6 +173,19 @@
     mask-image: linear-gradient(to right, transparent, #000 56px, #000 calc(100% - 56px), transparent);
   }
 
+  @media (min-width: 900px) {
+    .nav-tabs {
+      flex-wrap: wrap;
+      overflow-x: visible;
+    }
+    .nav-tabs.fade-left,
+    .nav-tabs.fade-right,
+    .nav-tabs.fade-left.fade-right {
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+  }
+
 
   .nav-tab {
     padding: 14px 18px;
