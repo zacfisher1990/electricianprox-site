@@ -159,6 +159,21 @@
 
   .nav-tabs::-webkit-scrollbar { display: none; }
 
+  /* Edge fades signal more tabs off-screen */
+  .nav-tabs.fade-right {
+    -webkit-mask-image: linear-gradient(to right, #000 0, #000 calc(100% - 56px), transparent);
+    mask-image: linear-gradient(to right, #000 0, #000 calc(100% - 56px), transparent);
+  }
+  .nav-tabs.fade-left {
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 56px, #000);
+    mask-image: linear-gradient(to right, transparent, #000 56px, #000);
+  }
+  .nav-tabs.fade-left.fade-right {
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 56px, #000 calc(100% - 56px), transparent);
+    mask-image: linear-gradient(to right, transparent, #000 56px, #000 calc(100% - 56px), transparent);
+  }
+
+
   .nav-tab {
     padding: 14px 18px;
     font-size: 13px;
@@ -656,5 +671,22 @@
   <a href="mailto:support@proxtrades.com" class="support-link">Contact support</a>
 </footer>
 
+<script>
+(function () {
+  var nav = document.querySelector('.nav-tabs');
+  if (!nav) return;
+  function update() {
+    nav.classList.toggle('fade-left', nav.scrollLeft > 4);
+    nav.classList.toggle('fade-right', nav.scrollLeft + nav.clientWidth < nav.scrollWidth - 4);
+  }
+  nav.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  var active = nav.querySelector('.nav-tab.active');
+  if (active) {
+    nav.scrollLeft = Math.max(0, active.offsetLeft - (nav.clientWidth - active.offsetWidth) / 2);
+  }
+  update();
+})();
+</script>
 </body>
 </html>

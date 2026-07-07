@@ -159,6 +159,21 @@
 
   .nav-tabs::-webkit-scrollbar { display: none; }
 
+  /* Edge fades signal more tabs off-screen */
+  .nav-tabs.fade-right {
+    -webkit-mask-image: linear-gradient(to right, #000 0, #000 calc(100% - 56px), transparent);
+    mask-image: linear-gradient(to right, #000 0, #000 calc(100% - 56px), transparent);
+  }
+  .nav-tabs.fade-left {
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 56px, #000);
+    mask-image: linear-gradient(to right, transparent, #000 56px, #000);
+  }
+  .nav-tabs.fade-left.fade-right {
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 56px, #000 calc(100% - 56px), transparent);
+    mask-image: linear-gradient(to right, transparent, #000 56px, #000 calc(100% - 56px), transparent);
+  }
+
+
   .nav-tab {
     padding: 14px 18px;
     font-size: 13px;
