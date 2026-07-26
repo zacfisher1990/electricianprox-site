@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Electrician Pro X — Run Your Electrical Business Like a Pro</title>
-    <meta name="description" content="The complete business management app for electrical contractors. Jobs, estimates, invoices, time tracking, and 20+ NEC calculators — all in one app. By Pro X Trades.">
+    <title>Electrician Pro X: Run Your Electrical Business Like a Pro</title>
+    <meta name="description" content="The complete business management app for electrical contractors. Jobs, estimates, invoices, time tracking, and 30+ NEC calculators, all in one app. By Pro X Trades.">
+    <meta name="application-name" content="Electrician Pro X">
+    <script>document.documentElement.classList.add('js');</script>
 
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -409,19 +411,8 @@
             border-bottom: 1px solid var(--border);
             position: relative; overflow: hidden;
         }
-        .founder::before {
-            content: '"';
-            position: absolute; top: -40px; left: 20px;
-            font-family: 'Barlow Condensed', sans-serif;
-            font-size: 28rem; font-weight: 900;
-            color: rgba(247,198,0,0.03);
-            line-height: 1;
-            pointer-events: none;
-            user-select: none;
-        }
         .founder .container {
-            display: grid; grid-template-columns: 1fr 1.2fr;
-            gap: 80px; align-items: center;
+            max-width: 880px;
             position: relative; z-index: 1;
         }
         .founder-label {
@@ -457,32 +448,6 @@
             font-size: 0.82rem; font-weight: 600;
             color: var(--text-sub);
         }
-        .founder-quote {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-left: 4px solid var(--yellow);
-            border-radius: 0 12px 12px 0;
-            padding: 36px;
-        }
-        .founder-quote blockquote {
-            font-size: 1.2rem;
-            color: var(--text);
-            line-height: 1.7;
-            font-style: italic;
-            margin-bottom: 24px;
-        }
-        .founder-quote cite {
-            font-style: normal;
-            font-size: 0.875rem;
-            color: var(--text-sub);
-            display: flex; align-items: center; gap: 10px;
-        }
-        .founder-quote cite::before {
-            content: '';
-            display: block; width: 28px; height: 2px;
-            background: var(--yellow);
-        }
-
         /* ── FEATURES ── */
         .features { padding: 100px 0; background: var(--bg); }
         .section-label {
@@ -727,8 +692,16 @@
         .footer-bottom p { color: var(--text-muted); font-size: 0.82rem; }
 
         /* ── SCROLL REVEAL ── */
-        .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
+        /* Hidden only when JS is running to reveal it. Without JS (or for a
+           crawler that never scrolls), content stays fully visible. */
+        .reveal { transition: opacity 0.6s ease, transform 0.6s ease; }
+        .js .reveal { opacity: 0; transform: translateY(24px); }
+        .js .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        @media (prefers-reduced-motion: reduce) {
+            .js .reveal { opacity: 1; transform: none; }
+            .animate-up, .animate-up-2, .animate-up-3, .animate-up-4 { animation: none; }
+        }
 
         /* ── RESPONSIVE ── */
         @media (max-width: 1024px) {
@@ -739,7 +712,6 @@
             .cta-row { justify-content: center; }
             .hero-eyebrow { margin-left: auto; margin-right: auto; }
             .hero-visual { display: none; }
-            .founder .container { grid-template-columns: 1fr; gap: 40px; }
             .features-grid { grid-template-columns: repeat(2, 1fr); }
             .why-grid { grid-template-columns: 1fr; }
             .stats-bar .container { grid-template-columns: repeat(2, 1fr); gap: 32px; }
@@ -1065,7 +1037,7 @@
                             </a>
                             <a class="mega-item" href="https://app.electricianprox.com/tools" target="_blank" rel="noopener">
                                 <div class="mega-item-icon"><svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="12" y2="10"/><line x1="8" y1="14" x2="16" y2="14"/></svg></div>
-                                <div class="mega-item-text"><div class="mega-item-name">20+ NEC Calculators</div><div class="mega-item-desc">Panel schedule, fault current &amp; more</div></div>
+                                <div class="mega-item-text"><div class="mega-item-name">30+ NEC Calculators</div><div class="mega-item-desc">Panel schedule, fault current &amp; more</div></div>
                             </a>
                         </div>
 
@@ -1074,11 +1046,11 @@
                             <div class="mega-col-title">Platform</div>
                             <a class="mega-item" href="https://apps.apple.com/app/id6755925920" target="_blank" rel="noopener">
                                 <div class="mega-item-icon"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
-                                <div class="mega-item-text"><div class="mega-item-name">iOS App</div><div class="mega-item-desc">iPhone &amp; iPad — App Store</div></div>
+                                <div class="mega-item-text"><div class="mega-item-name">iOS App</div><div class="mega-item-desc">iPhone &amp; iPad &middot; App Store</div></div>
                             </a>
                             <a class="mega-item" href="https://play.google.com/store/apps/details?id=com.electricianprox.app" target="_blank" rel="noopener">
                                 <div class="mega-item-icon"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
-                                <div class="mega-item-text"><div class="mega-item-name">Android App</div><div class="mega-item-desc">Phone &amp; tablet — Google Play</div></div>
+                                <div class="mega-item-text"><div class="mega-item-name">Android App</div><div class="mega-item-desc">Phone &amp; tablet &middot; Google Play</div></div>
                             </a>
                             <a class="mega-item" href="https://app.electricianprox.com" target="_blank" rel="noopener">
                                 <div class="mega-item-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
@@ -1117,14 +1089,14 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <div class="hero-eyebrow animate-up" style="display:inline-flex;">The Field Service App Built Exclusively for Electricians</div>
+                <div class="hero-eyebrow animate-up" style="display:inline-flex;">Electrician Pro X: The Field Service App Built Exclusively for Electricians</div>
                 <h1 class="animate-up-2">
                     Manage Clients.<br>Win More Jobs.
                     <em>Get Paid Faster.</em>
                 </h1>
                 <p class="hero-subtitle animate-up-3">
                     Electrician Pro X is the only field service management app designed from the ground up for electrical contractors.
-                    Clients, jobs, estimates, invoices, and payments — plus 20+ NEC calculators for when you're on the job.
+                    Clients, jobs, estimates, invoices, and payments, plus 30+ NEC calculators for when you're on the job.
                 </p>
                 <div class="hero-cta animate-up-4">
                     <!-- Email signup row -->
@@ -1200,17 +1172,17 @@
             <div class="trust-divider"></div>
             <div class="trust-item">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                <span><strong>Free plan</strong> — no credit card required</span>
+                <span><strong>Free plan</strong>, no credit card required</span>
             </div>
             <div class="trust-divider"></div>
             <div class="trust-item">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-                <span><strong>AI estimates</strong> — built for electrical scopes</span>
+                <span><strong>AI estimates</strong>, built for electrical scopes</span>
             </div>
             <div class="trust-divider"></div>
             <div class="trust-item">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-                <span><strong>20+ NEC calculators</strong> — free on every plan</span>
+                <span><strong>30+ NEC calculators</strong>, free on every plan</span>
             </div>
         </div>
     </div>
@@ -1220,29 +1192,23 @@
         <div class="container">
             <div>
                 <p class="founder-label">Why Electricians Need Their Own Field Service App</p>
-                
+
                 <div class="founder-body">
                     <p>
-                        <strong>Jobber, Housecall Pro, ServiceTitan</strong> — built for "home services." That means plumbers, landscapers, HVAC techs. Electrical contractors get shoehorned into a generic mold that was never designed for the way they actually work.
+                        <strong>Jobber, Housecall Pro, ServiceTitan</strong> were built for "home services." That means plumbers, landscapers, HVAC techs. Electrical contractors get shoehorned into a generic mold that was never designed for the way they actually work.
                     </p>
                     <p>
-                        Electrician Pro X is a field service management app built exclusively for electrical contractors. Every client record, every job workflow, every estimate and invoice — designed around how electrical businesses actually operate, not adapted from something else.
+                        Electrician Pro X is a field service management app built exclusively for electrical contractors. Every client record, every job workflow, every estimate and invoice, designed around how electrical businesses actually operate, not adapted from something else.
                     </p>
                     <p>
-                        And because it's built for electricians specifically, you get something no generic field service app offers: 20+ NEC calculators and code reference tools baked right in, ready whenever you need them on the job site. Your office software and your field tools — in one app.
+                        And because it's built for electricians specifically, you get something no generic field service app offers: 30+ NEC calculators and code reference tools baked right in, ready whenever you need them on the job site. Your office software and your field tools in one app.
                     </p>
                 </div>
                 <div class="founder-creds">
                     <span class="founder-cred">🏢 Field Service Management for Electrical Contractors</span>
                     <span class="founder-cred">🤖 AI Estimating for Electrical Scopes</span>
-                    <span class="founder-cred">📐 20+ NEC Calculators Included</span>
+                    <span class="founder-cred">📐 30+ NEC Calculators Included</span>
                 </div>
-            </div>
-            <div class="founder-quote">
-                <blockquote>
-                    "Every other app in this market was built for 'home services.' That means the same tool a plumber or landscaper uses. Electricians aren't an afterthought of another trade — they deserve a field service app that actually speaks their language."
-                </blockquote>
-                <cite>Pro X Trades &mdash; Built for the electrical trade</cite>
             </div>
         </div>
     </section>
@@ -1252,7 +1218,7 @@
         <div class="container">
             <p class="section-label reveal">Your Business Management + Your Field Tools</p>
             <h2 class="section-title reveal">Everything in One App.<br>Nothing Bolted On.</h2>
-            <p class="section-sub reveal">A full field service management app — with on-the-job tools that only make sense in an app built for electricians.</p>
+            <p class="section-sub reveal">A full field service management app, with on-the-job tools that only make sense in an app built for electricians.</p>
             <div class="features-grid">
 
                 <div class="feature-card reveal">
@@ -1305,7 +1271,7 @@
                         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
                     </div>
                     <h3>NEC Calculators &amp; Field Tools</h3>
-                    <p>20+ NEC code calculators and reference tools built right in — wire sizing, conduit fill, load calculations, and more. The bonus no generic field service app can offer.</p>
+                    <p>30+ NEC code calculators and reference tools built right in: wire sizing, conduit fill, load calculations, and more. The bonus no generic field service app can offer.</p>
                     <div class="feature-screenshot">
                         <img src="images/material-database.png" alt="Materials Database screen">
                     </div>
@@ -1336,7 +1302,7 @@
                 <div>
                     <p class="spotlight-label">Smart Estimating</p>
                     <h2 class="spotlight-title">Win More Jobs With AI&#8209;Powered Estimates</h2>
-                    <p class="spotlight-body">Describe the scope in plain language and AI Assist generates a professional estimate built around electrical work — real line items, real materials, real labor. Not plumbing. Not landscaping. Electrical.</p>
+                    <p class="spotlight-body">Describe the scope in plain language and AI Assist generates a professional estimate built around electrical work: real line items, real materials, real labor. Not plumbing. Not landscaping. Electrical.</p>
                     <ul class="spotlight-points">
                         <li>
                             <svg class="spotlight-check" width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8.25" stroke="#F7C600" stroke-width="1.5"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="#F7C600" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1352,7 +1318,7 @@
                         </li>
                         <li>
                             <svg class="spotlight-check" width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8.25" stroke="#F7C600" stroke-width="1.5"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="#F7C600" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                            Collect payment online via Stripe — 0% platform fee
+                            Collect payment online via Stripe, 0% platform fee
                         </li>
                     </ul>
                     <a href="help/estimates.html" class="spotlight-link">See how estimates work</a>
@@ -1367,8 +1333,8 @@
             <div class="spotlight-inner reveal">
                 <div>
                     <p class="spotlight-label">On The Job Site</p>
-                    <h2 class="spotlight-title">20+ NEC Calculators.<br>Always Free.</h2>
-                    <p class="spotlight-body">Wire sizing, conduit fill, load calculations, voltage drop, box fill — all built into the same app you run your business from. No second app. No extra subscription. Works offline on the job site.</p>
+                    <h2 class="spotlight-title">30+ NEC Calculators.<br>Always Free.</h2>
+                    <p class="spotlight-body">Wire sizing, conduit fill, load calculations, voltage drop, box fill, all built into the same app you run your business from. No second app. No extra subscription. Works offline on the job site.</p>
                     <ul class="spotlight-points">
                         <li>
                             <svg class="spotlight-check" width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8.25" stroke="#F7C600" stroke-width="1.5"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="#F7C600" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1384,11 +1350,11 @@
                         </li>
                         <li>
                             <svg class="spotlight-check" width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8.25" stroke="#F7C600" stroke-width="1.5"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="#F7C600" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                            Voltage drop — single &amp; three-phase
+                            Voltage drop: single &amp; three-phase
                         </li>
                         <li>
                             <svg class="spotlight-check" width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8.25" stroke="#F7C600" stroke-width="1.5"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="#F7C600" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                            Works offline — no signal needed on job sites
+                            Works offline, no signal needed on job sites
                         </li>
                     </ul>
                     <a href="help/calculators.html" class="spotlight-link">See all field tools</a>
@@ -1404,16 +1370,16 @@
     <div class="stats-bar">
         <div class="container">
             <div class="stat-item">
-                <div class="stat-number">20+</div>
+                <div class="stat-number">30+</div>
                 <div class="stat-label">NEC Field Tools Included Free</div>
             </div>
             <div class="stat-item">
                 <div class="stat-number">3</div>
-                <div class="stat-label">Platforms — iOS, Android, Web</div>
+                <div class="stat-label">Platforms: iOS, Android, Web</div>
             </div>
             <div class="stat-item">
                 <div class="stat-number">$0</div>
-                <div class="stat-label">To Start — Free Plan Always</div>
+                <div class="stat-label">To Start &middot; Free Plan Always</div>
             </div>
             <div class="stat-item">
                 <div class="stat-number">1</div>
@@ -1432,7 +1398,7 @@
                 <div class="step-card reveal">
                     <div class="step-num">1</div>
                     <h3 class="step-title">Download the App</h3>
-                    <p class="step-desc">Sign up free on iOS, Android, or the web. No credit card, no commitment — the free plan is yours to keep forever.</p>
+                    <p class="step-desc">Sign up free on iOS, Android, or the web. No credit card, no commitment. The free plan is yours to keep forever.</p>
                 </div>
                 <div class="step-card reveal">
                     <div class="step-num">2</div>
@@ -1442,7 +1408,7 @@
                 <div class="step-card reveal">
                     <div class="step-num">3</div>
                     <h3 class="step-title">Win Jobs &amp; Get Paid</h3>
-                    <p class="step-desc">Send estimates, track every job from quote to closeout, collect payments online — all from the same app you use on the job site.</p>
+                    <p class="step-desc">Send estimates, track every job from quote to closeout, collect payments online, all from the same app you use on the job site.</p>
                 </div>
             </div>
         </div>
@@ -1479,7 +1445,7 @@
                     </div>
                     <div class="why-text">
                         <h3>Field Tools Included</h3>
-                        <p>20+ NEC calculators and code reference tools built in for free — wire sizing, conduit fill, load calcs, and more. No other electrician field service app includes this.</p>
+                        <p>30+ NEC calculators and code reference tools built in for free: wire sizing, conduit fill, load calcs, and more. No other electrician field service app includes this.</p>
                     </div>
                 </div>
                 <div class="why-item">
@@ -1488,7 +1454,7 @@
                     </div>
                     <div class="why-text">
                         <h3>Office to Job Site</h3>
-                        <p>iOS, Android, and web. Everything syncs in real time — manage clients from the office, pull up NEC calculators on the job site, all in the same app.</p>
+                        <p>iOS, Android, and web. Everything syncs in real time: manage clients from the office, pull up NEC calculators on the job site, all in the same app.</p>
                     </div>
                 </div>
             </div>
@@ -1500,7 +1466,7 @@
         <div class="container">
             <p class="section-label reveal">Why EPX</p>
             <h2 class="section-title reveal">Built for Electricians.<br>Not Adapted From Something Else.</h2>
-            <p class="section-sub reveal">Generic field service apps were designed for "home services" — plumbers, landscapers, HVAC techs. Electricians are not an afterthought of another trade.</p>
+            <p class="section-sub reveal">Generic field service apps were designed for "home services": plumbers, landscapers, HVAC techs. Electricians are not an afterthought of another trade.</p>
             <div class="compare-wrap reveal">
                 <table class="compare-table">
                     <thead>
@@ -1521,7 +1487,7 @@
                             <td class="no">✗</td>
                         </tr>
                         <tr>
-                            <td>20+ NEC calculators included</td>
+                            <td>30+ NEC calculators included</td>
                             <td class="yes col-epx">✓</td>
                             <td class="no">✗</td>
                             <td class="no">✗</td>
@@ -1565,7 +1531,7 @@
     <div class="mid-cta">
         <div class="container">
             <h2>Ready to Run Your Business Like a Pro?</h2>
-            <p>Free plan available — no credit card required. Download in 2 minutes.</p>
+            <p>Free plan available, no credit card required. Download in 2 minutes.</p>
             <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
                 <a href="/download.html" class="btn-dark">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
@@ -1587,7 +1553,7 @@
         <div class="container">
             <p class="section-label reveal">Pricing</p>
             <h2 class="section-title reveal">Start Free.<br>Upgrade When Ready.</h2>
-            <p class="section-sub reveal">Full field service management features on every plan. NEC calculators and field tools are free forever — no upgrade required.</p>
+            <p class="section-sub reveal">Full field service management features on every plan. NEC calculators and field tools are free forever, no upgrade required.</p>
 
             <div class="pricing-toggle reveal">
                 <span class="toggle-label active" id="lbl-monthly">Monthly</span>
@@ -1607,9 +1573,9 @@
                         <span class="pricing-number">0</span>
                         <span class="pricing-per">/mo</span>
                     </div>
-                    <p class="pricing-note">Always free — no credit card</p>
+                    <p class="pricing-note">Always free, no credit card</p>
                     <hr class="pricing-divider">
-                    <p class="pricing-desc">Try the full app and see if it fits your workflow — no credit card, no commitment.</p>
+                    <p class="pricing-desc">Try the full app and see if it fits your workflow. No credit card, no commitment.</p>
                     <ul class="pricing-features">
                         <li>
                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8.25" stroke="#555" stroke-width="1.5"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="#555" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1617,7 +1583,7 @@
                         </li>
                         <li>
                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8.25" stroke="#555" stroke-width="1.5"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="#555" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                            20+ NEC code calculators (always free)
+                            30+ NEC code calculators (always free)
                         </li>
                         <li>
                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8.25" stroke="#555" stroke-width="1.5"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="#555" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1653,7 +1619,7 @@
                     </div>
                     <p class="pricing-note" id="solo-note">Billed monthly, cancel anytime</p>
                     <hr class="pricing-divider">
-                    <p class="pricing-desc">Everything you need to run your business solo — unlimited jobs, estimates, and invoices.</p>
+                    <p class="pricing-desc">Everything you need to run your business solo: unlimited jobs, estimates, and invoices.</p>
                     <ul class="pricing-features">
                         <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8.25" stroke="#777" stroke-width="1.5"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="#777" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Unlimited jobs, estimates &amp; invoices</li>
                         <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8.25" stroke="#777" stroke-width="1.5"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="#777" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>AI-powered estimate generation</li>
@@ -1676,7 +1642,7 @@
                     </div>
                     <p class="pricing-note" id="crew-note">Billed monthly, cancel anytime</p>
                     <hr class="pricing-divider">
-                    <p class="pricing-desc">Everything in Solo plus team collaboration — assign jobs, track your crew, and scale your operation.</p>
+                    <p class="pricing-desc">Everything in Solo plus team collaboration: assign jobs, track your crew, and scale your operation.</p>
                     <ul class="pricing-features">
                         <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8.25" stroke="#F7C600" stroke-width="1.5"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="#F7C600" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Everything in Solo</li>
                         <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8.25" stroke="#F7C600" stroke-width="1.5"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="#F7C600" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Team collaboration &amp; job assignments</li>
@@ -1714,7 +1680,7 @@
                 <div class="footer-brand">
                     <div class="footer-brand-name">Electrician Pro X</div>
                     <div style="font-size:0.75rem;color:var(--text-muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:14px;">by Pro X Trades</div>
-                    <p>The field service management app built exclusively for electrical contractors — with 20+ NEC field tools included.</p>
+                    <p>The field service management app built exclusively for electrical contractors, with 30+ NEC field tools included.</p>
                 </div>
                 <div class="footer-col">
                     <h4>Electrician Pro X</h4>
@@ -1743,7 +1709,7 @@
     <!-- Cloudflare Web Analytics placeholder -->
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        // Mega menu — stay open while moving cursor from link to menu
+        // Mega menu, stay open while moving cursor from link to menu
         const navItem = document.querySelector('.nav-item');
         let closeTimer;
         function openMenu() { clearTimeout(closeTimer); navItem.classList.add('menu-open'); }
@@ -1777,12 +1743,12 @@
 
             document.getElementById('solo-price').textContent  = isAnnual ? '99.99' : '9.99';
             document.getElementById('solo-period').textContent = isAnnual ? '/yr' : '/mo';
-            document.getElementById('solo-note').textContent   = isAnnual ? 'Billed annually — save $19.89/yr' : 'Billed monthly, cancel anytime';
+            document.getElementById('solo-note').textContent   = isAnnual ? 'Billed annually, save $19.89/yr' : 'Billed monthly, cancel anytime';
             document.getElementById('solo-btn').textContent    = isAnnual ? 'Get Solo Annual' : 'Get Solo';
 
             document.getElementById('crew-price').textContent  = isAnnual ? '129.99' : '12.99';
             document.getElementById('crew-period').textContent = isAnnual ? '/yr' : '/mo';
-            document.getElementById('crew-note').textContent   = isAnnual ? 'Billed annually — save $25.89/yr' : 'Billed monthly, cancel anytime';
+            document.getElementById('crew-note').textContent   = isAnnual ? 'Billed annually, save $25.89/yr' : 'Billed monthly, cancel anytime';
             document.getElementById('crew-btn').textContent    = isAnnual ? 'Get Crew Annual' : 'Get Crew';
         }
 
