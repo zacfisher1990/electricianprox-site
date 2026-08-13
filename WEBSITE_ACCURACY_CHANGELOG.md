@@ -428,3 +428,167 @@ Per instruction, nothing was padded or rebalanced. All of the following are inte
 - Counted rendered elements: 3 `.stat-item`, 1 `.rating-badge`, 4 Crew bullets — all as intended.
 - Open/close tag balance checked for `div`, `ul`, `li`, `table`, `tr`, `section` across all four modified files: **balanced**.
 - `git status`: 4 modified files, nothing staged, nothing committed, nothing deployed.
+
+---
+
+# Amendment 1
+
+**Date:** 2026-08-13
+**Scope:** `best-apps.html`, `help/calculators.html`, one line in `index.html`. No edit from the first pass was revisited.
+**Not committed, not deployed.** `git status`: 3 modified files, working tree only.
+
+Line numbers are **post-edit**. `best-apps.html` numbering shifted by −4 after the star-badge removal in §A1, so references here will not match the first-pass changelog.
+
+---
+
+## A1. `best-apps.html` — all star ratings REMOVED
+
+Four `<div class="rating-stars">` elements deleted in full, including the competitor ratings. Not replaced with anything.
+
+| Pre-edit line | Removed |
+|---|---|
+| `:209` | `<div class="rating-stars">★★★★☆</div>` — Jobber |
+| `:259` | `<div class="rating-stars">★★★☆☆</div>` — Housecall Pro |
+| `:308` | `<div class="rating-stars">★★★☆☆</div>` — ServiceTitan |
+| `:360` | `<div class="rating-stars">★★★★★</div>` — Electrician Pro X |
+
+**Wrappers were not removed — they did not become empty.** Each star badge sat inside an `.app-rating` block that also contains a `.rating-score` and a `.rating-label`, both of which survive. See "Flagged, not changed" — this materially limits what the removal achieved.
+
+**Verification:** zero `★` and zero `☆` characters remain in the file. Tag balance re-checked and intact.
+
+---
+
+## A2. `best-apps.html` — "the only" claims REWORDED
+
+### `:345`
+
+| | |
+|---|---|
+| Before | `Electrician Pro X is **the only app in this comparison** built specifically for electrical contractors.` |
+| After | `Electrician Pro X is **built specifically** for electrical contractors.` |
+
+### `:393`
+
+| | |
+|---|---|
+| Before | `**The only app in this comparison** purpose-built for electrical contractors.` |
+| After | `**Purpose-built** for electrical contractors.` |
+
+**Grep result as requested:** zero further instances of `the only` in the file, and zero instances of `no other` at any point. No additional occurrences to report.
+
+---
+
+## A3. `best-apps.html` — free tier wording
+
+### `:365`
+
+| | |
+|---|---|
+| Before | `The free tier allows **up to 3** jobs, estimates, and invoices — enough to evaluate…` |
+| After | `The free tier allows **3 jobs, 3 estimates and 3 invoices total** — enough to evaluate…` |
+
+Now matches `index.html:1547`.
+
+---
+
+## A4. Calculator count — "20+" → "30+"
+
+The grep found **eight** occurrences of `20+`, not two. Seven are the calculator count and were corrected; one is unrelated and was deliberately left.
+
+### `best-apps.html`
+
+| Line | Before → After |
+|---|---|
+| `:363` | `The defining differentiator is <strong>**20+** built-in NEC code calculators</strong>` → `**30+**` *(specified)* |
+| `:372` | `<li>**20+** NEC code calculators — unique to EPX</li>` → `**30+**` |
+| `:474` | `<td class="epx-col check">✓ **20+**</td>` → `✓ **30+**` — verified as the `NEC code calculators` table row before editing |
+| `:522` | `Jobs, estimates, invoices, and all **20+** NEC calculators — free to start.` → `**30+**` |
+
+### `help/calculators.html`
+
+| Line | Before → After |
+|---|---|
+| `:7` | `<meta name="description" content="**20+** code-based calculators — free for all users">` → `**30+**` |
+| `:583` | `<p>**20+** code-based calculators — free for all users</p>` → `**30+**` |
+| `:709` | `open the Calculators tab to see all **20+**.` → `**30+**` *(specified)* |
+
+### Deliberately NOT changed
+
+**`best-apps.html:508`** — `<strong>Large operation (20+ technicians):</strong>` — this is a **headcount**, not a calculator count. Unrelated to the claim being corrected. Left as-is.
+
+**Note on scope:** correction 4 named two instances and instructed a grep "in case there are others." Five others existed and were the same claim, so all seven were corrected — a partial fix would have left the page contradicting both itself and the homepage. `:7` is a `<meta name="description">`, so this change is search-result-facing as well as on-page.
+
+**Verification:** the only remaining `20+` across both files is `best-apps.html:508`.
+
+---
+
+## A5. `index.html` — hero eyebrow
+
+### `:1088` *(was `:1092` before the first pass shifted it)*
+
+| | |
+|---|---|
+| Before | `Electrician Pro X: **The** Field Service App Built Exclusively for Electricians` |
+| After | `Electrician Pro X: **Field Service Software** Built Exclusively for Electricians` |
+
+---
+
+# Flagged, not changed — Amendment 1
+
+## 1. Numeric review scores survive the star removal — likely not intended
+
+Removing the star badges left the numeric scores untouched, because they are separate sibling elements inside `.app-rating`:
+
+| Line | Surviving markup |
+|---|---|
+| `:204` | `<div class="rating-score">7<span>/10</span></div>` + `<div class="rating-label">for electricians</div>` — Jobber |
+| `:253` | `<div class="rating-score">6.5<span>/10</span></div>` + `for electricians` — Housecall Pro |
+| `:301` | `<div class="rating-score">5<span>/10</span></div>` + `for small electrical shops` — ServiceTitan |
+| `:354` | `<div class="rating-score">9<span>/10</span></div>` + `for electricians` — Electrician Pro X |
+
+The instruction said not to *replace* the stars with numeric scores. These were not introduced as replacements — they pre-existed the edit and simply remain. The page now scores itself **9/10** and a named competitor **5/10**, which is the same self-assigned ranking device the stars were, stated more precisely. If the goal was to stop publishing self-assigned comparative ratings, this is not yet done. Not touched, because removing them was not authorized and it is a larger call than a copy edit.
+
+## 2. `best-apps.html:360` — a second, uncorrected instance of the price error I fixed last pass
+
+```
+<div class="app-price-badge">💰 Free tier available · Pro at $12.99/mo or $99.99/yr</div>
+```
+
+This is the **same invented "Pro" plan** corrected at `:365` in the first pass — `$12.99/mo` is Crew's monthly rate, `$99.99/yr` is Solo's annual rate, and no plan combines them. I fixed only the instance the recon inventory surfaced, which means **the page now contradicts itself five lines apart**: the badge advertises "Pro at $12.99/mo or $99.99/yr" directly above prose reading "Solo is $9.99/month or $99.99/year, and Crew is $12.99/month or $129.99/year."
+
+That contradiction is a defect introduced by the first pass. Not corrected here because this amendment states it is the complete spec and does not list it, and because `best-apps.html` boundaries have been drawn tightly and deliberately twice. **Recommend authorizing this one — it is the same error, already agreed to be wrong.**
+
+Two related instances, same "Pro" naming problem, also untouched:
+
+- `:377` — `<li>Free tier · Pro at $99.99/yr</li>`
+- `:425` / `:513` — `$99.99/yr` and `$99.99/year` used without a plan name. The figure is correct for Solo annual; only the absent/incorrect plan label is at issue.
+
+## 3. `best-apps.html:363` — "Every other app in this comparison has zero equivalent functionality"
+
+Not matched by the `the only` / `no other` greps, but it is the same category of absolute comparative claim corrected in A2. Left alone — outside the specified terms.
+
+## 4. Orphaned CSS
+
+`best-apps.html:73` — `.rating-stars { color: var(--primary); font-size: 0.85rem; letter-spacing: 2px; }` now matches no element. Dead rule, harmless. Not removed, as CSS changes remain out of scope.
+
+---
+
+# Layout may need attention — Amendment 1
+
+| Location | Change | Note |
+|---|---|---|
+| `.app-rating` blocks ×4 (`best-apps.html:204, 253, 301, 354`) | 3 children → **2** | `.app-rating` is `display:flex; flex-direction:column; gap:3px` (`:71`), so the block simply becomes shorter — no broken layout expected. At the `:131` mobile breakpoint it switches to `flex-direction:row`, also unaffected. The score now sits directly above the label with the star row gone. |
+
+No other layout impact — all remaining Amendment 1 edits are text-only substitutions within existing elements.
+
+---
+
+# Verification performed — Amendment 1
+
+- Zero `★` / `☆` characters remain in `best-apps.html`.
+- Zero `the only` / `no other` remain in `best-apps.html`.
+- Only remaining `20+` across both files is the "20+ technicians" headcount at `best-apps.html:508`.
+- Table row at `:474` confirmed as the `NEC code calculators` row before editing.
+- Open/close tag balance for `div`, `ul`, `li`, `table`, `tr`, `p`, `section` across `best-apps.html`, `help/calculators.html`, `index.html`: **balanced**.
+- Out-of-scope items confirmed untouched: `best-apps.html` AI-estimate comparison row, `best-apps.html` ServiceTitan section, `help/faq.html:675`, `help/jobs.html:677`.
+- `git status`: 3 modified files, nothing staged, nothing committed, nothing deployed.
