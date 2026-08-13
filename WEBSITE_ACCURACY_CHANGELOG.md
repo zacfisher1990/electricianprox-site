@@ -592,3 +592,262 @@ No other layout impact — all remaining Amendment 1 edits are text-only substit
 - Open/close tag balance for `div`, `ul`, `li`, `table`, `tr`, `p`, `section` across `best-apps.html`, `help/calculators.html`, `index.html`: **balanced**.
 - Out-of-scope items confirmed untouched: `best-apps.html` AI-estimate comparison row, `best-apps.html` ServiceTitan section, `help/faq.html:675`, `help/jobs.html:677`.
 - `git status`: 3 modified files, nothing staged, nothing committed, nothing deployed.
+
+---
+
+# Amendment 2
+
+**Date:** 2026-08-13
+**Scope:** `best-apps.html` only. No other file touched. No CSS changed.
+**Not committed, not deployed.** `git status`: 1 modified file (+ this changelog).
+
+Line numbers are **post-edit**. Numbering shifted twice during this pass — −16 after the `.app-rating` removal in §B1, then +1 after the disclosure insertion in §B4 — so references here will not match Amendment 1.
+
+---
+
+## Grep results — full match lists
+
+Every grep specified in the prompt, run against the whole file before editing.
+
+### §1 greps — rating devices
+
+| Pattern | Matches |
+|---|---|
+| `rating-score` | 5 — `:72` (CSS), `:208`, `:257`, `:305`, `:356` |
+| `app-rating` | 6 — `:71` (CSS), `:131` (CSS, mobile breakpoint), `:207`, `:256`, `:304`, `:355` |
+| `/10` | 4 — `:208`, `:257`, `:305`, `:356` (all inside `.rating-score`) |
+| `out of 10` | **0** |
+| `rating-*` (any) | also surfaced **`.rating-label` ×4** at `:209`, `:258`, `:306`, `:357` — not named in the correction. See §B1. |
+
+### §2 greps — pricing
+
+| Pattern | Matches |
+|---|---|
+| `Pro at` | 3 — `:360`, `:377`, **and `:364` — false positive**: "…competes directly with Jobber and **Housecall Pro at** a fraction of the cost." Company name, not a plan. Not touched. |
+| `$12.99` | 2 — `:360`, `:365` |
+| `$99.99` | 4 — `:360`, `:365`, `:377`, `:425`, `:513` (5 lines total) |
+| `$129.99` | 1 — `:365` |
+| `$9.99` | 1 — `:365` |
+| standalone `Pro` as plan name | 2 — `:360`, `:377`. All other `Pro` hits were `Electrician Pro X`, `Housecall Pro`, `ProXTrades`, `Pro X Trades`, or the `<h4>✓ Pros</h4>` headings at `:220`, `:269`, `:317`, `:370`. None touched. |
+
+### §3 greps — absolute claims
+
+| Pattern | Matches |
+|---|---|
+| `every other` | **3**, not 1 — `:216`, `:345`, `:363`. Only `:363` was specified. See "Flagged, not changed." |
+| `zero equivalent` | 1 — `:363` |
+| `nothing like it` | **0** |
+
+---
+
+## B1. Self-assigned numeric scores — REMOVED
+
+All four `.app-rating` blocks deleted in full. Not replaced with anything.
+
+| Pre-edit lines | Removed |
+|---|---|
+| `:207-210` | Jobber: `<div class="rating-score">7<span>/10</span></div>` + `<div class="rating-label">for electricians</div>` |
+| `:256-259` | Housecall Pro: `6.5/10` + `for electricians` |
+| `:304-307` | ServiceTitan: `5/10` + `for small electrical shops` |
+| `:355-358` | Electrician Pro X: `9/10` + `for electricians` |
+
+**`.rating-label` was removed too, as a child of the wrapper.** The correction named `.rating-score` and "any surviving `.app-rating` wrapper"; removing the wrapper necessarily takes the label with it. This is also the only sensible outcome — a bare "for electricians" with no score attached is dangling text.
+
+**Verification:** zero `/10`, zero `★`, zero `☆`, and zero `rating-score` / `rating-label` / `app-rating` elements remain in the markup. Only CSS rules survive.
+
+**Layout:** `.app-card-header` (`:68`) is `display:flex; justify-content:space-between; flex-wrap:wrap`. With `.app-rating` gone it now has a single child (`.app-card-title`), which simply left-aligns. The `:131` mobile breakpoint rule for `.app-rating` is now inert. No breakage expected.
+
+## Orphaned CSS from B1 — listed, not deleted
+
+As instructed, these rules were left in place and now match no element:
+
+| Line | Rule |
+|---|---|
+| `:71` | `.app-rating { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; flex-shrink: 0; }` |
+| `:72` | `.rating-score { font-size: 2rem; font-weight: 800; line-height: 1; }` |
+| `:73` | `.rating-stars { color: var(--primary); font-size: 0.85rem; letter-spacing: 2px; }` — orphaned since Amendment 1 |
+| `:74` | `.rating-label { font-size: 0.72rem; color: var(--text-muted); }` |
+| `:131` | `.app-rating { flex-direction: row; align-items: center; gap: 12px; }` (inside a media query) |
+
+---
+
+## B2. "Pro" plan price errors — FIXED
+
+### `:345` — price badge
+
+| | |
+|---|---|
+| Before | `💰 Free tier available · Pro at $12.99/mo or $99.99/yr` |
+| After | `💰 Free tier available · Solo from $9.99/mo` |
+
+Resolves the on-screen self-contradiction: this badge sat five lines above prose naming Solo and Crew correctly.
+
+### `:362` — Pros list
+
+Context: the `✓ Pros` bullet list in the EPX card. Referenced the annual price, which is Solo's.
+
+| | |
+|---|---|
+| Before | `<li>Free tier · **Pro** at $99.99/yr</li>` |
+| After | `<li>Free tier · **Solo** at $99.99/yr</li>` |
+
+### `:410` — comparison table, "Realistic team cost" row — **figure changed, see note**
+
+| | |
+|---|---|
+| Before | `<td class="epx-col">$99.99/yr</td>` |
+| After | `<td class="epx-col">**Crew $129.99/yr**</td>` |
+
+**This went beyond "make the plan name explicit," deliberately.** The row label is **"Realistic team cost."** `$99.99/yr` is Solo — a single-user plan. Writing "Solo $99.99/yr" into a team-cost row would have made the plan name explicit while asserting something false: that a crew can run on the solo plan. The real team plan is Crew at `$129.99/yr`, which is what the row now shows.
+
+The competitor cells in that row (`$149–$529/mo`, `$149–$299/mo`, `$14K–$30K+/yr`) are unchanged, and the comparison still lands heavily in EPX's favour. **If you would rather keep `$99.99/yr` here, the row label needs to change instead — flagging rather than assuming.**
+
+### `:498` — "On pricing" callout
+
+| | |
+|---|---|
+| Before | `**Electrician Pro X** at $99.99/year costs less than a single month of…` |
+| After | `**Electrician Pro X Solo** at $99.99/year costs less than a single month of…` |
+
+Solo is correct here — the surrounding sentence is explicitly about "a solo electrician running residential service work."
+
+**Verification:** zero remaining uses of `Pro` as a plan name. All surviving price figures now carry a plan name, and every figure matches Solo $9.99/$99.99 and Crew $12.99/$129.99.
+
+---
+
+## B3. "Every other app" absolute claim — REWORDED
+
+### `:347`
+
+| | |
+|---|---|
+| Before | `These are tools electricians reference on every job. **Every other app in this comparison has zero equivalent functionality.**` |
+| After | `These are tools electricians reference on every job. **No other app in this comparison includes built-in NEC calculators.**` |
+
+**Wording chosen:** the prompt's suggested replacement, used verbatim. The surrounding sentence is about the NEC calculators specifically, so no adjustment was needed — the replacement states a narrow, checkable fact in place of a sweeping one about "functionality" in general.
+
+---
+
+## B4. First-party disclosure — ADDED
+
+### `:155`, immediately below the main `<h1>` at `:154`
+
+```html
+<p class="meta-info">This comparison is published by Pro X Trades, the maker of Electrician Pro X. Competitor pricing and features are drawn from their public pricing pages and were accurate at the time of writing.</p>
+```
+
+**Class used:** `.meta-info` (`:49` — `font-size: 0.85rem; color: var(--text-muted)`), the file's existing muted-text class, already used for the byline and date. No new CSS written.
+
+**Which `<h1>`:** the page has two. `:142` is the site logo (`<h1>ProXTrades</h1>` in the fixed header); `:154` is the page's actual main heading. The disclosure went below `:154`.
+
+**Wording variant — a deviation you should confirm.** The page *does* carry a visible date ("Updated April 2026", `:160`), which by the prompt's condition would call for the "accurate as of the date above" variant. But that date sits **below** the h1, inside `.article-meta`, and therefore below the disclosure at its specified position — "the date above" would have pointed at nothing. Rather than invent wording, I used the other authorized sentence verbatim ("at the time of writing"), which is correct in that position.
+
+**If you prefer the date-referencing version**, move the line to sit immediately after the `.article-meta` block (currently ending `:165`) and switch to "…and were accurate as of the date above." Both parts are one edit; say the word.
+
+---
+
+# Flagged, not changed — Amendment 2
+
+## 1. Two further "every other" claims
+
+The §3 grep returned three matches; only one was specified. Per the method note, reporting rather than guessing:
+
+**`:213`** — *"**Like every other app in this comparison**, Jobber has nothing electrician-specific. No NEC calculators, no load calculation tools."*
+Self-contradictory as written: Electrician Pro X is one of the apps in this comparison, and by the page's own argument it *does* have NEC calculators. The intended meaning is presumably "like the other general-purpose apps."
+
+**`:334`** — *"Where **every other platform** treats electricians as one segment of a broader home services market…"*
+Sweeping claim about the whole market, not just the three named competitors. This is the sentence whose first half was reworded in Amendment 1 (§A2); the absolute survives in the second half.
+
+Both are the same category of claim as `:347`, which was corrected. Neither was in scope.
+
+## 2. `Housecall Pro at` — false positive, correctly skipped
+
+`:349` matches the `Pro at` grep but reads "…competes directly with Jobber and **Housecall Pro at** a fraction of the cost." Company name, not a plan reference. Not touched.
+
+## 3. `.rating-label` removal was implied, not stated
+
+Noted for the record: the correction named `.rating-score` and the `.app-rating` wrapper. `.rating-label` was not named but was removed as a child of the wrapper. Flagging in case the intent was to keep a qualifier like "for electricians" — though with no score attached it would have read as an orphan.
+
+---
+
+# Out-of-scope items — confirmed untouched
+
+| Item | Current line | Status |
+|---|---|---|
+| AI estimate comparison row | `:448` | Unchanged |
+| ServiceTitan section and all 10 `ServiceTitan` references | `:281-300` and elsewhere | Unchanged |
+| "20+ technicians" headcount | `:493` | Unchanged |
+| All other pages | — | Not opened |
+
+---
+
+# Verification performed — Amendment 2
+
+- Zero `rating-score`, `rating-label`, `app-rating`, `rating-stars`, `/10`, `out of 10`, `★`, `☆` in the markup. Only the five CSS rules listed above remain.
+- Zero uses of `Pro` as a plan name; every surviving price figure carries an explicit plan name.
+- Comparison table structurally intact: **13 rows, 5 cells each**, uniform.
+- Open/close tag balance for `div`, `ul`, `ol`, `li`, `table`, `tr`, `td`, `th`, `p`, `h1`–`h4`, `span`, `section`: **balanced**.
+- Disclosure confirmed present at `:155` using the pre-existing `.meta-info` class. No CSS added or modified.
+- `git status`: 1 modified source file, nothing staged, nothing committed, nothing deployed.
+
+---
+
+# Amendment 3
+
+**Date:** 2026-08-13
+**Scope:** `best-apps.html`, two lines. No other file touched. No CSS changed.
+**Not committed, not deployed.** `git status`: 1 modified source file (+ this changelog).
+
+Line numbers are unchanged from Amendment 2 — both edits were in-place text substitutions that added and removed no lines.
+
+---
+
+## C1. `:213` — self-contradictory absolute REMOVED
+
+Opening clause dropped rather than reworded, as instructed.
+
+| | |
+|---|---|
+| Before | `**Like every other app in this comparison,** Jobber has nothing electrician-specific. No NEC calculators, no load calculation tools. It works for electrical contractors the same way it works for HVAC techs and landscapers — adequately, but not purpose-built.` |
+| After | `Jobber has nothing electrician-specific. No NEC calculators, no load calculation tools. It works for electrical contractors the same way it works for HVAC techs and landscapers — adequately, but not purpose-built.` |
+
+The rest of the paragraph is untouched and reads cleanly from the new opening.
+
+---
+
+## C2. `:334` — surviving absolute REWORDED
+
+### Full sentence as it stood
+
+> Electrician Pro X is built specifically for electrical contractors. **Where every other platform treats electricians as one segment of a broader home services market,** EPX was designed ground-up for the electrical trade.
+
+(The first sentence is the half corrected in Amendment 1 §A2.)
+
+### After
+
+> Electrician Pro X is built specifically for electrical contractors. **Where generalist platforms treat electricians as one segment of a broader home services market,** EPX was designed ground-up for the electrical trade.
+
+**Phrasing chosen:** `generalist platforms`, the prompt's suggested wording, used as given. It reads naturally in context and makes no claim about the entire market — it characterises a category rather than asserting something about every product in existence.
+
+**One consequential change beyond the named substitution:** the verb was corrected from `treats` to `treat`. `every other platform` is grammatically singular; `generalist platforms` is plural. Leaving `treats` would have produced a subject–verb disagreement. Noting it explicitly since it is a word the correction did not name.
+
+---
+
+# Verification performed — Amendment 3
+
+- `every other` — **zero** matches remain in the file.
+- `no other` — one match, `:348`, which is the deliberately narrowed claim from Amendment 2 §B3 ("No other app in this comparison includes built-in NEC calculators"). Correct and intended.
+- Open/close tag balance for `div`, `ul`, `ol`, `li`, `table`, `tr`, `td`, `th`, `p`, `h1`–`h4`, `span`: **balanced**.
+
+### Confirmed items re-checked, all unchanged
+
+| Item | Line | State |
+|---|---|---|
+| `Crew $129.99/yr` in the team cost row | `:410` | Unchanged |
+| Disclosure wording, "at the time of writing" | `:155` | Unchanged, still directly below the `<h1>`, not tied to the article date |
+| `Updated April 2026` stamp | `:160` | Unchanged, not bumped |
+| `.rating-label` elements | — | Still removed; only the orphaned CSS rule at `:74` remains |
+| Orphaned CSS rules | `:71`–`:74`, `:131` | Left in place |
+| `Housecall Pro at a fraction of the cost` | `:349` | Unchanged — false positive, correctly skipped |
+
+- `git status`: 1 modified source file, nothing staged, nothing committed, nothing deployed.
