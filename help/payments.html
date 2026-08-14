@@ -9,26 +9,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  :root {
-    --yellow: #F7C600;
-    --yellow-glow: rgba(247,198,0,0.18);
-    --yellow-dim: rgba(247,198,0,0.08);
-    --bg: #1f2227;
-    --bg-mid: #252b33;
-    --bg-card: #282d35;
-    --bg-card-hover: #2f3540;
-    --text: #dde1ea;
-    --text-sub: #a8b4c4;
-    --text-muted: #7a8899;
-    --border: #3c4350;
-    --radius: 12px;
-    --radius-sm: 8px;
-    --font: 'DM Sans', -apple-system, sans-serif;
-    --font-display: 'Barlow Condensed', sans-serif;
-  }
 
   html { scroll-behavior: smooth; }
 
@@ -45,7 +29,7 @@
 
   /* ── HEADER ── */
   header {
-    background: rgba(31,34,39,0.95);
+    background: var(--surface-header);
     backdrop-filter: blur(16px);
     padding: 0 28px;
     position: sticky;
@@ -70,7 +54,7 @@
     font-size: 1.35rem;
     font-weight: 900;
     letter-spacing: 0.03em;
-    color: var(--yellow);
+    color: var(--navy);
     text-transform: uppercase;
   }
 
@@ -86,8 +70,8 @@
   .header-badge {
     font-size: 12px;
     font-weight: 500;
-    background: var(--yellow-dim);
-    color: var(--yellow);
+    background: var(--chip-pending-bg);
+    color: var(--chip-pending-text);
     border: 1px solid rgba(247,198,0,0.25);
     border-radius: 20px;
     padding: 4px 14px;
@@ -118,7 +102,7 @@
     font-weight: 600;
     letter-spacing: 1.4px;
     text-transform: uppercase;
-    color: var(--yellow);
+    color: var(--text-muted);
     margin-bottom: 14px;
     font-family: var(--font-display);
   }
@@ -134,7 +118,7 @@
     color: var(--text);
   }
 
-  .hero h1 span { color: var(--yellow); }
+  .hero h1 span { color: var(--text); }
 
   .hero p {
     font-size: 16px;
@@ -202,7 +186,7 @@
   }
 
   .nav-tab:hover { color: var(--text); }
-  .nav-tab.active { color: var(--yellow); border-bottom-color: var(--yellow); }
+  .nav-tab.active { color: var(--navy); border-bottom-color: var(--navy); }
   .nav-tab svg { width: 15px; height: 15px; flex-shrink: 0; }
 
   /* ── CONTENT ── */
@@ -314,8 +298,8 @@
   .step-tip {
     margin-top: 10px;
     font-size: 13px;
-    color: var(--yellow);
-    background: var(--yellow-dim);
+    color: var(--chip-pending-text);
+    background: var(--chip-pending-bg);
     border: 1px solid rgba(247,198,0,0.15);
     border-radius: var(--radius-sm);
     padding: 8px 12px;
@@ -405,7 +389,7 @@
   .callout-body h3 {
     font-size: 14px;
     font-weight: 600;
-    color: var(--yellow);
+    color: var(--text);
     margin-bottom: 5px;
   }
 
@@ -534,7 +518,7 @@
   }
   .topic-card p { font-size: 0.83rem; color: var(--text-sub); margin-top: 4px; line-height: 1.45; }
   .topic-card .topic-go {
-    font-size: 0.78rem; font-weight: 600; color: var(--yellow);
+    font-size: 0.78rem; font-weight: 600; color: var(--navy);
     margin-top: 10px; display: inline-flex; align-items: center; gap: 4px;
   }
 
@@ -554,7 +538,7 @@
   .pager a:hover { border-color: rgba(247,198,0,0.4); background: var(--bg-card-hover); }
   .pager a.next { text-align: right; margin-left: auto; }
   .pager-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
-  .pager-title { font-size: 0.95rem; font-weight: 600; color: var(--yellow); margin-top: 2px; }
+  .pager-title { font-size: 0.95rem; font-weight: 600; color: var(--navy); margin-top: 2px; }
 
   .all-topics-link {
     display: inline-flex; align-items: center; gap: 6px;
@@ -562,7 +546,7 @@
     margin-bottom: 28px;
     transition: color 0.15s;
   }
-  .all-topics-link:hover { color: var(--yellow); }
+  .all-topics-link:hover { color: var(--navy-hover); }
 </style>
 </head>
 <body>
