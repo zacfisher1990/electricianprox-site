@@ -856,34 +856,112 @@
 
         /* ── COMPARISON ── */
         .comparison { padding: 100px 0; background: var(--bg); }
-        .compare-wrap { overflow-x: auto; margin-top: 48px; }
-        .compare-table {
-            width: 100%; max-width: 900px; margin: 0 auto;
-            border-collapse: collapse;
+        .cmp {
+            --cmp-accent: var(--yellow);
+            --cmp-bg: var(--bg-mid);
+            --cmp-bg-alt: var(--bg-card);
+            --cmp-line: var(--border);
+            --cmp-text: var(--text);
+            --cmp-muted: var(--text-muted);
+            --cmp-ink: var(--bg);
+            max-width: 1180px; margin: 0 auto;
+            color: var(--cmp-text);
         }
-        .compare-table th {
-            padding: 14px 20px; text-align: center;
+
+        /* Scroll container. On narrow screens the table scrolls sideways
+           while the feature column stays pinned. */
+        .cmp-scroll {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            border: 1px solid var(--cmp-line);
+            border-radius: 14px;
+            background: var(--cmp-bg);
+            scrollbar-color: var(--cmp-line) transparent;
+        }
+        .cmp-table {
+            border-collapse: separate;
+            border-spacing: 0;
+            width: 100%;
+            min-width: 940px;
+            font-size: 0.875rem;
+            line-height: 1.45;
+        }
+        .cmp-table th,
+        .cmp-table td {
+            padding: 16px 18px;
+            text-align: left;
+            vertical-align: top;
+            border-bottom: 1px solid var(--cmp-line);
+        }
+        .cmp-table tbody tr:last-child th,
+        .cmp-table tbody tr:last-child td { border-bottom: 0; }
+
+        /* Pinned feature-label column */
+        .cmp-table th[scope="row"],
+        .cmp-table thead th:first-child {
+            position: sticky;
+            left: 0;
+            z-index: 2;
+            background: var(--cmp-bg-alt);
+            border-right: 1px solid var(--cmp-line);
+            font-weight: 600;
+            color: var(--cmp-text);
+            width: 190px;
+            min-width: 190px;
+        }
+
+        /* Header row */
+        .cmp-table thead th {
+            position: sticky;
+            top: 0;
+            z-index: 3;
+            background: var(--cmp-bg-alt);
             font-family: 'Barlow Condensed', sans-serif;
-            font-size: 0.8rem; font-weight: 700;
-            letter-spacing: 0.1em; text-transform: uppercase;
-            color: var(--text-muted);
-            border-bottom: 2px solid var(--border);
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding-top: 18px;
+            padding-bottom: 18px;
+            white-space: nowrap;
         }
-        .compare-table th.th-epx { color: var(--yellow); }
-        .compare-table th:first-child { text-align: left; }
-        .compare-table td {
-            padding: 14px 20px; text-align: center;
-            font-size: 0.88rem;
-            border-bottom: 1px solid var(--border);
-            color: var(--text-muted);
+        .cmp-table thead th:first-child { z-index: 4; }
+
+        /* The EPX column runs as a lit strip through the table */
+        .cmp-us {
+            background: rgba(247,198,0,0.055);
+            box-shadow:
+                inset 1px 0 0 rgba(247,198,0,0.28),
+                inset -1px 0 0 rgba(247,198,0,0.28);
+            color: var(--cmp-text);
+            width: 210px;
+            min-width: 210px;
         }
-        .compare-table td:first-child { text-align: left; color: var(--text); font-weight: 500; }
-        .compare-table td.yes { color: var(--yellow); font-weight: 700; }
-        .compare-table td.no { color: var(--border); }
-        .compare-table td.col-epx { background: rgba(247,198,0,0.04); }
-        .compare-table tr:last-child td { border-bottom: none; }
-        .compare-table tr:hover td { background: rgba(255,255,255,0.02); }
-        .compare-table tr:hover td.col-epx { background: rgba(247,198,0,0.07); }
+        thead .cmp-us {
+            background: var(--cmp-accent);
+            color: var(--cmp-ink);
+            border-radius: 10px 10px 0 0;
+            box-shadow: none;
+        }
+        tbody tr:last-child .cmp-us {
+            box-shadow:
+                inset 1px 0 0 rgba(247,198,0,0.28),
+                inset -1px 0 0 rgba(247,198,0,0.28),
+                inset 0 -1px 0 rgba(247,198,0,0.28);
+        }
+        .cmp-us strong { font-weight: 700; }
+
+        /* Competitor cells sit quieter than ours */
+        .cmp-them { color: var(--cmp-muted); }
+        .cmp-no { color: #6a707a; }
+
+        .cmp-note {
+            margin: 16px 0 0;
+            font-size: 0.78rem;
+            line-height: 1.6;
+            color: var(--cmp-muted);
+        }
+        .cmp-note a { color: var(--cmp-muted); }
 
         /* ── MID-PAGE CTA ── */
         .mid-cta { background: var(--yellow); padding: 80px 0; text-align: center; }
@@ -908,7 +986,17 @@
             .spotlight-inner { grid-template-columns: 1fr; gap: 40px; }
             .steps-row { grid-template-columns: 1fr; }
             .testimonials-grid { grid-template-columns: 1fr; }
-            .compare-table th, .compare-table td { padding: 10px 12px; font-size: 0.8rem; }
+        }
+        @media (max-width: 700px) {
+            .cmp-table { font-size: 0.8rem; }
+            .cmp-table th,
+            .cmp-table td { padding: 13px 14px; }
+            .cmp-table th[scope="row"],
+            .cmp-table thead th:first-child {
+                width: 132px; min-width: 132px;
+                font-size: 0.78rem;
+            }
+            .cmp-us { width: 175px; min-width: 175px; }
         }
         @media (max-width: 640px) {
             .mid-cta h2 { font-size: 2rem; }
@@ -1205,7 +1293,7 @@
     <section id="features" class="features">
         <div class="container">
             <p class="section-label reveal">Your Business Management + Your Field Tools</p>
-            <h2 class="section-title reveal">Everything in One App.<br>Nothing Bolted On.</h2>
+            <h2 class="section-title reveal">Everything in One App.</h2>
             <p class="section-sub reveal">A full field service management app, with on-the-job tools that only make sense in an app built for electricians.</p>
             <div class="features-grid">
 
@@ -1448,46 +1536,107 @@
     <!-- COMPARISON -->
     <section class="comparison">
         <div class="container">
-            <p class="section-label reveal">Why EPX</p>
-            <h2 class="section-title reveal">Built for Electricians.<br>Not Adapted From Something Else.</h2>
-            <p class="section-sub reveal">Generic field service apps were designed for "home services": plumbers, landscapers, HVAC techs. Electricians are not an afterthought of another trade.</p>
-            <div class="compare-wrap reveal">
-                <table class="compare-table">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th class="th-epx">Electrician Pro X</th>
-                            <th>Jobber</th>
-                            <th>Housecall Pro</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Built exclusively for electricians</td>
-                            <td class="yes col-epx">✓</td>
-                            <td class="no">✗</td>
-                            <td class="no">✗</td>
-                        </tr>
-                        <tr>
-                            <td>30+ NEC calculators included</td>
-                            <td class="yes col-epx">✓</td>
-                            <td class="no">✗</td>
-                            <td class="no">✗</td>
-                        </tr>
-                        <tr>
-                            <td>Online payment collection</td>
-                            <td class="yes col-epx">✓</td>
-                            <td style="color:var(--text-sub);text-align:center;">✓</td>
-                            <td style="color:var(--text-sub);text-align:center;">✓</td>
-                        </tr>
-                        <tr>
-                            <td>Free plan (not just a trial)</td>
-                            <td class="yes col-epx">✓ Always free</td>
-                            <td style="color:var(--text-muted);text-align:center;">Trial only</td>
-                            <td style="color:var(--text-muted);text-align:center;">Trial only</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <p class="section-label reveal">One trade. One app.</p>
+            <h2 class="section-title reveal" id="cmp-title">How Electrician Pro X Stacks Up</h2>
+            <p class="section-sub reveal">Generic field service software has to work for plumbers, roofers and landscapers too. This one only has to work for you.</p>
+            <div class="cmp reveal">
+                <div class="cmp-scroll" tabindex="0" role="region" aria-labelledby="cmp-title">
+                    <table class="cmp-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Feature</th>
+                                <th scope="col" class="cmp-us">Electrician Pro X</th>
+                                <th scope="col">Housecall Pro</th>
+                                <th scope="col">Jobber</th>
+                                <th scope="col">Joist</th>
+                                <th scope="col">QuoteIQ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Trade target</th>
+                                <td class="cmp-us"><strong>Electrical</strong></td>
+                                <td class="cmp-them">General home services</td>
+                                <td class="cmp-them">General field service</td>
+                                <td class="cmp-them">General contracting</td>
+                                <td class="cmp-them">Exterior and home services</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Solo price</th>
+                                <td class="cmp-us"><strong>$9.99 / mo</strong><br>$99.99 / yr</td>
+                                <td class="cmp-them">$59 to $79 / mo</td>
+                                <td class="cmp-them">$24 to $29 / mo</td>
+                                <td class="cmp-them">$10 / mo<br>$8.34 / mo annual</td>
+                                <td class="cmp-them">$29.99 / mo<br>about $25 / mo annual</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Crew price</th>
+                                <td class="cmp-us"><strong>$12.99 / mo</strong><br>$129.99 / yr</td>
+                                <td class="cmp-them">$149 to $189 / mo<br>up to 5 users</td>
+                                <td class="cmp-them">$80 to $139 / mo<br>up to 5 users</td>
+                                <td class="cmp-no">No crew tier</td>
+                                <td class="cmp-them">$74.99 to $149.99+ / mo</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Online card fee</th>
+                                <td class="cmp-us">3.0% + $0.49</td>
+                                <td class="cmp-them">2.59% to 3.49%</td>
+                                <td class="cmp-them">2.9% + $0.30</td>
+                                <td class="cmp-them">3.49% + $0.49</td>
+                                <td class="cmp-them">3.9% + $0.30<br>includes 1% app fee</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Bank transfer (ACH)</th>
+                                <td class="cmp-us"><strong>0.8%, capped at $5</strong></td>
+                                <td class="cmp-them">1.0%, no cap</td>
+                                <td class="cmp-them">1.0%, no cap</td>
+                                <td class="cmp-them">1.0%, capped at $15</td>
+                                <td class="cmp-them">1.0%, capped at $10</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Trade-specific tools</th>
+                                <td class="cmp-us"><strong>30+ NEC calculators.</strong> Voltage drop, conduit and box fill, plus quick-access ampacity tables.</td>
+                                <td class="cmp-them">Generic price book templates</td>
+                                <td class="cmp-no">None</td>
+                                <td class="cmp-no">None</td>
+                                <td class="cmp-no">None</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">AI features</th>
+                                <td class="cmp-us">Receipt cost scanning and estimate assist</td>
+                                <td class="cmp-them">Dispatching add-ons</td>
+                                <td class="cmp-them">Template drafting only</td>
+                                <td class="cmp-them">AI receptionist, $49 / mo extra</td>
+                                <td class="cmp-them">Autopilot and estimate tools</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Invoices and estimates</th>
+                                <td class="cmp-us">Included. Branded PDF, sent by text or email.</td>
+                                <td class="cmp-them">Included</td>
+                                <td class="cmp-them">Included</td>
+                                <td class="cmp-them">Included, unlimited on Pro</td>
+                                <td class="cmp-them">Included</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Accounting sync</th>
+                                <td class="cmp-us">QuickBooks Online, selective sync</td>
+                                <td class="cmp-them">QuickBooks integration</td>
+                                <td class="cmp-them">QuickBooks integration</td>
+                                <td class="cmp-them">QuickBooks export</td>
+                                <td class="cmp-them">Basic export</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Job management</th>
+                                <td class="cmp-us">Labor tracking, materials database, expenses, time cards</td>
+                                <td class="cmp-them">Job cost tracking and visual scheduling</td>
+                                <td class="cmp-them">Job checklists and basic material lists</td>
+                                <td class="cmp-them">Job-specific documentation</td>
+                                <td class="cmp-them">Mapping, job costing and media notes</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="cmp-note">Competitor pricing and processing rates gathered from publicly listed pricing pages, accurate as of August 2026. Rates change. Check with each provider before deciding.</p>
             </div>
         </div>
     </section>
