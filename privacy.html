@@ -164,7 +164,7 @@
         <div class="header">
             <h1>Privacy Policy</h1>
             <p class="app-name">Electrician Pro X</p>
-            <p class="updated">Last Updated: August 13, 2026</p>
+            <p class="updated">Last Updated: September 6, 2026</p>
         </div>
         
         <div class="content">
@@ -212,8 +212,16 @@
                 <li>Create or match customer records in QuickBooks using the client name and contact information on the invoice</li>
                 <li>Record payments you have logged in the App against the corresponding QuickBooks invoice</li>
             </ul>
-            <p>Syncing occurs only when you initiate it — nothing is sent to QuickBooks automatically. We read from your QuickBooks account only as necessary to perform the sync (for example, to match existing customers or retrieve an invoice we previously created). We do not read, modify, or share unrelated data from your QuickBooks account. Data synced to QuickBooks remains in your QuickBooks account and is subject to <a href="https://www.intuit.com/privacy/statement/" style="color: var(--primary);">Intuit's Privacy Statement</a>.</p>
+            <p>Syncing occurs only when you initiate it. Nothing is sent to QuickBooks automatically. We read from your QuickBooks account only as necessary to perform the sync (for example, to match existing customers or retrieve an invoice we previously created). We do not read, modify, or share unrelated data from your QuickBooks account. Data synced to QuickBooks remains in your QuickBooks account and is subject to <a href="https://www.intuit.com/privacy/statement/" style="color: var(--primary);">Intuit's Privacy Statement</a>.</p>
             <p>Your QuickBooks access tokens are stored securely and are never shared with third parties. You can disconnect QuickBooks at any time from within the App or from your QuickBooks account's connected apps settings. Disconnecting stops all future syncing but does not delete data already synced to your QuickBooks account.</p>
+
+            <h3>Payment Data</h3>
+            <p>If you enable invoice payments, you open a Stripe account that belongs to you (a "Connected Account") through Stripe's onboarding. The identity, business, and bank details you provide during onboarding are collected by Stripe, not by us, and are governed by <a href="https://stripe.com/privacy" target="_blank" rel="noopener" style="color: var(--primary);">Stripe's Privacy Policy</a>. We receive and store only your Stripe account identifier and status information about that account (for example, whether it can accept payments and payouts).</p>
+            <p>When one of your clients pays an invoice, they enter their card or bank details on a page hosted by Stripe. <strong>We never receive card numbers, bank account numbers, or security codes.</strong> Stripe sends us a confirmation of the payment, from which we store the transaction identifiers, amount, payment method type, the last four digits of the card if applicable, the payer's name and email address as entered at checkout, and the payment status. This is used to mark your invoice as paid, generate receipts, and show payment history in the App.</p>
+            <p>For subscriptions purchased through the web application, Stripe processes the payment on our behalf through RevenueCat. The same rule applies: your card details go to Stripe, and we store only the subscription status and transaction identifiers.</p>
+
+            <h3>Fraud Prevention and Security Data</h3>
+            <p>To protect contractors, their clients, and the payment feature from abuse, we collect and use limited technical information about how the App and payment pages are accessed, including IP address, approximate location derived from IP address, request timing, and device or browser characteristics. We use this information to block access from regions where the App is not offered, to limit repeated requests to payment pages, and to detect and respond to suspected fraud. Payment pages at pay.electricianprox.com and the web application are served through Cloudflare, which processes this information as our service provider. We may retain records related to suspected fraud, including account, transaction, and access details, for as long as needed to investigate, to cooperate with Stripe or card networks, and to comply with legal obligations, even after an account is closed.</p>
 
             <h3>Automatically Collected Information</h3>
             <p>We automatically collect limited technical and usage information when you use the App, including:</p>
@@ -243,7 +251,9 @@
                 <li>Create and manage your account</li>
                 <li>Provide job management, invoicing, and estimating features</li>
                 <li>Send estimates and invoices to your clients on your behalf (when you request)</li>
-                <li>Process subscription payments</li>
+                <li>Process subscription payments through Apple, Google, or Stripe (for web subscriptions)</li>
+                <li>Enable you to accept invoice payments from your clients through your own Stripe Connected Account, and record the results of those payments</li>
+                <li>Detect, prevent, and investigate fraud and abuse of the App and its payment features</li>
                 <li>Send you important updates about the App or your account</li>
                 <li>Understand which features are used, and how often, so that we can improve the App</li>
                 <li>Improve and optimize the App</li>
@@ -263,8 +273,9 @@
                 <li><strong>Google (Gemini AI)</strong>: To generate suggested estimate content when you use the AI estimate assist feature. The job description you enter is sent to Google's AI services to produce the suggestion. Subject to <a href="https://policies.google.com/privacy" style="color: var(--primary);">Google's Privacy Policy</a>.</li>
                 <li><strong>Postmark</strong>: For sending emails (estimates and invoices) on your behalf</li>
                 <li><strong>Resend</strong>: For sending certain account-related emails (such as account deletion verification)</li>
-                <li><strong>RevenueCat</strong>: For managing subscriptions and payments</li>
-                <li><strong>Stripe</strong>: For processing invoice payments from your clients</li>
+                <li><strong>RevenueCat</strong>: For managing subscriptions and, for web subscriptions, coordinating payment through Stripe</li>
+                <li><strong>Stripe</strong>: For processing invoice payments from your clients through your own Connected Account, for web subscription payments, and for fraud screening of those payments. Subject to <a href="https://stripe.com/privacy" target="_blank" rel="noopener" style="color: var(--primary);">Stripe's Privacy Policy</a>.</li>
+                <li><strong>Cloudflare</strong>: For network security, geographic access restrictions, and rate limiting on the web application and payment pages. Subject to <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener" style="color: var(--primary);">Cloudflare's Privacy Policy</a>.</li>
                 <li><strong>Apple</strong>: For processing App Store subscriptions and Sign in with Apple</li>
             </ul>
 
@@ -279,7 +290,7 @@
             <p>However, no method of transmission over the internet or electronic storage is 100% secure. While we strive to protect your information, we cannot guarantee absolute security.</p>
 
             <h2>Data Retention</h2>
-            <p>We retain your account information and job data for as long as your account is active or as needed to provide you services. If you delete your account, we will delete or anonymize your personal information within 30 days, except where we are required to retain it for legal purposes.</p>
+            <p>We retain your account information and job data for as long as your account is active or as needed to provide you services. If you delete your account, we will delete or anonymize your personal information within 30 days, except where we are required to retain it for legal purposes or where retention is necessary to investigate or prevent fraud, resolve payment disputes, or cooperate with Stripe, card networks, or law enforcement. Payment records held by Stripe are retained according to Stripe's own policies.</p>
 
             <h2>Your Rights and Choices</h2>
             

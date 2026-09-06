@@ -179,7 +179,7 @@
         <div class="header">
             <h1>Terms of Service</h1>
             <p class="app-name">Electrician Pro X</p>
-            <p class="updated">Last Updated: August 13, 2026</p>
+            <p class="updated">Last Updated: September 6, 2026</p>
         </div>
         
         <div class="content">
@@ -218,40 +218,62 @@
             <h3>Subscription Terms</h3>
             <ul>
                 <li>Subscriptions are offered in multiple tiers, billed monthly or annually at the current pricing displayed in the App at the time of purchase</li>
-                <li>Payment is charged to your Apple ID or Google Play account at confirmation of purchase</li>
+                <li>Subscriptions purchased in the mobile app are charged to your Apple ID or Google Play account at confirmation of purchase. Subscriptions purchased through the web application are charged to the payment method you provide at checkout and are processed by Stripe on our behalf</li>
                 <li>Subscriptions automatically renew unless canceled at least 24 hours before the end of the current period</li>
                 <li>Your account will be charged for renewal within 24 hours prior to the end of the current period</li>
-                <li>You can manage and cancel your subscription through your device's account settings</li>
+                <li>Mobile subscriptions can be managed and canceled through your device's account settings. Web subscriptions can be managed and canceled from the Account section of the App</li>
+                <li>Both the Solo and Crew plans require a valid, non-fraudulent payment method. We may cancel a subscription and revoke access without refund if the payment used to purchase it is disputed, reversed, or determined to be unauthorized</li>
             </ul>
 
             <h3>Free Trial</h3>
             <ul>
                 <li>We may offer a free trial period for new subscribers</li>
                 <li>If you do not cancel before the trial ends, you will be automatically charged for the subscription</li>
-                <li>Free trials are limited to one per Apple ID or Google account</li>
+                <li>Free trials are limited to one per person, regardless of how many accounts, Apple IDs, or Google accounts are used</li>
             </ul>
 
             <h3>Refunds</h3>
-            <p>Refund requests are handled by Apple (for iOS) or Google (for Android) according to their respective refund policies. We do not process refunds directly.</p>
+            <p>Refund requests for subscriptions purchased in the mobile app are handled by Apple (for iOS) or Google (for Android) according to their respective refund policies. Refund requests for subscriptions purchased through the web application can be sent to support@proxtrades.com and are granted at our discretion.</p>
 
             <h2>Invoice Payments and Stripe</h2>
-            <p>The App enables contractors to accept payments from their clients through Stripe. By using this feature:</p>
+            <p>The App allows contractors to accept card and ACH bank payments from their clients. These payments are processed by Stripe through a Stripe account that belongs to the contractor (a "Connected Account"). Electrician Pro X provides the software that creates the payment page and records the result. We are not a party to the payment itself.</p>
+
+            <h3>How Payments Work</h3>
             <ul>
-                <li>Contractors must set up and maintain their own Stripe Connected Account</li>
-                <li>All payment processing is handled directly by Stripe and subject to <a href="https://stripe.com/legal" target="_blank" rel="noopener" style="color: var(--primary);">Stripe's Terms of Service</a></li>
-                <li>We do not store credit card numbers or sensitive payment information</li>
-                <li>Payment disputes and chargebacks are handled between the contractor, their client, and Stripe</li>
-                <li>We are not responsible for any payment processing errors, delays, or failures</li>
+                <li>To accept payments you must have an active Solo or Crew subscription and complete Stripe's onboarding to open a Connected Account. Stripe, not Electrician Pro X, decides whether to approve your account and which payment methods it may accept</li>
+                <li>When a client pays an invoice, the charge is made directly to your Connected Account. You are the merchant of record for that charge. Your business name, not ours, appears on your client's card or bank statement</li>
+                <li>Funds are paid out from your Connected Account to your bank account on Stripe's payout schedule. New Connected Accounts are subject to an initial payout delay of at least seven days while the account establishes a history</li>
+                <li>All payment processing is handled by Stripe and is subject to <a href="https://stripe.com/legal" target="_blank" rel="noopener" style="color: var(--primary);">Stripe's Terms of Service</a> and the Stripe Connected Account Agreement you accept during onboarding</li>
+                <li>We never see or store card numbers, bank account numbers, or other sensitive payment credentials. Your clients enter that information on a page hosted by Stripe</li>
+                <li>We are not responsible for payment processing errors, delays, declines, or failures, or for Stripe's decisions about your account</li>
             </ul>
 
-            <h3>Card Processing Fees</h3>
-            <p>Card payments processed through the App are subject to a processing fee of <strong>3.0% + $0.49</strong> per transaction. By default, this fee is deducted from the payment before funds are transferred to the contractor's connected Stripe account. We may change this fee from time to time; the current fee will always be displayed in the App before you create a payment link.</p>
+            <h3>Processing Fees</h3>
+            <p>Electrician Pro X does not charge any fee on invoice payments. Stripe charges its standard processing fees directly to your Connected Account, currently 2.9% + $0.30 per card payment and 0.8% (up to $5.00) per ACH bank transfer for U.S. accounts. These rates are set by Stripe and may change; the rate shown in the App is provided for convenience and Stripe's published pricing controls. International cards and some other payment types may carry additional Stripe fees.</p>
 
             <h3>Passing Processing Fees to Clients</h3>
-            <p>The App includes an optional setting that allows contractors to add the card processing fee to the amount charged to their client. This feature is provided as a convenience only. <strong>If you enable this setting, you are solely responsible for ensuring that passing card fees to your clients complies with all applicable laws and card network rules in your jurisdiction.</strong></p>
+            <p>The App includes an optional setting that increases the amount charged to your client so that, after Stripe's processing fee, you receive the full invoice amount. This feature is provided as a convenience only. <strong>If you enable this setting, you are solely responsible for ensuring that passing processing fees to your clients complies with all applicable laws and card network rules in your jurisdiction.</strong></p>
             <div class="warning">
                 <p><strong>Important:</strong> Credit card surcharge laws vary by state. Some states prohibit or restrict passing card fees to customers, surcharging debit card transactions is prohibited nationwide, and card networks impose caps and disclosure requirements. We do not verify the legality of fee pass-through in your jurisdiction, and we disclaim all liability arising from your use of this feature. Consult a qualified professional if you are unsure of the rules that apply to your business.</p>
             </div>
+
+            <h3>Refunds, Disputes, and Chargebacks</h3>
+            <ul>
+                <li>Refunds to your clients are issued from your Connected Account through Stripe. Electrician Pro X does not hold client funds and cannot issue refunds on your behalf</li>
+                <li>If a client disputes a charge with their bank, the disputed amount and any dispute fee charged by Stripe are debited from your Connected Account. You are responsible for responding to the dispute and for any resulting loss</li>
+                <li>Because you are the merchant of record, you are responsible for complying with card network rules, tax obligations, and consumer protection laws that apply to the payments you accept</li>
+            </ul>
+
+            <h3>Fraud Prevention and Account Restrictions</h3>
+            <p>The payment feature exists so licensed electrical contractors can be paid for real work. To protect our users, their clients, and our ability to offer payments at all, we may at any time and without prior notice:</p>
+            <ul>
+                <li>Decline to enable, pause, or reject a Connected Account, or ask Stripe to do so</li>
+                <li>Disable payment links, hold or delay payouts, or refund charges that we or Stripe believe are unauthorized, fraudulent, or unrelated to a genuine transaction</li>
+                <li>Limit how often payment pages can be generated for an invoice, or restrict access to the App and payment pages by geographic region</li>
+                <li>Suspend or terminate the account of any user who creates invoices or payment links for goods or services that were not actually provided, uses payment methods they are not authorized to use, or otherwise uses the payment feature for any purpose other than collecting payment for their own electrical work</li>
+                <li>Report suspected fraud to Stripe, card networks, or law enforcement</li>
+            </ul>
+            <p>Using the payment feature to test, launder, or cash out payment credentials that do not belong to you is a material breach of these Terms and may be a crime.</p>
 
             <h2>Acceptable Use</h2>
             <p>You agree not to:</p>
@@ -305,7 +327,7 @@
             <p>The App and its original content, features, and functionality are protected by copyright, trademark, and other intellectual property laws. You may not copy, modify, distribute, sell, or lease any part of the App without prior written consent.</p>
 
             <h2>Third-Party Services</h2>
-            <p>The App uses third-party services including Firebase, Postmark, Resend, RevenueCat, Stripe, Intuit (QuickBooks Online), Google (Calendar and AI services), HeyCatch (product analytics), and Apple/Google payment services. Your use of these services is subject to their respective terms and privacy policies.</p>
+            <p>The App uses third-party services including Firebase, Postmark, Resend, RevenueCat, Stripe, Intuit (QuickBooks Online), Google (Calendar and AI services), HeyCatch (product analytics), Cloudflare (network security), and Apple/Google payment services. Your use of these services is subject to their respective terms and privacy policies.</p>
 
             <h2>Termination</h2>
             <p>We may terminate or suspend your account and access to the App immediately, without prior notice or liability, for any reason, including if you breach these Terms.</p>
