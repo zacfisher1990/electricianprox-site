@@ -221,6 +221,12 @@
         .btn-primary:hover { background: #ffd93d; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(247,198,0,0.3); }
         .btn-outline { background: transparent; color: var(--text); border: 1.5px solid var(--border); }
         .btn-outline:hover { border-color: var(--yellow); color: var(--yellow); }
+        /* .prose a (0,1,1) outranks .btn-primary (0,1,0), so without these the
+           CTA buttons inside .prose render yellow-on-yellow and underlined. */
+        .prose a.btn { text-decoration: none; }
+        .prose a.btn-primary { color: #000; }
+        .prose a.btn-outline { color: var(--text); }
+        .prose a.btn-outline:hover { color: var(--yellow); }
 
         /* ── ARTICLE ── */
         .article { max-width: 820px; margin: 0 auto; padding: 0 28px; }
