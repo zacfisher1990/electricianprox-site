@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voltage Drop Calculator (NEC) – Single &amp; Three Phase | Electrician Pro X</title>
+    <meta name="description" content="Free voltage drop calculator for single- and three-phase circuits. Solve for voltage drop, minimum wire size, or maximum distance, and check the result against the 3% branch-circuit and feeder figures in NEC 210.19 and 215.2. No signup.">
+    <link rel="canonical" href="https://electricianprox.com/tools/voltage-drop-calculator/">
+    <meta name="application-name" content="Electrician Pro X">
+    <meta name="apple-itunes-app" content="app-id=6755925920, app-argument=https://electricianprox.com/tools/voltage-drop-calculator/">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Electrician Pro X">
+    <meta property="og:title" content="Voltage Drop Calculator (NEC) – Single &amp; Three Phase">
+    <meta property="og:description" content="Solve for voltage drop, minimum wire size, or maximum one-way distance. Copper or aluminum, single or three phase, with a 3% / 5% check against NEC 210.19 and 215.2.">
+    <meta property="og:url" content="https://electricianprox.com/tools/voltage-drop-calculator/">
+    <meta property="og:image" content="https://electricianprox.com/images/favicon-32.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Voltage Drop Calculator (NEC) – Single &amp; Three Phase">
+    <meta name="twitter:description" content="Solve for voltage drop, minimum wire size, or maximum one-way distance. Copper or aluminum, single or three phase, with a 3% / 5% check.">
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Voltage Drop Calculator",
+        "alternateName": "NEC Voltage Drop Calculator",
+        "description": "A free online voltage drop calculator for single-phase and three-phase circuits. Solves for voltage drop, minimum conductor size, or maximum one-way distance using the circular-mil K formula for copper and aluminum, and checks the result against the 3 percent branch-circuit and feeder figures referenced in NEC 210.19 and 215.2.",
+        "url": "https://electricianprox.com/tools/voltage-drop-calculator/",
+        "applicationCategory": "UtilitiesApplication",
+        "applicationSubCategory": "Electrical engineering calculator",
+        "operatingSystem": "Any (web browser), iOS, Android",
+        "browserRequirements": "Requires JavaScript",
+        "inLanguage": "en-US",
+        "isAccessibleForFree": true,
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "featureList": [
+            "Solve for voltage drop, minimum wire size, or maximum one-way distance",
+            "Single-phase and three-phase systems",
+            "Copper and aluminum conductors",
+            "Wire sizes from 14 AWG through 1000 kcmil",
+            "Adjustable power factor",
+            "Volts dropped, percent drop, and voltage at the load",
+            "3% branch, 3% feeder, and 5% combined check"
+        ],
+        "isPartOf": {
+            "@type": "SoftwareApplication",
+            "name": "Electrician Pro X",
+            "url": "https://electricianprox.com/",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "iOS, Android, Web"
+        },
+        "author": {
+            "@type": "Organization",
+            "name": "Pro X Trades LLC",
+            "url": "https://proxtrades.com"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Pro X Trades LLC",
+            "url": "https://proxtrades.com"
+        }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Is 3% voltage drop a code requirement?",
+                "acceptedAnswer": { "@type": "Answer", "text": "For ordinary branch circuits and feeders, no. The 3 percent figure appears in informational notes to NEC 210.19 and 215.2, and NEC 90.5 states that informational notes are explanatory and not enforceable as requirements. It is a design recommendation that most inspectors, engineers, and specifications treat as the working target. Voltage drop is mandatory in specific places, including NEC 647.4 for sensitive electronic equipment, NEC 695.7 for fire pumps, and NEC 625.41 territory for some EV supply equipment designs." }
+            },
+            {
+                "@type": "Question",
+                "name": "Do I use one-way distance or total circuit length?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Enter the one-way distance, measured from the source to the load along the actual conductor route. The formula already accounts for the return path: the multiplier of 2 for single phase covers the run out and back, and the 1.732 factor for three phase is the line-to-line square root of 3 factor. If you enter the round-trip length you will roughly double the answer." }
+            },
+            {
+                "@type": "Question",
+                "name": "What K value should I use for copper and aluminum?",
+                "acceptedAnswer": { "@type": "Answer", "text": "This calculator uses K = 12.9 for copper and K = 21.2 for aluminum, the common AC values at about 75 degrees C. Some references use the DC values of 10.8 for copper and 17.4 for aluminum, which are based on resistance at 20 degrees C and give a smaller drop. The AC values are the conservative choice for normal building wiring at operating temperature." }
+            },
+            {
+                "@type": "Question",
+                "name": "Why is my three-phase drop lower than single phase at the same amps?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Because the multiplier is different. Single phase uses 2, since current travels out on one conductor and back on the other. Three phase uses 1.732, the square root of 3, for the line-to-line voltage drop of a balanced load. At the same current, distance, and conductor, a three-phase drop is about 87 percent of the single-phase drop, and the percentage is smaller again because three-phase system voltages are usually higher." }
+            },
+            {
+                "@type": "Question",
+                "name": "If I upsize conductors for voltage drop, do I have to upsize the ground?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Yes. NEC 250.122(B) requires equipment grounding conductors to be increased in size proportionally to the increase in circular mil area of the ungrounded conductors when those conductors are upsized. So if you go from 12 AWG to 8 AWG to fix a voltage drop problem, the equipment grounding conductor has to grow by the same circular mil ratio. The overcurrent device and the conductor terminations under NEC 110.14(C) still govern the rest of the sizing." }
+            },
+            {
+                "@type": "Question",
+                "name": "Does this calculator replace an ampacity check?",
+                "acceptedAnswer": { "@type": "Answer", "text": "No. Voltage drop and ampacity are two separate checks and the conductor has to pass both. Size the conductor first for ampacity using NEC 310.16 with the correction and adjustment factors that apply, and for terminations under NEC 110.14(C), then run the voltage drop check and upsize if the drop is too high. The result here is the minimum size for voltage drop only." }
+            }
+        ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Electrician Pro X", "item": "https://electricianprox.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Voltage Drop Calculator", "item": "https://electricianprox.com/tools/voltage-drop-calculator/" }
+        ]
+    }
+    </script>
+
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        /* Author rules below set display:flex on .field, which would otherwise
+           beat the UA stylesheet's [hidden] { display: none } in the cascade
+           and leave the solved-for field visible. */
+        [hidden] { display: none !important; }
+
+        :root {
+            --yellow: #F7C600;
+            --bg: #1f2227;
+            --bg-mid: #252b33;
+            --bg-card: #282d35;
+            --text: #dde1ea;
+            --text-sub: #a8b4c4;
+            --text-muted: #7a8899;
+            --border: #3c4350;
+            --green: #10b981;
+            --red: #ef4444;
+            --blue: #3b82f6;
+        }
+
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 28px; }
+        a { color: inherit; text-decoration: none; }
+
+        /* ── HEADER (matches index.html) ── */
+        .header {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: rgba(31,34,39,0.92);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+        }
+        .header .container { display: flex; justify-content: space-between; align-items: center; height: 68px; }
+        .logo { display: flex; flex-direction: column; line-height: 1; }
+        .logo-name {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.45rem; font-weight: 900; letter-spacing: 0.03em;
+            color: var(--yellow); text-transform: uppercase; line-height: 1;
+        }
+        .logo-by {
+            font-size: 0.62rem; font-weight: 500; color: var(--text-muted);
+            letter-spacing: 0.08em; text-transform: uppercase; margin-top: 2px;
+        }
+        .nav { display: flex; gap: 32px; align-items: center; }
+        .nav > a { font-size: 0.9rem; font-weight: 500; color: var(--text-sub); transition: color 0.2s; letter-spacing: 0.02em; }
+        .nav > a:hover { color: var(--yellow); }
+        .nav-web {
+            border: 1.5px solid rgba(255,255,255,0.2); color: var(--text-sub) !important;
+            padding: 8px 18px; border-radius: 6px; font-size: 0.875rem; font-weight: 600; transition: all 0.2s;
+        }
+        .nav-web:hover { border-color: rgba(255,255,255,0.5); color: #fff !important; transform: translateY(-1px); }
+        .nav-cta {
+            background: var(--yellow); color: #111 !important;
+            padding: 9px 22px; border-radius: 6px; font-size: 0.875rem; font-weight: 700; transition: all 0.2s;
+        }
+        .nav-cta:hover { background: #ffd93d; color: #111 !important; transform: translateY(-1px); }
+
+        /* ── BUTTONS (matches index.html) ── */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 14px 28px; font-size: 0.95rem; font-weight: 600;
+            border-radius: 8px; cursor: pointer; transition: all 0.2s; border: none;
+            font-family: 'DM Sans', sans-serif;
+        }
+        .btn-primary { background: var(--yellow); color: #000; }
+        .btn-primary:hover { background: #ffd93d; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(247,198,0,0.3); }
+        .btn-outline { background: transparent; color: var(--text); border: 1.5px solid var(--border); }
+        .btn-outline:hover { border-color: var(--yellow); color: var(--yellow); }
+
+        /* ── ARTICLE ── */
+        .article { max-width: 820px; margin: 0 auto; padding: 0 28px; }
+        .tool-hero { padding: 104px 0 24px; }
+        .eyebrow {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.8rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+            color: var(--yellow); margin-bottom: 14px;
+        }
+        .breadcrumbs { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 12px; }
+        .breadcrumbs a { color: var(--text-muted); }
+        .breadcrumbs a:hover { color: var(--yellow); }
+        .tool-hero h1 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 3.2rem; font-weight: 800; text-transform: uppercase;
+            line-height: 1.02; letter-spacing: -0.3px; margin-bottom: 16px;
+        }
+        .definition { font-size: 1.08rem; line-height: 1.75; color: var(--text-sub); }
+        .definition strong { color: var(--text); font-weight: 600; }
+        .meta { margin-top: 18px; font-size: 0.82rem; color: var(--text-muted); }
+
+        /* ── CALCULATOR ── */
+        .calc {
+            background: var(--bg-mid); border: 1px solid var(--border);
+            border-top: 3px solid var(--yellow);
+            border-radius: 14px; padding: 22px; margin: 8px 0 40px;
+        }
+        .calc-title {
+            font-family: 'Barlow Condensed', sans-serif; font-size: 0.78rem; font-weight: 700;
+            letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px;
+        }
+        .field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .field { display: flex; flex-direction: column; min-width: 0; }
+        .field.full { grid-column: 1 / -1; }
+        .field label {
+            font-size: 0.78rem; font-weight: 600; color: var(--text-sub);
+            letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 6px;
+        }
+        .field input, .field select {
+            width: 100%; font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 500;
+            color: var(--text); background: var(--bg-card);
+            border: 1px solid var(--border); border-radius: 8px;
+            padding: 11px 12px; line-height: 1.3; -webkit-appearance: none; appearance: none;
+        }
+        .field select {
+            background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%237a8899'%3E%3Cpath d='M4.5 6.5 8 10l3.5-3.5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat; background-position: right 10px center; background-size: 16px;
+            padding-right: 32px;
+        }
+        .field input:focus, .field select:focus {
+            outline: none; border-color: var(--yellow); box-shadow: 0 0 0 3px rgba(247,198,0,0.14);
+        }
+        .field input::placeholder { color: var(--text-muted); }
+        .field .hint { font-size: 0.72rem; color: var(--text-muted); margin-top: 5px; }
+        .input-unit { position: relative; }
+        .input-unit input { padding-right: 46px; }
+        .input-unit .unit {
+            position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+            font-size: 0.82rem; font-weight: 600; color: var(--text-muted); pointer-events: none;
+        }
+
+        .seg { display: flex; background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 3px; }
+        .seg button {
+            flex: 1; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600;
+            color: var(--text-muted); background: transparent; border: none; border-radius: 6px;
+            padding: 8px 6px; cursor: pointer; transition: all 0.15s; min-width: 0;
+        }
+        .seg button[aria-pressed="true"] { background: var(--yellow); color: #111; }
+
+        .calc-actions { display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
+        .btn-reset {
+            font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600;
+            color: var(--text-muted); background: transparent; border: 1px solid var(--border);
+            border-radius: 8px; padding: 9px 18px; cursor: pointer; transition: all 0.2s;
+        }
+        .btn-reset:hover { border-color: var(--yellow); color: var(--yellow); }
+
+        /* Results */
+        .results { margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border); }
+        .result-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+        .rc {
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px;
+            padding: 14px 14px 13px; min-width: 0;
+        }
+        .rc.hero { grid-column: 1 / -1; border-left: 3px solid var(--yellow); }
+        .rc-label {
+            font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+            color: var(--text-muted); margin-bottom: 5px;
+        }
+        .rc-value {
+            font-family: 'Barlow Condensed', sans-serif; font-size: 2rem; font-weight: 800;
+            line-height: 1.05; color: var(--text); overflow-wrap: anywhere;
+        }
+        .rc.hero .rc-value { font-size: 2.6rem; }
+        .rc-value.ok { color: var(--green); }
+        .rc-value.bad { color: var(--red); }
+        .rc-sub { font-size: 0.76rem; color: var(--text-muted); margin-top: 3px; }
+
+        .flags { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 10px; }
+        .flag {
+            display: flex; align-items: center; gap: 8px; min-width: 0;
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px;
+            padding: 11px 13px; font-size: 0.82rem; line-height: 1.35;
+        }
+        .flag .dot { width: 9px; height: 9px; border-radius: 50%; flex: 0 0 9px; }
+        .flag.pass { border-color: rgba(16,185,129,0.4); background: rgba(16,185,129,0.07); }
+        .flag.pass .dot { background: var(--green); }
+        .flag.fail { border-color: rgba(239,68,68,0.45); background: rgba(239,68,68,0.08); }
+        .flag.fail .dot { background: var(--red); }
+        .flag-name { font-weight: 600; color: var(--text); }
+        .flag-state { color: var(--text-muted); }
+
+        .callout {
+            margin-top: 12px; padding: 13px 16px; border-radius: 10px;
+            font-size: 0.88rem; line-height: 1.6; color: var(--text-sub);
+            background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--blue);
+        }
+        .callout strong { color: var(--text); font-weight: 600; display: block; margin-bottom: 3px; }
+        .callout.warn { border-left-color: var(--red); background: rgba(239,68,68,0.06); border-color: rgba(239,68,68,0.3); }
+        .callout.good { border-left-color: var(--green); background: rgba(16,185,129,0.06); border-color: rgba(16,185,129,0.3); }
+
+        .work { margin-top: 12px; }
+        .work summary {
+            cursor: pointer; font-size: 0.82rem; font-weight: 600; color: var(--text-muted);
+            letter-spacing: 0.04em; list-style: none; padding: 7px 0;
+        }
+        .work summary::-webkit-details-marker { display: none; }
+        .work summary::before { content: "▸ "; color: var(--yellow); }
+        .work[open] summary::before { content: "▾ "; }
+        .work summary:hover { color: var(--yellow); }
+        .work dl {
+            display: grid; grid-template-columns: auto 1fr; gap: 6px 16px;
+            font-size: 0.85rem; padding: 10px 14px; background: var(--bg-card);
+            border: 1px solid var(--border); border-radius: 10px;
+        }
+        .work dt { color: var(--text-muted); font-weight: 600; }
+        .work dd { color: var(--text); overflow-wrap: anywhere; }
+        .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.93em; }
+
+        .calc-note { font-size: 0.76rem; color: var(--text-muted); margin-top: 14px; line-height: 1.6; }
+
+        /* ── TOC + PROSE ── */
+        .toc {
+            margin: 0 0 8px; padding: 20px 24px;
+            background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--yellow);
+            border-radius: 12px;
+        }
+        .toc p {
+            font-family: 'Barlow Condensed', sans-serif; font-size: 0.78rem; font-weight: 700;
+            letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px;
+        }
+        .toc ol { padding-left: 20px; columns: 2; column-gap: 32px; }
+        .toc li { color: var(--text-muted); font-size: 0.92rem; margin-bottom: 6px; break-inside: avoid; }
+        .toc a { color: var(--text-sub); transition: color 0.2s; }
+        .toc a:hover { color: var(--yellow); }
+
+        .prose { padding: 8px 0 32px; }
+        .prose section { scroll-margin-top: 96px; }
+        .prose h2 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 2.1rem; font-weight: 800; text-transform: uppercase; letter-spacing: -0.2px;
+            line-height: 1.1; margin: 64px 0 18px;
+        }
+        .prose h3 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.4rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.02em;
+            color: var(--yellow); margin: 40px 0 12px;
+        }
+        .prose p { color: var(--text-sub); font-size: 1.02rem; line-height: 1.8; margin-bottom: 16px; }
+        .prose p strong, .prose li strong { color: var(--text); font-weight: 600; }
+        .prose ul, .prose ol { padding-left: 22px; margin-bottom: 18px; }
+        .prose li { color: var(--text-sub); font-size: 1.02rem; line-height: 1.7; margin-bottom: 10px; }
+        .prose a { color: var(--yellow); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(247,198,0,0.4); }
+        .prose a:hover { text-decoration-color: var(--yellow); }
+
+        .formula-box {
+            background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--yellow);
+            border-radius: 12px; padding: 20px 22px; margin: 4px 0 20px;
+        }
+        .formula-box .eq {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            font-size: 1.05rem; font-weight: 600; color: var(--text); line-height: 1.6;
+            overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 4px;
+        }
+        .formula-box .eq + .eq { margin-top: 10px; }
+        .formula-box .eq span { color: var(--yellow); }
+
+        .example {
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px;
+            padding: 16px 20px; margin: 4px 0 8px;
+        }
+        .example p { margin: 0; font-size: 0.96rem; }
+        .example-label {
+            display: block; font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.74rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+            color: var(--yellow); margin-bottom: 4px;
+        }
+
+        .tbl-scroll {
+            overflow-x: auto; -webkit-overflow-scrolling: touch;
+            border: 1px solid var(--border); border-radius: 14px; background: var(--bg-mid);
+            margin: 20px 0;
+        }
+        .tbl { border-collapse: separate; border-spacing: 0; width: 100%; min-width: 520px; font-size: 0.875rem; line-height: 1.45; }
+        .tbl th, .tbl td { padding: 14px 18px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--border); }
+        .tbl tbody tr:last-child th, .tbl tbody tr:last-child td { border-bottom: 0; }
+        .tbl thead th {
+            background: var(--bg-card);
+            font-family: 'Barlow Condensed', sans-serif; font-size: 0.85rem; font-weight: 700;
+            letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; color: var(--text);
+        }
+        .tbl th[scope="row"] { font-weight: 600; color: var(--text); white-space: nowrap; }
+        .tbl td { color: var(--text-sub); }
+
+        /* Related calculators */
+        .rel-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 24px 0; }
+        .rel-card {
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
+            padding: 18px 20px; display: block;
+        }
+        .rel-card .rel-name {
+            font-family: 'Barlow Condensed', sans-serif; font-size: 1.15rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.02em; color: var(--text); margin-bottom: 4px;
+        }
+        .rel-card .rel-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; }
+        .rel-card .rel-soon {
+            display: inline-block; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.1em;
+            text-transform: uppercase; color: var(--text-muted);
+            border: 1px solid var(--border); border-radius: 4px; padding: 2px 7px; margin-left: 8px;
+            vertical-align: 2px;
+        }
+
+        /* FAQ */
+        .faq-item { border-top: 1px solid var(--border); padding: 20px 0 4px; }
+        .faq-item:last-child { border-bottom: 1px solid var(--border); padding-bottom: 20px; }
+        .faq-item h3 {
+            font-family: 'DM Sans', sans-serif; font-size: 1.08rem; font-weight: 600;
+            text-transform: none; letter-spacing: 0; color: var(--text); margin: 0 0 8px;
+        }
+        .faq-item p { margin: 0 0 12px; }
+        .faq-item p:last-child { margin-bottom: 0; }
+
+        /* CTA */
+        .get-it {
+            margin: 64px 0 96px; padding: 40px 32px; text-align: center;
+            background: rgba(247,198,0,0.06); border: 1px solid rgba(247,198,0,0.25); border-radius: 18px;
+        }
+        .get-it h2 {
+            font-family: 'Barlow Condensed', sans-serif; font-size: 2rem; font-weight: 800;
+            text-transform: uppercase; margin-bottom: 8px;
+        }
+        .get-it p { color: var(--text-sub); margin-bottom: 24px; }
+        .get-it .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+        .trademark { font-size: 0.75rem; color: var(--text-muted); margin-top: 20px; }
+
+        /* ── FOOTER (matches index.html) ── */
+        .footer { padding: 60px 0 28px; background: #161a1f; border-top: 1px solid var(--border); }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+        .footer-brand-name {
+            font-family: 'Barlow Condensed', sans-serif; font-size: 1.8rem; font-weight: 900;
+            color: var(--yellow); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.03em;
+        }
+        .footer-brand p { color: var(--text-sub); font-size: 0.88rem; line-height: 1.7; max-width: 280px; }
+        .footer-col h4 { font-size: 0.82rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text); margin-bottom: 18px; }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 10px; }
+        .footer-col a { color: var(--text-sub); font-size: 0.88rem; transition: color 0.2s; }
+        .footer-col a:hover { color: var(--yellow); }
+        .footer-bottom { padding-top: 24px; border-top: 1px solid var(--border); text-align: center; }
+        .footer-bottom p { color: var(--text-muted); font-size: 0.82rem; }
+
+        .visually-hidden {
+            position: absolute; width: 1px; height: 1px; overflow: hidden;
+            clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+        }
+
+        @media (max-width: 1024px) {
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 760px) {
+            .toc ol { columns: 1; }
+            .rel-grid { grid-template-columns: 1fr; }
+            .result-cards, .flags { grid-template-columns: 1fr; }
+            .tbl { font-size: 0.82rem; }
+            .tbl th, .tbl td { padding: 12px 14px; }
+        }
+        @media (max-width: 640px) {
+            .nav { display: none; }
+            .container, .article { padding: 0 18px; }
+            .tool-hero { padding-top: 88px; }
+            .tool-hero h1 { font-size: 2.4rem; }
+            .prose h2 { font-size: 1.75rem; }
+            .calc { padding: 18px 16px; margin-left: -2px; margin-right: -2px; }
+            .field-grid { grid-template-columns: 1fr; gap: 11px; }
+            .get-it { padding: 32px 20px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            * { transition: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <a href="/" class="logo">
+                <span class="logo-name">Electrician Pro X</span>
+                <span class="logo-by">by Pro X Trades</span>
+            </a>
+            <nav class="nav">
+                <a href="/#features">Features</a>
+                <a href="/#pricing">Pricing</a>
+                <a href="/instructions.html">Help</a>
+                <a href="https://app.electricianprox.com" class="nav-web" target="_blank" rel="noopener">Web App</a>
+                <a href="/download.html" class="nav-cta">Download App</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="article">
+
+            <header class="tool-hero">
+                <p class="breadcrumbs"><a href="/">Home</a> &rsaquo; Voltage Drop Calculator</p>
+                <p class="eyebrow">Free NEC Calculator</p>
+                <h1>Voltage Drop Calculator</h1>
+                <p class="definition">Work out <strong>voltage drop, minimum wire size, or maximum one-way distance</strong> for single-phase and three-phase circuits, copper or aluminum. Every result is checked against the <strong>3% branch circuit</strong>, <strong>3% feeder</strong>, and <strong>5% combined</strong> figures referenced in <strong>NEC 210.19</strong> and <strong>215.2</strong>. Free, no signup, and it runs entirely in your browser.</p>
+            </header>
+
+            <!-- ── CALCULATOR ── -->
+            <section class="calc" id="calculator" aria-labelledby="calc-title">
+                <p class="calc-title" id="calc-title">Circuit parameters</p>
+
+                <form id="vd-form" novalidate>
+                    <div class="field-grid">
+                        <div class="field full">
+                            <label for="solveFor">Solve for</label>
+                            <select id="solveFor" name="solveFor">
+                                <option value="vd">Voltage drop</option>
+                                <option value="wireSize">Minimum wire size</option>
+                                <option value="distance">Maximum distance</option>
+                            </select>
+                        </div>
+
+                        <div class="field full" id="target-row" hidden>
+                            <label for="maxDrop">Maximum allowed voltage drop</label>
+                            <div class="field-grid" style="gap:10px;">
+                                <div class="input-unit">
+                                    <input type="number" id="maxDrop" name="maxDrop" value="3" min="0" step="any" inputmode="decimal" autocomplete="off">
+                                    <span class="unit" id="maxDropUnit">%</span>
+                                </div>
+                                <div class="seg" role="group" aria-label="Maximum drop entered as">
+                                    <button type="button" data-unit="percent" aria-pressed="true">Percent</button>
+                                    <button type="button" data-unit="volts" aria-pressed="false">Volts</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label for="phaseType">System type</label>
+                            <select id="phaseType" name="phaseType">
+                                <option value="single">Single phase (1&#966;)</option>
+                                <option value="three">Three phase (3&#966;)</option>
+                            </select>
+                        </div>
+
+                        <div class="field">
+                            <label for="conductorType">Conductor</label>
+                            <select id="conductorType" name="conductorType">
+                                <option value="copper">Copper</option>
+                                <option value="aluminum">Aluminum</option>
+                            </select>
+                        </div>
+
+                        <div class="field">
+                            <label for="voltage">System voltage</label>
+                            <div class="input-unit">
+                                <input type="number" id="voltage" name="voltage" value="120" min="0" step="any" inputmode="decimal" placeholder="120, 240..." autocomplete="off">
+                                <span class="unit">V</span>
+                            </div>
+                        </div>
+
+                        <div class="field" id="field-current">
+                            <label for="current">Load current</label>
+                            <div class="input-unit">
+                                <input type="number" id="current" name="current" value="20" min="0" step="any" inputmode="decimal" placeholder="Amps" autocomplete="off">
+                                <span class="unit">A</span>
+                            </div>
+                        </div>
+
+                        <div class="field" id="field-distance">
+                            <label for="distance">One-way distance</label>
+                            <div class="input-unit">
+                                <input type="number" id="distance" name="distance" value="100" min="0" step="any" inputmode="decimal" placeholder="Feet" autocomplete="off">
+                                <span class="unit">ft</span>
+                            </div>
+                            <span class="hint">Source to load, one direction only.</span>
+                        </div>
+
+                        <div class="field" id="field-wireSize">
+                            <label for="wireSize">Wire size</label>
+                            <select id="wireSize" name="wireSize"></select>
+                        </div>
+
+                        <div class="field" id="field-powerFactor">
+                            <label for="powerFactor">Power factor</label>
+                            <select id="powerFactor" name="powerFactor">
+                                <option value="1.0">1.0 (unity)</option>
+                                <option value="0.95">0.95</option>
+                                <option value="0.9">0.90</option>
+                                <option value="0.85">0.85</option>
+                                <option value="0.8">0.80</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="calc-actions">
+                        <button type="button" class="btn-reset" id="reset">Reset</button>
+                    </div>
+                </form>
+
+                <div class="results" id="results" aria-live="polite"></div>
+
+                <p class="calc-note">Results update as you type. This calculator covers voltage drop only &mdash; it is not an ampacity, termination-temperature, or overcurrent-protection check. Always verify conductor sizing against the full Code and your local amendments.</p>
+            </section>
+
+            <nav class="toc" aria-label="On this page">
+                <p>On this page</p>
+                <ol>
+                    <li><a href="#formula">The voltage drop formula</a></li>
+                    <li><a href="#nec">Where the NEC addresses voltage drop</a></li>
+                    <li><a href="#example">Worked example</a></li>
+                    <li><a href="#faq">Frequently asked questions</a></li>
+                    <li><a href="#related">Related calculators</a></li>
+                </ol>
+            </nav>
+
+            <div class="prose">
+
+                <section id="formula" aria-labelledby="formula-title">
+                    <h2 id="formula-title">The voltage drop formula</h2>
+                    <p>This calculator uses the circular-mil (K) method, the approximation most electricians work with in the field. It treats the conductor as pure resistance and ignores reactance, which is accurate enough for ordinary building wiring and slightly conservative for most runs.</p>
+
+                    <div class="formula-box">
+                        <div class="eq"><span>VD</span> = (M &times; K &times; I &times; L &times; PF) &divide; CM</div>
+                        <div class="eq"><span>CM</span> = (M &times; K &times; I &times; L &times; PF) &divide; VD</div>
+                        <div class="eq"><span>L</span> = (VD &times; CM) &divide; (M &times; K &times; I &times; PF)</div>
+                    </div>
+
+                    <div class="tbl-scroll">
+                        <table class="tbl">
+                            <caption class="visually-hidden">Variables used in the voltage drop formula</caption>
+                            <thead>
+                                <tr><th scope="col">Term</th><th scope="col">Meaning</th><th scope="col">Value used here</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><th scope="row">VD</th><td>Voltage dropped across the conductors</td><td>Volts</td></tr>
+                                <tr><th scope="row">M</th><td>Phase multiplier</td><td><strong>2</strong> single phase &middot; <strong>1.732</strong> three phase (&radic;3)</td></tr>
+                                <tr><th scope="row">K</th><td>Resistivity constant, ohms per circular mil-foot</td><td><strong>12.9</strong> copper &middot; <strong>21.2</strong> aluminum</td></tr>
+                                <tr><th scope="row">I</th><td>Load current</td><td>Amperes</td></tr>
+                                <tr><th scope="row">L</th><td>One-way circuit length</td><td>Feet</td></tr>
+                                <tr><th scope="row">PF</th><td>Power factor</td><td>1.0 to 0.80</td></tr>
+                                <tr><th scope="row">CM</th><td>Conductor area in circular mils</td><td>NEC Chapter 9, Table 8</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3>Why K is 12.9 and 21.2</h3>
+                    <p>K is the resistance of one circular mil-foot of the conductor material. The values above are the common <strong>AC</strong> figures at roughly 75&nbsp;&deg;C, the temperature most building conductors are assumed to be operating at. You will also see the <strong>DC</strong> values of <strong>10.8</strong> for copper and <strong>17.4</strong> for aluminum, taken at 20&nbsp;&deg;C. The DC values produce a smaller calculated drop, so the AC values are the conservative choice and are what this calculator and the Electrician Pro X app both use.</p>
+
+                    <h3>Single phase versus three phase</h3>
+                    <p>The multiplier M is where the two systems differ. A single-phase circuit carries current out on one conductor and back on the other, so the conductor length that drops voltage is twice the one-way distance: <strong>M = 2</strong>. A balanced three-phase load uses the line-to-line relationship instead, so <strong>M = &radic;3 = 1.732</strong>. That is why a three-phase circuit shows about 87% of the drop a single-phase circuit would show at the same current, distance, and conductor size.</p>
+
+                    <h3>Circular mils, not square inches</h3>
+                    <p>Conductor area here is in circular mils, from NEC Chapter 9, Table 8. A 12 AWG conductor is 6,530 circular mils, 1/0 AWG is 105,600, and a 250 kcmil conductor is 250,000 &mdash; kcmil means thousands of circular mils, which is why the larger sizes read as round numbers. Because drop is inversely proportional to area, going up two AWG sizes roughly cuts the drop in half.</p>
+                </section>
+
+                <section id="nec" aria-labelledby="nec-title">
+                    <h2 id="nec-title">Where the NEC addresses voltage drop</h2>
+                    <p>This is the part that trips people up on inspections and in design reviews: for ordinary branch circuits and feeders, the familiar 3% and 5% numbers are <strong>recommendations, not requirements</strong>. They live in informational notes, and NEC 90.5 explains that informational notes are explanatory material and are not enforceable as Code requirements. There are, however, several places where voltage drop <em>is</em> mandatory language.</p>
+
+                    <div class="tbl-scroll">
+                        <table class="tbl">
+                            <caption class="visually-hidden">NEC sections that address conductor voltage drop</caption>
+                            <thead>
+                                <tr><th scope="col">Section</th><th scope="col">What it covers</th><th scope="col">Status</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><th scope="row">90.5</th><td>Explains that informational notes are explanatory and not enforceable</td><td>Rule about the Code itself</td></tr>
+                                <tr><th scope="row">210.19(A)</th><td>Branch-circuit conductor sizing, with the informational note that carries the 3% branch / 5% combined figures</td><td>Informational note</td></tr>
+                                <tr><th scope="row">215.2(A)</th><td>Feeder conductor sizing, with the informational note that carries the 3% feeder / 5% combined figures</td><td>Informational note</td></tr>
+                                <tr><th scope="row">250.122(B)</th><td>Equipment grounding conductors must be increased proportionally when ungrounded conductors are upsized</td><td>Mandatory</td></tr>
+                                <tr><th scope="row">310.14(A)(1)</th><td>Ampacity selection, with an informational note pointing back to 210.19 and 215.2 for voltage drop</td><td>Informational note</td></tr>
+                                <tr><th scope="row">647.4(D)</th><td>Sensitive electronic equipment on separately derived 120/240&nbsp;V technical power systems</td><td>Mandatory</td></tr>
+                                <tr><th scope="row">695.7</th><td>Fire pump motor circuit voltage drop at starting and at running load</td><td>Mandatory</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <p>The full text of these sections is copyrighted by the NFPA and is not reproduced here. Look them up in your copy of the Code, or read NFPA 70 free online at <a href="https://www.nfpa.org/free-access" target="_blank" rel="noopener">nfpa.org/free-access</a>.</p>
+
+                    <h3>How the 3% / 3% / 5% split works</h3>
+                    <p>The two notes are read together. A feeder is recommended to stay within 3%, a branch circuit within 3%, and the two of them <em>combined</em> within 5% measured from the service to the furthest outlet. So you cannot spend 3% on the feeder and another 3% on the branch circuit and call it compliant with the recommendation &mdash; that is 6%. In practice most designers budget roughly 2% for the feeder and 3% for the branch circuit, or the reverse, and keep the total at or under 5%.</p>
+                    <p>The checks in the calculator above evaluate the single run you entered against each of those three thresholds independently. If you are checking a feeder and a branch circuit, run each one separately and add the percentages to see the combined figure.</p>
+
+                    <h3>What else the Code does require</h3>
+                    <p>Voltage drop is only one of the checks a conductor has to pass, and it is never the one that makes a conductor legal on its own:</p>
+                    <ul>
+                        <li><strong>Ampacity</strong> under NEC 310.16, with the ambient temperature correction and conductor bundling adjustment factors that apply to the installation.</li>
+                        <li><strong>Termination temperature rating</strong> under NEC 110.14(C), which commonly limits you to the 60&nbsp;&deg;C or 75&nbsp;&deg;C column regardless of the insulation rating.</li>
+                        <li><strong>Overcurrent protection</strong> under NEC 240.4, including the small-conductor rules in 240.4(D).</li>
+                        <li><strong>Equipment grounding conductor size</strong> under NEC 250.122, including the proportional increase in 250.122(B) whenever you upsize for voltage drop.</li>
+                    </ul>
+                    <p>Size for ampacity and terminations first, then run the voltage drop check, then upsize if the drop is too high &mdash; and remember to grow the equipment grounding conductor with it.</p>
+                </section>
+
+                <section id="example" aria-labelledby="example-title">
+                    <h2 id="example-title">Worked example</h2>
+                    <p>A 20&nbsp;A, 120&nbsp;V single-phase branch circuit feeds a receptacle in a detached shop. The run is <strong>100 feet one way</strong> in 12 AWG copper, at unity power factor. Does it meet the 3% recommendation?</p>
+
+                    <div class="example">
+                        <span class="example-label">Step 1 &mdash; Gather the terms</span>
+                        <p>M = 2 (single phase) &middot; K = 12.9 (copper, AC) &middot; I = 20 A &middot; L = 100 ft &middot; PF = 1.0 &middot; CM = 6,530 (12 AWG, Chapter 9 Table 8)</p>
+                    </div>
+
+                    <div class="example">
+                        <span class="example-label">Step 2 &mdash; Solve for voltage drop</span>
+                        <p class="mono">VD = (2 &times; 12.9 &times; 20 &times; 100 &times; 1.0) &divide; 6,530<br>VD = 51,600 &divide; 6,530 = <strong>7.90 volts</strong></p>
+                    </div>
+
+                    <div class="example">
+                        <span class="example-label">Step 3 &mdash; Convert to a percentage</span>
+                        <p class="mono">% drop = (7.90 &divide; 120) &times; 100 = <strong>6.58%</strong><br>Voltage at the load = 120 &minus; 7.90 = <strong>112.10 volts</strong></p>
+                    </div>
+
+                    <p>At <strong>6.58%</strong> this run is more than double the 3% branch-circuit recommendation and above the 5% combined figure as well. The load would see roughly 112&nbsp;V instead of 120&nbsp;V &mdash; enough to make motors run hot, dim incandescent lighting noticeably, and shorten the life of anything with a power supply in it.</p>
+
+                    <h3>Fixing it</h3>
+                    <p>Switch the calculator to <strong>Minimum wire size</strong> with a 3% target and it solves the formula backwards for the required area:</p>
+
+                    <div class="example">
+                        <span class="example-label">Required conductor area</span>
+                        <p class="mono">Target VD = 120 &times; 0.03 = 3.60 V<br>CM = (2 &times; 12.9 &times; 20 &times; 100 &times; 1.0) &divide; 3.60 = <strong>14,333 circular mils</strong></p>
+                    </div>
+
+                    <p>The smallest listed conductor that clears 14,333 circular mils is <strong>8 AWG</strong> at 16,510 &mdash; 10 AWG only provides 10,380, which would still leave you at 4.14%. Re-running the drop at 8 AWG gives <strong>3.13 volts, or 2.60%</strong>, with 116.87&nbsp;V at the load. That passes.</p>
+                    <p>Two things to carry forward. First, the circuit is still a 20&nbsp;A circuit protected at 20&nbsp;A &mdash; upsizing the conductor for voltage drop does not change the overcurrent device or the receptacle rating. Second, because the ungrounded conductors went from 6,530 to 16,510 circular mils, NEC 250.122(B) requires the equipment grounding conductor to be increased by that same ratio.</p>
+                </section>
+
+                <section id="faq" aria-labelledby="faq-title">
+                    <h2 id="faq-title">Frequently asked questions</h2>
+
+                    <div class="faq-item">
+                        <h3>Is 3% voltage drop a code requirement?</h3>
+                        <p>For ordinary branch circuits and feeders, no. The 3% figure appears in informational notes to NEC 210.19 and 215.2, and NEC 90.5 states that informational notes are explanatory and not enforceable as requirements. It is a design recommendation that most inspectors, engineers, and specifications treat as the working target.</p>
+                        <p>Voltage drop is mandatory in specific places, including NEC 647.4 for sensitive electronic equipment and NEC 695.7 for fire pumps. A project specification, a local amendment, or an energy code can also make a voltage drop limit binding on your job even where the NEC does not.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3>Do I use one-way distance or total circuit length?</h3>
+                        <p><strong>One-way distance</strong>, measured from the source to the load along the actual conductor route &mdash; not the straight-line distance between them. The formula already accounts for the return path: the multiplier of 2 for single phase covers the run out and back, and the 1.732 factor for three phase is the line-to-line &radic;3 factor. If you enter the round-trip length you will roughly double the answer.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3>What K value should I use for copper and aluminum?</h3>
+                        <p>This calculator uses <strong>K = 12.9 for copper</strong> and <strong>K = 21.2 for aluminum</strong>, the common AC values at about 75&nbsp;&deg;C. Some references use the DC values of 10.8 and 17.4, which are based on resistance at 20&nbsp;&deg;C and give a smaller drop.</p>
+                        <p>The AC values are the conservative choice for normal building wiring at operating temperature. For a long, heavily loaded run where the difference matters, calculate from the actual AC resistance and reactance values in NEC Chapter 9, Table 9 rather than the K approximation.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3>Why is my three-phase drop lower than single phase at the same amps?</h3>
+                        <p>Because the multiplier is different. Single phase uses 2, since current travels out on one conductor and back on the other. Three phase uses 1.732, the &radic;3 factor for the line-to-line drop of a balanced load. At the same current, distance, and conductor, a three-phase drop is about 87% of the single-phase drop &mdash; and the <em>percentage</em> is smaller again, because three-phase system voltages are usually higher.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3>If I upsize conductors for voltage drop, do I have to upsize the ground?</h3>
+                        <p>Yes. NEC 250.122(B) requires equipment grounding conductors to be increased in size proportionally to the increase in circular mil area of the ungrounded conductors. If you go from 12 AWG to 8 AWG to fix a voltage drop problem, the equipment grounding conductor has to grow by the same circular mil ratio.</p>
+                        <p>The overcurrent device does not change, and the conductor terminations under NEC 110.14(C) still govern the rest of the sizing.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3>Does this calculator replace an ampacity check?</h3>
+                        <p>No. Voltage drop and ampacity are two separate checks, and the conductor has to pass both. Size the conductor first for ampacity using NEC 310.16 with whatever correction and adjustment factors apply, and for terminations under NEC 110.14(C). Then run the voltage drop check and upsize if the drop is too high.</p>
+                        <p>The minimum size reported above is the minimum <em>for voltage drop only</em>. It can easily come out smaller than the size ampacity requires, and in that case ampacity wins.</p>
+                    </div>
+                </section>
+
+                <section id="related" aria-labelledby="related-title">
+                    <h2 id="related-title">Related calculators</h2>
+                    <p>More free NEC calculators are on the way. All 31 of them are already in the Electrician Pro X app and at <a href="https://app.electricianprox.com/tools" target="_blank" rel="noopener">app.electricianprox.com/tools</a>, which needs no signup on the web.</p>
+
+                    <div class="rel-grid">
+                        <div class="rel-card">
+                            <div class="rel-name">Wire Size <span class="rel-soon">Soon</span></div>
+                            <p class="rel-desc">Conductor sizing from load, with ampacity, temperature correction, and conduit fill adjustment.</p>
+                        </div>
+                        <div class="rel-card">
+                            <div class="rel-name">Conduit Fill <span class="rel-soon">Soon</span></div>
+                            <p class="rel-desc">Chapter 9 fill percentages for any mix of conductors in any raceway type and trade size.</p>
+                        </div>
+                        <div class="rel-card">
+                            <div class="rel-name">Ampacity Lookup <span class="rel-soon">Soon</span></div>
+                            <p class="rel-desc">Table 310.16 ampacities with ambient and bundling factors applied.</p>
+                        </div>
+                        <div class="rel-card">
+                            <div class="rel-name">Ohm's Law <span class="rel-soon">Soon</span></div>
+                            <p class="rel-desc">Volts, amps, ohms, and watts, plus series and parallel resistance.</p>
+                        </div>
+                        <div class="rel-card">
+                            <div class="rel-name">Box Fill <span class="rel-soon">Soon</span></div>
+                            <p class="rel-desc">Cubic-inch box fill under 314.16, counting devices, clamps, and grounds.</p>
+                        </div>
+                        <div class="rel-card">
+                            <div class="rel-name">Motor Calculations <span class="rel-soon">Soon</span></div>
+                            <p class="rel-desc">FLC, conductor sizing, overload, and short-circuit protection from Article 430.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="get-it" aria-labelledby="get-it-title">
+                    <h2 id="get-it-title">Save this calculation to a job</h2>
+                    <p>Electrician Pro X keeps your voltage drop calcs attached to the job they belong to, alongside the estimate, the invoice, and the photos &mdash; with 31 NEC calculators that work offline. Free plan available, no credit card required.</p>
+                    <div class="cta-row">
+                        <a href="https://apps.apple.com/app/id6755925920" class="btn btn-primary" target="_blank" rel="noopener">Download on the App Store</a>
+                        <a href="https://play.google.com/store/apps/details?id=com.electricianprox.app" class="btn btn-primary" target="_blank" rel="noopener">Get it on Google Play</a>
+                        <a href="https://app.electricianprox.com" class="btn btn-outline" target="_blank" rel="noopener">Open the web app</a>
+                    </div>
+                    <p class="trademark">NEC&reg; and National Electrical Code&reg; are registered trademarks of the National Fire Protection Association. Electrician Pro X is not affiliated with or endorsed by the NFPA. This calculator is a design aid, not a substitute for the Code or for a qualified designer.</p>
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-brand-name">Electrician Pro X</div>
+                    <div style="font-size:0.75rem;color:var(--text-muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:14px;">by Pro X Trades</div>
+                    <p>The field service management app built exclusively for electrical contractors, with 30+ NEC field tools included.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Electrician Pro X</h4>
+                    <ul>
+                        <li><a href="/what-is-electrician-pro-x.html">What is Electrician Pro X?</a></li>
+                        <li><a href="/download.html">Download iOS App</a></li>
+                        <li><a href="/download.html">Download Android App</a></li>
+                        <li><a href="https://app.electricianprox.com" target="_blank" rel="noopener">Launch Web App</a></li>
+                        <li><a href="/#pricing">Pricing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Articles</h4>
+                    <ul>
+                        <li><a href="/future-of-electricians.html">Are Electricians Safe From Automation?</a></li>
+                        <li><a href="/california-electrician-to-contractor.html">California: Apprentice to C-10 Contractor</a></li>
+                        <li><a href="/oregon-electrician-to-contractor.html">Oregon: Apprentice to Electrical Contractor</a></li>
+                        <li><a href="/washington-electrician-to-contractor.html">Washington: Trainee to Electrical Contractor</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="/privacy.html">Privacy Policy</a></li>
+                        <li><a href="/terms.html">Terms of Service</a></li>
+                        <li><a href="https://proxtrades.com" target="_blank" rel="noopener">Pro X Trades LLC</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Pro X Trades LLC &middot; Electrician Pro X &middot; All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+<script>
+/* ──────────────────────────────────────────────────────────────────────────
+   Voltage drop calculator.
+
+   Logic and data ported verbatim from the Electrician Pro X app
+   (components/tools/calculators/VoltageDropCalculator.jsx and
+   regions/us/tables/conductorProperties.js). The order of operations and the
+   rounding points are kept identical to the app so both produce the same
+   string for the same inputs.
+   ────────────────────────────────────────────────────────────────────────── */
+(function () {
+  'use strict';
+
+  // Object key order can't carry this: JS sorts integer-like keys ahead of the
+  // rest, which would list 1/0-4/0 after 1000 kcmil. Both the dropdown and the
+  // wire sizing search walk this array instead, smallest conductor first.
+  var wireSizeOrder = [
+    '14', '12', '10', '8', '6', '4', '3', '2', '1',
+    '1/0', '2/0', '3/0', '4/0',
+    '250', '300', '350', '400', '500', '600', '750', '1000'
+  ];
+
+  // Circular mil area of bare conductors: NEC Chapter 9, Table 8.
+  var circularMils = {
+    '14': 4110, '12': 6530, '10': 10380, '8': 16510, '6': 26240,
+    '4': 41740, '3': 52620, '2': 66360, '1': 83690,
+    '1/0': 105600, '2/0': 133100, '3/0': 167800, '4/0': 211600,
+    '250': 250000, '300': 300000, '350': 350000, '400': 400000,
+    '500': 500000, '600': 600000, '750': 750000, '1000': 1000000
+  };
+
+  var kConstants = {
+    copper: { dc: 10.8, ac: 12.9 },
+    aluminum: { dc: 17.4, ac: 21.2 }
+  };
+
+  // Recommendation thresholds from the informational notes to NEC 210.19(A)
+  // and 215.2(A). Every result is flagged against all three.
+  var LIMITS = [
+    { key: 'branch', name: 'Branch circuit', limit: 3, cite: 'NEC 210.19(A) IN' },
+    { key: 'feeder', name: 'Feeder', limit: 3, cite: 'NEC 215.2(A) IN' },
+    { key: 'combined', name: 'Combined', limit: 5, cite: 'Feeder + branch' }
+  ];
+
+  function sizeLabel(size) {
+    var isKcmil = size.indexOf('/') === -1 && parseInt(size, 10) >= 250;
+    return size + ' ' + (isKcmil ? 'kcmil' : 'AWG');
+  }
+
+  function commas(n) {
+    return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
+
+  /* ── Pure calculation ────────────────────────────────────────────────── */
+
+  // Returns null when the inputs are incomplete or produce a non-finite
+  // number, matching the app: a non-numeric entry parses to NaN, and NaN > 3
+  // is false, which would otherwise render a "pass" over a NaN drop.
+  function calculate(inputs) {
+    var V = parseFloat(inputs.voltage);
+    var I = parseFloat(inputs.current);
+    var L = parseFloat(inputs.distance);
+    var PF = parseFloat(inputs.powerFactor);
+    var K = kConstants[inputs.conductorType].ac;
+    // Single phase counts the run out and back; three phase uses the sqrt(3)
+    // line-to-line factor the app rounded to 1.732.
+    var M = inputs.phaseType === 'single' ? 2 : 1.732;
+
+    if (!isFinite(V) || V <= 0 || !isFinite(PF)) return null;
+
+    if (inputs.solveFor === 'vd') {
+      if (!isFinite(I) || !isFinite(L)) return null;
+
+      var CM = circularMils[inputs.wireSize];
+      var voltageDrop = (M * K * I * L * PF) / CM;
+      var percentage = (voltageDrop / V) * 100;
+      if (!isFinite(voltageDrop) || !isFinite(percentage)) return null;
+
+      return {
+        mode: 'vd',
+        M: M, K: K, CM: CM,
+        drop: voltageDrop,
+        percentage: percentage,
+        atLoad: V - voltageDrop
+      };
+    }
+
+    // Every other mode solves backwards from a voltage drop ceiling, entered
+    // as either volts or a percent of system voltage.
+    var target = parseFloat(inputs.maxDrop);
+    var targetVolts = inputs.maxDropUnit === 'percent' ? V * (target / 100) : target;
+    var targetPercent = inputs.maxDropUnit === 'percent' ? target : (target / V) * 100;
+    if (!isFinite(targetVolts) || !isFinite(targetPercent) || targetVolts <= 0) return null;
+
+    if (inputs.solveFor === 'distance') {
+      if (!isFinite(I) || I <= 0) return null;
+
+      var CMd = circularMils[inputs.wireSize];
+      var solved = (targetVolts * CMd) / (M * K * I * PF);
+      if (!isFinite(solved)) return null;
+
+      return {
+        mode: 'distance',
+        M: M, K: K, CM: CMd,
+        value: solved,
+        drop: targetVolts,
+        percentage: targetPercent,
+        atLoad: V - targetVolts,
+        targetVolts: targetVolts,
+        targetPercent: targetPercent
+      };
+    }
+
+    // solveFor === 'wireSize'
+    if (!isFinite(I) || !isFinite(L)) return null;
+
+    var requiredCM = (M * K * I * L * PF) / targetVolts;
+    if (!isFinite(requiredCM)) return null;
+
+    // Smallest conductor whose area clears the requirement — the array order
+    // is what makes "smallest" meaningful here.
+    var size = null;
+    for (var i = 0; i < wireSizeOrder.length; i++) {
+      if (circularMils[wireSizeOrder[i]] >= requiredCM) { size = wireSizeOrder[i]; break; }
+    }
+    if (!size) {
+      return {
+        mode: 'wireSize', M: M, K: K,
+        requiredCM: requiredCM, exceeds: true,
+        targetVolts: targetVolts, targetPercent: targetPercent
+      };
+    }
+
+    var actualDrop = (M * K * I * L * PF) / circularMils[size];
+    var actualPercent = (actualDrop / V) * 100;
+    if (!isFinite(actualDrop) || !isFinite(actualPercent)) return null;
+
+    return {
+      mode: 'wireSize',
+      M: M, K: K, CM: circularMils[size],
+      requiredCM: requiredCM, size: size, exceeds: false,
+      drop: actualDrop,
+      percentage: actualPercent,
+      atLoad: V - actualDrop,
+      targetVolts: targetVolts,
+      targetPercent: targetPercent
+    };
+  }
+
+  // Exposed for the test harness; harmless in the browser.
+  if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { calculate: calculate, circularMils: circularMils, wireSizeOrder: wireSizeOrder };
+  }
+  if (typeof window !== 'undefined') {
+    window.EPXVoltageDrop = { calculate: calculate, circularMils: circularMils, wireSizeOrder: wireSizeOrder };
+  }
+
+  /* ── UI ──────────────────────────────────────────────────────────────── */
+
+  var form = document.getElementById('vd-form');
+  if (!form) return;
+
+  var els = {
+    solveFor: document.getElementById('solveFor'),
+    phaseType: document.getElementById('phaseType'),
+    conductorType: document.getElementById('conductorType'),
+    voltage: document.getElementById('voltage'),
+    current: document.getElementById('current'),
+    distance: document.getElementById('distance'),
+    wireSize: document.getElementById('wireSize'),
+    powerFactor: document.getElementById('powerFactor'),
+    maxDrop: document.getElementById('maxDrop'),
+    maxDropUnitLabel: document.getElementById('maxDropUnit'),
+    targetRow: document.getElementById('target-row'),
+    fieldCurrent: document.getElementById('field-current'),
+    fieldDistance: document.getElementById('field-distance'),
+    fieldWireSize: document.getElementById('field-wireSize'),
+    results: document.getElementById('results'),
+    reset: document.getElementById('reset')
+  };
+
+  var maxDropUnit = 'percent';
+
+  // Wire size dropdown, smallest first.
+  els.wireSize.innerHTML = wireSizeOrder.map(function (s) {
+    return '<option value="' + s + '">' + sizeLabel(s) + '</option>';
+  }).join('');
+  els.wireSize.value = '12';
+
+  function esc(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  function readInputs() {
+    return {
+      solveFor: els.solveFor.value,
+      phaseType: els.phaseType.value,
+      conductorType: els.conductorType.value,
+      voltage: els.voltage.value,
+      current: els.current.value,
+      distance: els.distance.value,
+      wireSize: els.wireSize.value,
+      powerFactor: els.powerFactor.value,
+      maxDrop: els.maxDrop.value,
+      maxDropUnit: maxDropUnit
+    };
+  }
+
+  function syncVisibility() {
+    var mode = els.solveFor.value;
+    els.targetRow.hidden = mode === 'vd';
+    els.fieldDistance.hidden = mode === 'distance';
+    els.fieldWireSize.hidden = mode === 'wireSize';
+    els.maxDropUnitLabel.textContent = maxDropUnit === 'percent' ? '%' : 'V';
+  }
+
+  function flagsHtml(percentage) {
+    return '<div class="flags">' + LIMITS.map(function (l) {
+      var pass = percentage <= l.limit;
+      return '<div class="flag ' + (pass ? 'pass' : 'fail') + '">' +
+        '<span class="dot" aria-hidden="true"></span>' +
+        '<span><span class="flag-name">' + l.name + ' ' + l.limit + '%</span><br>' +
+        '<span class="flag-state">' + (pass ? 'Within guideline' : 'Over guideline') +
+        ' &middot; ' + l.cite + '</span></span></div>';
+    }).join('') + '</div>';
+  }
+
+  function workHtml(r, inputs) {
+    var rows = [
+      ['Formula', r.mode === 'distance'
+        ? 'L = (VD &times; CM) &divide; (M &times; K &times; I &times; PF)'
+        : (r.mode === 'wireSize'
+          ? 'CM = (M &times; K &times; I &times; L &times; PF) &divide; VD'
+          : 'VD = (M &times; K &times; I &times; L &times; PF) &divide; CM')],
+      ['Multiplier M', r.M + (inputs.phaseType === 'single' ? ' (single phase)' : ' (three phase, &radic;3)')],
+      ['Constant K', r.K + ' (' + inputs.conductorType + ', AC)'],
+      ['Power factor', esc(inputs.powerFactor)]
+    ];
+
+    if (r.mode === 'wireSize') {
+      rows.push(['Circular mils required', commas(Math.round(r.requiredCM))]);
+      if (!r.exceeds) {
+        rows.push(['Circular mils provided', commas(r.CM) + ' (' + sizeLabel(r.size) + ')']);
+      }
+    } else {
+      rows.push(['Circular mils', commas(r.CM) + ' (' + sizeLabel(inputs.wireSize) + ')']);
+    }
+
+    if (r.mode !== 'vd') {
+      rows.push(['Target drop', r.targetVolts.toFixed(2) + ' V (' + r.targetPercent.toFixed(2) + '%)']);
+    }
+
+    return '<details class="work"><summary>Show the work</summary><dl>' +
+      rows.map(function (row) {
+        return '<dt>' + row[0] + '</dt><dd class="mono">' + row[1] + '</dd>';
+      }).join('') + '</dl></details>';
+  }
+
+  function render() {
+    var inputs = readInputs();
+    var r = calculate(inputs);
+
+    if (!r) {
+      els.results.innerHTML = '<div class="callout"><strong>Enter the circuit details</strong>' +
+        'Fill in the system voltage and the remaining fields to see the voltage drop.</div>';
+      return;
+    }
+
+    var html = '';
+
+    if (r.mode === 'wireSize' && r.exceeds) {
+      html += '<div class="result-cards"><div class="rc hero">' +
+        '<div class="rc-label">Minimum wire size</div>' +
+        '<div class="rc-value bad">Over 1000 kcmil</div>' +
+        '<div class="rc-sub">' + commas(Math.round(r.requiredCM)) + ' circular mils required &mdash; no listed size qualifies</div>' +
+        '</div></div>';
+      html += '<div class="callout warn"><strong>Single conductors cannot meet this target</strong>' +
+        'Shorten the run, raise the system voltage, or use parallel conductor sets under NEC 310.10(G).</div>';
+      html += workHtml(r, inputs);
+      els.results.innerHTML = html;
+      return;
+    }
+
+    var over = r.percentage > 3;
+
+    html += '<div class="result-cards">';
+
+    if (r.mode === 'wireSize') {
+      html += '<div class="rc hero"><div class="rc-label">Minimum wire size</div>' +
+        '<div class="rc-value">' + sizeLabel(r.size) + '</div>' +
+        '<div class="rc-sub">Smallest listed conductor meeting a ' + r.targetPercent.toFixed(2) + '% target &mdash; voltage drop only</div></div>';
+    } else if (r.mode === 'distance') {
+      html += '<div class="rc hero"><div class="rc-label">Maximum one-way distance</div>' +
+        '<div class="rc-value">' + r.value.toFixed(2) + ' ft</div>' +
+        '<div class="rc-sub">With ' + sizeLabel(inputs.wireSize) + ' at a ' + r.targetPercent.toFixed(2) + '% target</div></div>';
+    }
+
+    html += '<div class="rc"><div class="rc-label">Voltage dropped</div>' +
+      '<div class="rc-value ' + (r.mode === 'vd' ? (over ? 'bad' : 'ok') : '') + '">' + r.drop.toFixed(2) + ' V</div>' +
+      '<div class="rc-sub">Across the conductors</div></div>';
+
+    html += '<div class="rc"><div class="rc-label">Percent drop</div>' +
+      '<div class="rc-value ' + (over ? 'bad' : 'ok') + '">' + r.percentage.toFixed(2) + '%</div>' +
+      '<div class="rc-sub">Of ' + parseFloat(inputs.voltage) + ' V nominal</div></div>';
+
+    html += '<div class="rc"><div class="rc-label">Voltage at load</div>' +
+      '<div class="rc-value">' + r.atLoad.toFixed(2) + ' V</div>' +
+      '<div class="rc-sub">Nominal minus the drop</div></div>';
+
+    html += '</div>';
+
+    html += flagsHtml(r.percentage);
+
+    if (r.mode === 'vd') {
+      html += over
+        ? '<div class="callout warn"><strong>Over the 3% branch and feeder guideline</strong>' +
+          'Switch "Solve for" to <em>Minimum wire size</em> to find the smallest conductor that meets your target, or shorten the run. ' +
+          'If you upsize, NEC 250.122(B) requires the equipment grounding conductor to be increased proportionally.</div>'
+        : '<div class="callout good"><strong>Within the 3% guideline</strong>' +
+          'The calculated drop is at or below the 3% figure in the informational notes to NEC 210.19(A) and 215.2(A). ' +
+          'Confirm ampacity separately under NEC 310.16 and 110.14(C).</div>';
+    }
+
+    html += workHtml(r, inputs);
+
+    els.results.innerHTML = html;
+  }
+
+  form.addEventListener('input', render);
+  form.addEventListener('change', function () { syncVisibility(); render(); });
+
+  Array.prototype.forEach.call(els.targetRow.querySelectorAll('.seg button'), function (btn) {
+    btn.addEventListener('click', function () {
+      maxDropUnit = btn.getAttribute('data-unit');
+      Array.prototype.forEach.call(els.targetRow.querySelectorAll('.seg button'), function (b) {
+        b.setAttribute('aria-pressed', String(b === btn));
+      });
+      // Carry a sensible default across the switch rather than leaving "3"
+      // sitting in a volts field.
+      var V = parseFloat(els.voltage.value);
+      var cur = parseFloat(els.maxDrop.value);
+      if (isFinite(V) && isFinite(cur)) {
+        els.maxDrop.value = maxDropUnit === 'volts'
+          ? (V * (cur / 100)).toFixed(2)
+          : ((cur / V) * 100).toFixed(2);
+      }
+      syncVisibility();
+      render();
+    });
+  });
+
+  els.reset.addEventListener('click', function () {
+    els.solveFor.value = 'vd';
+    els.phaseType.value = 'single';
+    els.conductorType.value = 'copper';
+    els.voltage.value = '120';
+    els.current.value = '20';
+    els.distance.value = '100';
+    els.wireSize.value = '12';
+    els.powerFactor.value = '1.0';
+    els.maxDrop.value = '3';
+    maxDropUnit = 'percent';
+    Array.prototype.forEach.call(els.targetRow.querySelectorAll('.seg button'), function (b) {
+      b.setAttribute('aria-pressed', String(b.getAttribute('data-unit') === 'percent'));
+    });
+    syncVisibility();
+    render();
+  });
+
+  syncVisibility();
+  render();
+})();
+</script>
+
+</body>
+</html>
