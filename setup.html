@@ -122,6 +122,9 @@
   .radios { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
   .radios .check { flex: 1 1 140px; }
 
+  [hidden] { display: none !important; }
+  p.field { margin-top: 18px; }
+  .field-hint { margin: 6px 0 0; }
   .honey { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
 
   .error { color: var(--error); margin-top: 16px; font-size: 0.95rem; min-height: 1.2em; }
@@ -173,25 +176,13 @@
   <form id="setup-form" novalidate>
     <fieldset>
       <legend>About you</legend>
-      <div class="row">
-        <label class="field">Your name <span class="req">*</span>
-          <input type="text" name="name" autocomplete="name" required>
-        </label>
-        <label class="field">Business name
-          <input type="text" name="businessName" autocomplete="organization">
-        </label>
-      </div>
-      <div class="row">
-        <label class="field">Email <span class="req">*</span>
-          <input type="email" name="email" autocomplete="email" required>
-        </label>
-        <label class="field">Phone (optional)
-          <input type="tel" name="phone" autocomplete="tel" placeholder="Only if you’d rather talk">
-        </label>
-      </div>
-      <label class="field">Email you sign in to the app with
-        <input type="email" name="accountEmail" placeholder="Leave blank if it’s the same as above">
+      <label class="field">Your name <span class="req">*</span>
+        <input type="text" name="name" autocomplete="name" required>
       </label>
+      <label class="field">Email you use for Electrician Pro X <span class="req">*</span>
+        <input type="email" name="email" autocomplete="email" required>
+      </label>
+      <p class="hint field-hint">We use it to find your account, and we’ll reply here.</p>
     </fieldset>
 
     <fieldset>
@@ -207,31 +198,38 @@
         <label class="check"><input type="checkbox" name="sources" value="Yelp"> Yelp</label>
         <label class="check"><input type="checkbox" name="sources" value="Other"> Something else</label>
       </div>
-      <label class="field">If something else, what?
+      <label class="field" data-for="Other" hidden>What’s the other lead source? <span class="req">*</span>
         <input type="text" name="otherSource">
+      </label>
+      <label class="field" data-for="Facebook" hidden>Facebook business page <span class="req">*</span>
+        <input type="text" name="facebookPage" placeholder="Link or page name">
       </label>
     </fieldset>
 
-    <fieldset>
+    <fieldset data-for="Website form" hidden>
       <legend>Your website</legend>
-      <p class="hint">Only if you want website form leads connected.</p>
-      <div class="row">
-        <label class="field">Website address
-          <input type="url" name="website" placeholder="https://" inputmode="url">
-        </label>
-        <label class="field">What is it built with?
-          <input type="text" name="formTool" placeholder="Wix, Squarespace, WordPress, not sure…">
-        </label>
-      </div>
-    </fieldset>
-
-    <fieldset>
-      <legend>Do you have a paid Zapier account?</legend>
-      <p class="hint">No problem if not. Some lead sources need it and we can handle that for you.</p>
+      <label class="field">Website address <span class="req">*</span>
+        <input type="url" name="website" placeholder="yourbusiness.com" inputmode="url">
+      </label>
+      <label class="field">What is it built with? <span class="req">*</span>
+        <select name="formTool">
+          <option value="">Choose one…</option>
+          <option>Wix</option>
+          <option>Squarespace</option>
+          <option>WordPress</option>
+          <option>GoDaddy</option>
+          <option>Shopify</option>
+          <option>Custom-built</option>
+          <option>Other</option>
+          <option>Not sure</option>
+        </select>
+      </label>
+      <p class="hint field-hint">Not sure? Pick “Not sure” and we’ll check from your website address.</p>
+      <p class="field">Who edits your website? <span class="req">*</span></p>
       <div class="radios">
-        <label class="check"><input type="radio" name="zapier" value="yes"> Yes</label>
-        <label class="check"><input type="radio" name="zapier" value="no"> No</label>
-        <label class="check"><input type="radio" name="zapier" value="not_sure" checked> Not sure</label>
+        <label class="check"><input type="radio" name="websiteManager" value="me"> I can</label>
+        <label class="check"><input type="radio" name="websiteManager" value="designer"> A web designer</label>
+        <label class="check"><input type="radio" name="websiteManager" value="not_sure"> Not sure</label>
       </div>
     </fieldset>
 
@@ -283,36 +281,59 @@
     document.getElementById('stripe-note').style.display = 'none';
   }
 
-  // The app's "Done-For-You Setup" button passes ?email=&name=&business=.
+  // The app's "Done-For-You Setup" button passes ?email=&name=.
   var params = new URLSearchParams(window.location.search);
-  [['email', 'email'], ['name', 'name'], ['business', 'businessName']].forEach(function (pair) {
+  [['email', 'email'], ['name', 'name']].forEach(function (pair) {
     var value = params.get(pair[0]);
     if (value) form.elements[pair[1]].value = value.slice(0, 200);
   });
+
+  function checkedSources() {
+    return Array.prototype.filter.call(form.querySelectorAll('input[name=sources]'), function (c) { return c.checked; })
+      .map(function (c) { return c.value; });
+  }
+
+  // Questions that only matter for one source appear when it's ticked.
+  function syncSourceQuestions() {
+    var sources = checkedSources();
+    Array.prototype.forEach.call(form.querySelectorAll('[data-for]'), function (el) {
+      el.hidden = sources.indexOf(el.getAttribute('data-for')) === -1;
+    });
+  }
+  form.addEventListener('change', function (e) {
+    if (e.target.name === 'sources') syncSourceQuestions();
+  });
+  syncSourceQuestions();
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     errorEl.textContent = '';
 
+    var sources = checkedSources();
     var data = {
-      name: form.elements.name.value,
-      businessName: form.elements.businessName.value,
-      email: form.elements.email.value,
-      accountEmail: form.elements.accountEmail.value,
-      phone: form.elements.phone.value,
-      sources: Array.prototype.filter.call(form.querySelectorAll('input[name=sources]'), function (c) { return c.checked; })
-        .map(function (c) { return c.value; }),
-      otherSource: form.elements.otherSource.value,
-      website: form.elements.website.value,
+      name: form.elements.name.value.trim(),
+      email: form.elements.email.value.trim(),
+      sources: sources,
+      otherSource: form.elements.otherSource.value.trim(),
+      facebookPage: form.elements.facebookPage.value.trim(),
+      website: form.elements.website.value.trim(),
       formTool: form.elements.formTool.value,
-      zapier: (form.querySelector('input[name=zapier]:checked') || {}).value || 'not_sure',
+      websiteManager: (form.querySelector('input[name=websiteManager]:checked') || {}).value || '',
       notes: form.elements.notes.value,
       website_confirm: form.elements.website_confirm.value,
     };
+    var picked = function (s) { return sources.indexOf(s) !== -1; };
 
-    if (!data.name.trim()) return showError('Please enter your name.', 'name');
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email.trim())) return showError('Please enter a valid email address.', 'email');
-    if (data.sources.length === 0) return showError('Pick at least one place your leads come from.');
+    if (!data.name) return showError('Please enter your name.', 'name');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) return showError('Please enter a valid email address.', 'email');
+    if (sources.length === 0) return showError('Pick at least one place your leads come from.');
+    if (picked('Other') && !data.otherSource) return showError('Please tell us what the other lead source is.', 'otherSource');
+    if (picked('Facebook') && !data.facebookPage) return showError('Please enter your Facebook business page link or name.', 'facebookPage');
+    if (picked('Website form')) {
+      if (!data.website) return showError('Please enter your website address.', 'website');
+      if (!data.formTool) return showError('Please pick what your website is built with.', 'formTool');
+      if (!data.websiteManager) return showError('Please tell us who can make changes to your website.');
+    }
 
     btn.disabled = true;
     btn.textContent = 'Sending…';
@@ -329,7 +350,7 @@
           btn.textContent = 'Taking you to payment…';
           var url = STRIPE_PAYMENT_LINK
             + (STRIPE_PAYMENT_LINK.indexOf('?') === -1 ? '?' : '&')
-            + 'prefilled_email=' + encodeURIComponent(data.email.trim())
+            + 'prefilled_email=' + encodeURIComponent(data.email)
             + '&client_reference_id=' + encodeURIComponent(result.body.id);
           window.location.href = url;
           return;
@@ -337,7 +358,7 @@
         form.style.display = 'none';
         document.getElementById('done').style.display = 'block';
         document.getElementById('done-text').textContent =
-          'We’ll email you at ' + data.email.trim() + ' within one business day with next steps and your payment link.';
+          'We’ll email you at ' + data.email + ' within one business day with next steps and your payment link.';
         window.scrollTo(0, 0);
       })
       .catch(function (err) {
