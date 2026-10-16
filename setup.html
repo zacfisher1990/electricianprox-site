@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Done-For-You Lead Setup — Electrician Pro X</title>
+<meta name="description" content="We'll connect your Thumbtack, Angi, Google or website leads straight into Electrician Pro X for you.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --yellow: #F7C600;
+    --yellow-dim: rgba(247,198,0,0.08);
+    --bg: #1f2227;
+    --bg-card: #282d35;
+    --text: #dde1ea;
+    --text-sub: #a8b4c4;
+    --text-muted: #7a8899;
+    --border: #3c4350;
+    --error: #ff8a80;
+    --radius: 12px;
+    --radius-sm: 8px;
+    --font: 'DM Sans', -apple-system, sans-serif;
+    --font-display: 'Barlow Condensed', sans-serif;
+  }
+
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--yellow); }
+
+  header {
+    padding: 0 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+    border-bottom: 1px solid var(--border);
+  }
+  .logo { display: flex; flex-direction: column; line-height: 1; text-decoration: none; }
+  .logo-name {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 900;
+    letter-spacing: 0.03em;
+    color: var(--yellow);
+    text-transform: uppercase;
+  }
+  .logo-by { font-size: 0.6rem; font-weight: 500; color: var(--text-muted); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 3px; }
+
+  main { max-width: 640px; margin: 0 auto; padding: 40px 20px 72px; }
+
+  h1 {
+    font-family: var(--font-display);
+    font-size: 2.4rem;
+    font-weight: 800;
+    line-height: 1.1;
+    color: #fff;
+  }
+  .lead { color: var(--text-sub); margin-top: 12px; font-size: 1.05rem; }
+
+  .how {
+    margin-top: 24px;
+    background: var(--yellow-dim);
+    border: 1px solid rgba(247,198,0,0.35);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+  }
+  .how h2 { font-size: 1rem; color: #fff; margin-bottom: 8px; }
+  .how ol { padding-left: 1.2rem; color: var(--text-sub); }
+  .how li + li { margin-top: 4px; }
+  .price { color: var(--yellow); font-weight: 600; }
+
+  form {
+    margin-top: 28px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px 20px;
+  }
+  fieldset { border: 0; }
+  fieldset + fieldset { margin-top: 26px; padding-top: 22px; border-top: 1px solid var(--border); }
+  /* Floated so the legend sits below the fieldset's divider line, not on it. */
+  legend { float: left; width: 100%; font-weight: 600; color: #fff; font-size: 1.05rem; margin-bottom: 4px; }
+  legend + * { clear: both; }
+  .hint { color: var(--text-muted); font-size: 0.88rem; margin-bottom: 12px; }
+
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 560px) { .row { grid-template-columns: 1fr; } }
+
+  label.field { display: block; margin-top: 14px; font-size: 0.9rem; color: var(--text-sub); font-weight: 500; }
+  .row label.field { margin-top: 14px; }
+  .req { color: var(--yellow); }
+  input[type=text], input[type=email], input[type=tel], input[type=url], textarea, select {
+    display: block;
+    width: 100%;
+    margin-top: 6px;
+    padding: 11px 12px;
+    font: inherit;
+    font-size: 1rem;
+    color: var(--text);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+  }
+  input:focus, textarea:focus, select:focus { outline: 2px solid var(--yellow); outline-offset: 1px; border-color: transparent; }
+  textarea { min-height: 100px; resize: vertical; }
+
+  .checks { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 14px; margin-top: 10px; }
+  @media (max-width: 560px) { .checks { grid-template-columns: 1fr; } }
+  .check { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius-sm); cursor: pointer; min-height: 44px; }
+  .check input { width: 18px; height: 18px; accent-color: var(--yellow); }
+  .radios { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .radios .check { flex: 1 1 140px; }
+
+  .honey { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+
+  .error { color: var(--error); margin-top: 16px; font-size: 0.95rem; min-height: 1.2em; }
+  button {
+    display: block;
+    width: 100%;
+    margin-top: 18px;
+    padding: 15px 18px;
+    font: inherit;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: #1f2227;
+    background: var(--yellow);
+    border: 0;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  button:disabled { opacity: 0.6; cursor: default; }
+  .fine { color: var(--text-muted); font-size: 0.85rem; margin-top: 12px; text-align: center; }
+
+  .done { display: none; margin-top: 28px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 22px; text-align: center; }
+  .done h2 { font-family: var(--font-display); font-size: 1.8rem; color: #fff; }
+  .done p { color: var(--text-sub); margin-top: 10px; }
+
+  footer { border-top: 1px solid var(--border); padding: 24px 20px; text-align: center; color: var(--text-muted); font-size: 0.9rem; }
+</style>
+</head>
+<body>
+<header>
+  <a href="index.html" class="logo">
+    <span class="logo-name">Electrician Pro X</span>
+    <span class="logo-by">By Pro X Trades</span>
+  </a>
+</header>
+
+<main>
+  <h1>Done-For-You Lead Setup</h1>
+  <p class="lead">We’ll connect your Thumbtack, Angi, Google or website leads straight into your Electrician Pro X Leads tab, so every new lead lands on your phone.</p>
+
+  <div class="how">
+    <h2>How it works</h2>
+    <ol>
+      <li>Tell us where your leads come from (2 minutes).</li>
+      <li>Pay the one-time setup fee: <span class="price">$99</span>.</li>
+      <li>We’ll email you within one business day and get everything connected, usually on a short call. You’ll never need to give us your passwords.</li>
+    </ol>
+  </div>
+
+  <form id="setup-form" novalidate>
+    <fieldset>
+      <legend>About you</legend>
+      <div class="row">
+        <label class="field">Your name <span class="req">*</span>
+          <input type="text" name="name" autocomplete="name" required>
+        </label>
+        <label class="field">Business name
+          <input type="text" name="businessName" autocomplete="organization">
+        </label>
+      </div>
+      <div class="row">
+        <label class="field">Email <span class="req">*</span>
+          <input type="email" name="email" autocomplete="email" required>
+        </label>
+        <label class="field">Phone
+          <input type="tel" name="phone" autocomplete="tel">
+        </label>
+      </div>
+      <label class="field">Email you sign in to the app with
+        <input type="email" name="accountEmail" placeholder="Leave blank if it’s the same as above">
+      </label>
+      <label class="field">Best time to reach you
+        <input type="text" name="bestTime" placeholder="e.g. weekdays after 4pm">
+      </label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Where do your leads come from? <span class="req">*</span></legend>
+      <p class="hint">Pick all that apply.</p>
+      <div class="checks">
+        <label class="check"><input type="checkbox" name="sources" value="Thumbtack"> Thumbtack</label>
+        <label class="check"><input type="checkbox" name="sources" value="Angi"> Angi</label>
+        <label class="check"><input type="checkbox" name="sources" value="Google Ads lead forms"> Google Ads lead forms</label>
+        <label class="check"><input type="checkbox" name="sources" value="Google Local Services"> Google Local Services</label>
+        <label class="check"><input type="checkbox" name="sources" value="Website form"> My website’s contact form</label>
+        <label class="check"><input type="checkbox" name="sources" value="Facebook"> Facebook</label>
+        <label class="check"><input type="checkbox" name="sources" value="Yelp"> Yelp</label>
+        <label class="check"><input type="checkbox" name="sources" value="Other"> Something else</label>
+      </div>
+      <label class="field">If something else, what?
+        <input type="text" name="otherSource">
+      </label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Your website</legend>
+      <p class="hint">Only if you want website form leads connected.</p>
+      <div class="row">
+        <label class="field">Website address
+          <input type="url" name="website" placeholder="https://" inputmode="url">
+        </label>
+        <label class="field">What is it built with?
+          <input type="text" name="formTool" placeholder="Wix, Squarespace, WordPress, not sure…">
+        </label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Do you have a paid Zapier account?</legend>
+      <p class="hint">No problem if not. Some lead sources need it and we can handle that for you.</p>
+      <div class="radios">
+        <label class="check"><input type="radio" name="zapier" value="yes"> Yes</label>
+        <label class="check"><input type="radio" name="zapier" value="no"> No</label>
+        <label class="check"><input type="radio" name="zapier" value="not_sure" checked> Not sure</label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Anything else we should know?</legend>
+      <label class="field">Notes
+        <textarea name="notes" maxlength="2000"></textarea>
+      </label>
+    </fieldset>
+
+    <!-- Honeypot: hidden from people, filled in by bots. -->
+    <div class="honey" aria-hidden="true">
+      <label>Leave this empty <input type="text" name="website_confirm" tabindex="-1" autocomplete="off"></label>
+    </div>
+
+    <p class="error" id="form-error" role="alert"></p>
+    <button type="submit" id="submit-btn">Continue to payment ($99)</button>
+    <p class="fine"><span id="stripe-note">Secure checkout by Stripe. </span>Questions first? Email <a href="mailto:support@proxtrades.com">support@proxtrades.com</a>.</p>
+  </form>
+
+  <div class="done" id="done">
+    <h2>Thanks, we’ve got it</h2>
+    <p id="done-text">We’ll email you within one business day with next steps.</p>
+  </div>
+</main>
+
+<footer>
+  Electrician Pro X by Pro X Trades · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a>
+</footer>
+
+<script>
+  // Where the form goes, and where the contractor pays.
+  //
+  // SUBMIT_URL: the submitSetupRequest Cloud Function (electrician-native repo,
+  //   functions/src/functions/setupRequests.js).
+  // STRIPE_PAYMENT_LINK: the $99 Stripe Payment Link. In Stripe, set its
+  //   "After payment" redirect to https://electricianprox.com/setup-complete.
+  //   While it's empty, the form still saves the request and shows a thank-you
+  //   saying we'll email next steps (and you send the payment link yourself).
+  var SUBMIT_URL = 'https://us-central1-electrician-toolkit-33497.cloudfunctions.net/submitSetupRequest';
+  var STRIPE_PAYMENT_LINK = '';
+
+  var form = document.getElementById('setup-form');
+  var btn = document.getElementById('submit-btn');
+  var errorEl = document.getElementById('form-error');
+
+  if (!STRIPE_PAYMENT_LINK) {
+    btn.textContent = 'Send my request';
+    document.getElementById('stripe-note').style.display = 'none';
+  }
+
+  // The app's "Done-For-You Setup" button passes ?email=&name=&business=.
+  var params = new URLSearchParams(window.location.search);
+  [['email', 'email'], ['name', 'name'], ['business', 'businessName']].forEach(function (pair) {
+    var value = params.get(pair[0]);
+    if (value) form.elements[pair[1]].value = value.slice(0, 200);
+  });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    errorEl.textContent = '';
+
+    var data = {
+      name: form.elements.name.value,
+      businessName: form.elements.businessName.value,
+      email: form.elements.email.value,
+      accountEmail: form.elements.accountEmail.value,
+      phone: form.elements.phone.value,
+      bestTime: form.elements.bestTime.value,
+      sources: Array.prototype.filter.call(form.querySelectorAll('input[name=sources]'), function (c) { return c.checked; })
+        .map(function (c) { return c.value; }),
+      otherSource: form.elements.otherSource.value,
+      website: form.elements.website.value,
+      formTool: form.elements.formTool.value,
+      zapier: (form.querySelector('input[name=zapier]:checked') || {}).value || 'not_sure',
+      notes: form.elements.notes.value,
+      website_confirm: form.elements.website_confirm.value,
+    };
+
+    if (!data.name.trim()) return showError('Please enter your name.', 'name');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email.trim())) return showError('Please enter a valid email address.', 'email');
+    if (data.sources.length === 0) return showError('Pick at least one place your leads come from.');
+
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+
+    fetch(SUBMIT_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    })
+      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (b) { return { ok: r.ok, body: b }; }); })
+      .then(function (result) {
+        if (!result.ok || !result.body.ok) throw new Error(result.body.error || 'Something went wrong. Please try again.');
+        if (STRIPE_PAYMENT_LINK) {
+          btn.textContent = 'Taking you to payment…';
+          var url = STRIPE_PAYMENT_LINK
+            + (STRIPE_PAYMENT_LINK.indexOf('?') === -1 ? '?' : '&')
+            + 'prefilled_email=' + encodeURIComponent(data.email.trim())
+            + '&client_reference_id=' + encodeURIComponent(result.body.id);
+          window.location.href = url;
+          return;
+        }
+        form.style.display = 'none';
+        document.getElementById('done').style.display = 'block';
+        document.getElementById('done-text').textContent =
+          'We’ll email you at ' + data.email.trim() + ' within one business day with next steps and your payment link.';
+        window.scrollTo(0, 0);
+      })
+      .catch(function (err) {
+        btn.disabled = false;
+        btn.textContent = STRIPE_PAYMENT_LINK ? 'Continue to payment ($99)' : 'Send my request';
+        showError(err.message || 'Something went wrong. Please try again, or email support@proxtrades.com.');
+      });
+  });
+
+  function showError(message, field) {
+    errorEl.textContent = message;
+    if (field && form.elements[field]) form.elements[field].focus();
+  }
+</script>
+</body>
+</html>
