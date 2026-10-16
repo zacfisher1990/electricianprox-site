@@ -166,7 +166,7 @@
     <ol>
       <li>Tell us where your leads come from (2 minutes).</li>
       <li>Pay the one-time setup fee: <span class="price">$99</span>.</li>
-      <li>We’ll email you within one business day and get everything connected, usually on a short call. You’ll never need to give us your passwords.</li>
+      <li>We’ll email you within one business day and handle the setup over email, with simple steps for anything you need to do yourself. You’ll never need to give us your passwords.</li>
     </ol>
   </div>
 
@@ -185,15 +185,12 @@
         <label class="field">Email <span class="req">*</span>
           <input type="email" name="email" autocomplete="email" required>
         </label>
-        <label class="field">Phone
-          <input type="tel" name="phone" autocomplete="tel">
+        <label class="field">Phone (optional)
+          <input type="tel" name="phone" autocomplete="tel" placeholder="Only if you’d rather talk">
         </label>
       </div>
       <label class="field">Email you sign in to the app with
         <input type="email" name="accountEmail" placeholder="Leave blank if it’s the same as above">
-      </label>
-      <label class="field">Best time to reach you
-        <input type="text" name="bestTime" placeholder="e.g. weekdays after 4pm">
       </label>
     </fieldset>
 
@@ -303,7 +300,6 @@
       email: form.elements.email.value,
       accountEmail: form.elements.accountEmail.value,
       phone: form.elements.phone.value,
-      bestTime: form.elements.bestTime.value,
       sources: Array.prototype.filter.call(form.querySelectorAll('input[name=sources]'), function (c) { return c.checked; })
         .map(function (c) { return c.value; }),
       otherSource: form.elements.otherSource.value,
