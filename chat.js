@@ -168,7 +168,7 @@
     })
       .then(function (r) { return r.json().catch(function () { return {}; }).then(function (b) { return { ok: r.ok, body: b }; }); })
       .then(function (res) {
-        if (!res.ok || !res.body.ok) throw new Error(res.body.error || 'Something went wrong.');
+        if (!res.ok || !res.body.ok) throw new Error(res.body.error || ('Something went wrong. Please try again, or email ' + SUPPORT + '.'));
         messages.push({ role: 'assistant', text: res.body.reply });
         save();
         dots.remove();
@@ -176,6 +176,8 @@
       })
       .catch(function (err) {
         dots.remove();
+        // fetch itself failing (offline, blocked) reads "Failed to fetch".
+        if (err instanceof TypeError) err = new Error('Couldn\'t reach the help service. Check your connection and try again, or email ' + SUPPORT + '.');
         // Drop the unanswered question so a retry isn't sent twice.
         messages.pop();
         save();
