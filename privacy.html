@@ -164,7 +164,7 @@
         <div class="header">
             <h1>Privacy Policy</h1>
             <p class="app-name">Electrician Pro X</p>
-            <p class="updated">Last Updated: October 17, 2026</p>
+            <p class="updated">Last Updated: November 6, 2026</p>
         </div>
         
         <div class="content">
@@ -206,14 +206,15 @@
             <p>Our use of Google Calendar data is limited to the purposes described above and complies with the <a href="https://developers.google.com/terms/api-services-user-data-policy" style="color: var(--primary);">Google API Services User Data Policy</a>, including the Limited Use requirements.</p>
 
             <h3>QuickBooks Online Data</h3>
-            <p>If you choose to connect your QuickBooks Online account, we share your business data with Intuit solely to provide accounting sync features on your behalf. Specifically, when you sync an invoice, we:</p>
+            <p>If you choose to connect your QuickBooks Online account, we send your business data to Intuit solely to keep your QuickBooks company up to date on your behalf. When you sync, we:</p>
             <ul>
-                <li>Send invoice details (line items, amounts, dates, and invoice numbers) to your QuickBooks Online company</li>
-                <li>Create or match customer records in QuickBooks using the client name and contact information on the invoice</li>
-                <li>Record payments you have logged in the App against the corresponding QuickBooks invoice</li>
+                <li>Send invoices (line items, amounts, discounts, dates, and invoice numbers) to your QuickBooks Online company, and update them there when you edit them in the App</li>
+                <li>Create or match customer records in QuickBooks using the client name and contact information (email, phone, and address) on the invoice or job</li>
+                <li>Record payments you have logged in the App against the matching QuickBooks invoice</li>
+                <li>Send expenses (amount, date, and description, linked to the job's customer where there is one), and update them there when you edit them in the App</li>
             </ul>
-            <p>Syncing occurs only when you initiate it. Nothing is sent to QuickBooks automatically. We read from your QuickBooks account only as necessary to perform the sync (for example, to match existing customers or retrieve an invoice we previously created). We do not read, modify, or share unrelated data from your QuickBooks account. Data synced to QuickBooks remains in your QuickBooks account and is subject to <a href="https://www.intuit.com/privacy/statement/" style="color: var(--primary);">Intuit's Privacy Statement</a>.</p>
-            <p>Your QuickBooks access tokens are stored securely and are never shared with third parties. You can disconnect QuickBooks at any time from within the App or from your QuickBooks account's connected apps settings. Disconnecting stops all future syncing but does not delete data already synced to your QuickBooks account.</p>
+            <p>Syncing happens only when you start it. Nothing is sent to QuickBooks automatically. To avoid duplicates, we read from your QuickBooks account only what the sync needs: customers, the item and accounts the sync uses, and the invoices and expenses it created. The sync may create a "Service" item and "Job Expenses" and "Job Expenses – Clearing" accounts in your QuickBooks company. We do not read, store, or share any other data from your QuickBooks account. Data synced to QuickBooks remains in your QuickBooks account and is subject to <a href="https://www.intuit.com/privacy/statement/" style="color: var(--primary);">Intuit's Privacy Statement</a>.</p>
+            <p>Your QuickBooks access tokens are stored securely on our servers, encrypted at rest, are never visible in the App, and are never shared with third parties. You can disconnect QuickBooks at any time from within the App or from your QuickBooks account's connected apps settings. Disconnecting from within the App, or deleting your Electrician Pro X account, revokes our access with Intuit and deletes the tokens from our systems. It does not delete data already synced to your QuickBooks account.</p>
 
             <h3>Payment Data</h3>
             <p>If you enable invoice payments, you open a Stripe account that belongs to you (a "Connected Account") through Stripe's onboarding. The identity, business, and bank details you provide during onboarding are collected by Stripe, not by us, and are governed by <a href="https://stripe.com/privacy" target="_blank" rel="noopener" style="color: var(--primary);">Stripe's Privacy Policy</a>. We receive and store only your Stripe account identifier and status information about that account (for example, whether it can accept payments and payouts).</p>
@@ -248,7 +249,7 @@
             <p>We use the information we collect to:</p>
             <ul>
                 <li>Sync your scheduled jobs to Google Calendar when you choose to connect it</li>
-                <li>Sync your invoices, clients, and payments to QuickBooks Online when you choose to connect it</li>
+                <li>Sync your invoices, clients, payments, and expenses to QuickBooks Online when you choose to connect it</li>
                 <li>Create and manage your account</li>
                 <li>Provide job management, invoicing, and estimating features</li>
                 <li>Send estimates and invoices to your clients on your behalf (when you request)</li>
@@ -268,7 +269,7 @@
             <p>We use third-party services to operate the App:</p>
             <ul>
                 <li><strong>Google Calendar API</strong>: To create and manage calendar events on your behalf when you connect Google Calendar. Subject to <a href="https://policies.google.com/privacy" style="color: var(--primary);">Google's Privacy Policy</a>.</li>
-                <li><strong>Intuit (QuickBooks Online)</strong>: To sync invoices, customers, and payments to your QuickBooks Online account when you connect it. Subject to <a href="https://www.intuit.com/privacy/statement/" style="color: var(--primary);">Intuit's Privacy Statement</a>.</li>
+                <li><strong>Intuit (QuickBooks Online)</strong>: To sync invoices, customers, payments, and expenses to your QuickBooks Online account when you connect it, as described in QuickBooks Online Data above. Subject to <a href="https://www.intuit.com/privacy/statement/" style="color: var(--primary);">Intuit's Privacy Statement</a>.</li>
                 <li><strong>Firebase (Google)</strong>: For authentication, database storage, and analytics</li>
                 <li><strong>Google (Gemini AI)</strong>: To generate suggested estimate content when you use the AI estimate assist feature. The job description you enter is sent to Google's AI services to produce the suggestion. Questions typed into the website help chat are also sent to Google's AI services to produce an answer. Subject to <a href="https://policies.google.com/privacy" style="color: var(--primary);">Google's Privacy Policy</a>.</li>
                 <li><strong>Postmark</strong>: For sending emails (estimates and invoices) on your behalf</li>
